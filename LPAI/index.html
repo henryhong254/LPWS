@@ -6,8 +6,50 @@
   <title>Workshop: Tự Xây Trang Bán Hàng Bằng AI – Founders North</title>
   <meta name="description" content="Workshop 2 ngày giúp Founder SME/Startup tự tay xây Landing Page bằng AI. Không cần biết code. Cam kết ra về có trang đã launching. Early Bird 886.000đ." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&family=Cormorant+SC:wght@600;700&display=swap" rel="stylesheet" />
   <style>
+    @font-face {
+      font-family: 'Cormorant SC';
+      src: url('../Fonts/Cormorant SC copy.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'DFVN-ED-Lavonia';
+      src: url('../Fonts/DFVN ED Lavonia copy.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'DFVN-Sauvage';
+      src: url('../Fonts/DFVN Sauvage copy.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'HarryPotter';
+      src: url('../Fonts/HARRYP__ copy.TTF') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Grindelwald';
+      src: url('../Fonts/Crimes of Grindelwald.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Aesthetic';
+      src: url('../Fonts/Aesthetic-Regular copy.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
     /* ═══════════════════════════════════════════
        ROOT & RESET
     ═══════════════════════════════════════════ */
@@ -34,10 +76,11 @@
 
     body {
       font-family: 'Inter', sans-serif;
+      font-size: 1.15rem;
       background: var(--navy);
       color: #E8E0D0;
       overflow-x: hidden;
-      line-height: 1.7;
+      line-height: 1.75;
     }
 
     /* Animated starfield background */
@@ -58,22 +101,54 @@
       pointer-events: none;
       z-index: 0;
     }
+    
+    #cursor-light {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      background: radial-gradient(150px circle at var(--x, -100%) var(--y, -100%), rgba(201,168,76,0.18) 0%, transparent 70%);
+      transition: background 0.05s linear;
+    }
+
+    #cursor-firefly {
+      position: fixed;
+      top: 0; left: 0;
+      width: 12px; height: 12px;
+      background: var(--gold-light);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 10000;
+      box-shadow: 0 0 15px var(--gold), 0 0 30px var(--gold-light);
+      transform: translate(-50%, -50%);
+      transition: left 0.12s ease-out, top 0.12s ease-out;
+    }
 
     /* ═══════════════════════════════════════════
        TYPOGRAPHY
     ═══════════════════════════════════════════ */
-    .cinzel  { font-family: 'Cinzel', serif; }
-    .garamond { font-family: 'EB Garamond', serif; }
+    .cinzel  { font-family: 'Cormorant SC', serif; }
+    .garamond { font-family: 'Cormorant SC', serif; }
 
-    h1, h2, h3 { font-family: 'Cinzel', serif; line-height: 1.25; }
+    h1 { font-family: 'Cormorant SC', serif; line-height: 1.15; text-wrap: balance; }
+    h2 { 
+      font-family: 'DFVN-ED-Lavonia', 'Cormorant SC', serif; 
+      line-height: 1.5; 
+      padding-top: 5px;
+      padding-bottom: 5px;
+      text-wrap: balance;
+    }
+    h3 { font-family: 'Cormorant SC', serif; }
     
     .section-label {
-      font-family: 'Cinzel', serif;
-      font-size: 0.7rem;
+      font-family: 'Cormorant SC', serif;
+      font-size: 1.25rem;
       letter-spacing: 0.25em;
       text-transform: uppercase;
       color: var(--gold);
-      opacity: 0.85;
+      display: block;
+      margin-bottom: 20px;
     }
 
     /* ═══════════════════════════════════════════
@@ -150,17 +225,19 @@
       border-bottom: 1px solid rgba(201,168,76,0.15);
     }
     .nav-logo {
-      font-family: 'Cinzel', serif;
+      font-family: 'Cormorant SC', serif;
       font-size: 0.9rem;
       font-weight: 700;
       color: var(--gold-light);
       letter-spacing: 0.1em;
+      text-decoration: none;
+      cursor: pointer;
     }
     .nav-logo span { color: #fff; opacity: 0.6; font-weight: 400; }
     .nav-cta {
       background: linear-gradient(135deg, var(--gold-dim), var(--gold));
       color: var(--ink);
-      font-family: 'Cinzel', serif;
+      font-family: 'Cormorant SC', serif;
       font-size: 0.7rem;
       font-weight: 700;
       letter-spacing: 0.1em;
@@ -170,6 +247,46 @@
       transition: filter 0.2s, transform 0.2s;
     }
     .nav-cta:hover { filter: brightness(1.15); transform: translateY(-1px); }
+    
+    /* Sub-Nav / TOC */
+    .sub-nav {
+      position: sticky;
+      top: 68px;
+      background: rgba(13,15,26,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+      padding: 12px 24px;
+      z-index: 99;
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      white-space: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .sub-nav::-webkit-scrollbar { display: none; }
+    
+    .sub-nav a {
+      font-family: 'Cormorant SC', serif;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      color: rgba(232, 224, 208, 0.5);
+      text-decoration: none;
+      letter-spacing: 0.12em;
+      transition: color 0.3s, transform 0.3s;
+    }
+    .sub-nav a:hover {
+      color: var(--gold-light);
+      transform: translateY(-1px);
+    }
+    .sub-nav a.active {
+      color: var(--gold);
+      border-bottom: 1px solid var(--gold);
+    }
+    
+    @media (max-width: 640px) {
+      .sub-nav { justify-content: flex-start; gap: 20px; padding: 10px 20px; top: 60px; }
+    }
 
     /* ═══════════════════════════════════════════
        HERO
@@ -197,7 +314,7 @@
       padding: 6px 18px;
       font-size: 0.75rem;
       color: var(--gold-light);
-      font-family: 'Cinzel', serif;
+      font-family: 'Cormorant SC', serif;
       letter-spacing: 0.12em;
       margin-bottom: 28px;
       background: rgba(201,168,76,0.06);
@@ -214,22 +331,83 @@
       animation: blink 1.5s ease-in-out infinite;
     }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    
+    /* Aurora Effect (Realistic Curtain Style) */
+    .aurora-container {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.6;
+      perspective: 1000px;
+    }
+    .aurora-layer {
+      position: absolute;
+      width: 200%; height: 100%;
+      top: -10%;
+      mix-blend-mode: screen;
+      filter: blur(50px);
+      transform-origin: top;
+      opacity: 0.4;
+    }
+    .aurora-1 { 
+      background: repeating-linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(46,204,113,0) 2%, 
+        rgba(46,204,113,0.3) 4%, 
+        rgba(46,204,113,0) 6%, 
+        transparent 10%);
+      animation: aurora-curtain 18s infinite linear;
+      left: -50%;
+    }
+    .aurora-2 { 
+      background: repeating-linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(201,168,76,0) 3%, 
+        rgba(201,168,76,0.2) 5%, 
+        rgba(201,168,76,0) 7%, 
+        transparent 12%);
+      animation: aurora-curtain 25s infinite linear reverse;
+      right: -50%;
+      animation-delay: -5s;
+    }
+    .aurora-3 { 
+      background: repeating-linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(52,152,219,0) 4%, 
+        rgba(52,152,219,0.15) 6%, 
+        rgba(52,152,219,0) 8%, 
+        transparent 15%);
+      animation: aurora-curtain 30s infinite linear;
+      left: -20%;
+      animation-delay: -10s;
+    }
+    @keyframes aurora-curtain {
+      0% { transform: translateX(0) skewX(-15deg) scaleY(1); }
+      50% { transform: translateX(-5%) skewX(-5deg) scaleY(1.1); }
+      100% { transform: translateX(-10%) skewX(-15deg) scaleY(1); }
+    }
 
     #hero h1 {
-      font-size: clamp(2.2rem, 6vw, 4rem);
-      font-weight: 900;
-      line-height: 1.15;
-      margin-bottom: 12px;
-      max-width: 800px;
+      font-family: 'Cormorant SC', serif;
+      font-size: clamp(2.5rem, 8vw, 4.8rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: 0.05em;
+      margin-bottom: 24px;
+      color: var(--parchment);
+      text-shadow: 0 4px 20px rgba(201,168,76,0.3);
+      text-wrap: balance;
     }
 
     .hero-subtitle {
-      font-family: 'EB Garamond', serif;
+      font-family: 'Cormorant SC', serif;
       font-size: clamp(1.1rem, 2.5vw, 1.4rem);
       color: rgba(232,224,208,0.8);
       max-width: 600px;
       margin: 0 auto 20px;
-      font-style: italic;
+      text-wrap: balance;
     }
 
     .hero-tagline {
@@ -252,11 +430,11 @@
       gap: 10px;
       background: linear-gradient(135deg, #8B6914, var(--gold) 40%, var(--gold-light) 60%, var(--gold));
       color: var(--ink);
-      font-family: 'Cinzel', serif;
+      font-family: 'Cormorant SC', serif;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 1.15rem;
       letter-spacing: 0.08em;
-      padding: 16px 36px;
+      padding: 18px 42px;
       border-radius: 8px;
       text-decoration: none;
       border: none;
@@ -283,34 +461,34 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      font-family: 'Cinzel', serif;
+      font-family: 'Cormorant SC', serif;
     }
     .price-early {
-      font-size: 1.5rem;
+      font-size: 2.2rem;
       font-weight: 700;
       color: var(--gold-light);
     }
     .price-original {
-      font-size: 0.85rem;
+      font-size: 1.1rem;
       color: rgba(232,224,208,0.4);
       text-decoration: line-through;
     }
     .price-tag {
       background: var(--crimson);
       color: #fff;
-      font-size: 0.62rem;
-      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      font-family: 'Cormorant SC', serif;
       font-weight: 700;
       letter-spacing: 0.1em;
-      padding: 3px 10px;
+      padding: 4px 12px;
       border-radius: 4px;
     }
 
     .hero-note {
-      font-size: 0.78rem;
+      font-size: 1rem;
       color: rgba(232,224,208,0.4);
       font-style: italic;
-      font-family: 'EB Garamond', serif;
+      font-family: 'Cormorant SC', serif;
     }
 
     /* ═══════════════════════════════════════════
@@ -337,7 +515,7 @@
       text-align: center;
     }
     .proof-num {
-      font-family: 'Cinzel', serif;
+      font-family: 'Cormorant SC', serif;
       font-size: 1.4rem;
       font-weight: 900;
       color: var(--gold-light);
@@ -368,19 +546,19 @@
       color: var(--parchment);
     }
     .pain-intro {
-      font-family: 'EB Garamond', serif;
-      font-size: 1.15rem;
+      font-family: 'Cormorant SC', serif;
+      font-size: 1.25rem;
       color: rgba(232,224,208,0.75);
       max-width: 640px;
       margin: 16px auto 0;
       text-align: center;
-      font-style: italic;
+      text-wrap: balance;
     }
 
     .pain-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
     }
     .pain-card {
       background: var(--navy-card);
@@ -408,14 +586,14 @@
       display: block;
     }
     .pain-card h3 {
-      font-family: 'Cinzel', serif;
+      font-family: 'Cormorant SC', serif;
       font-size: 0.85rem;
       letter-spacing: 0.08em;
       color: var(--gold-light);
       margin-bottom: 10px;
     }
     .pain-card p {
-      font-size: 0.9rem;
+      font-size: 1.05rem;
       color: rgba(232,224,208,0.65);
       line-height: 1.65;
     }
@@ -463,11 +641,11 @@
       margin-bottom: 16px;
     }
     #magic p {
-      font-family: 'EB Garamond', serif;
-      font-size: 1.15rem;
+      font-family: 'Cormorant SC', serif;
+      font-size: 1.3rem;
       color: rgba(232,224,208,0.8);
-      font-style: italic;
       line-height: 1.8;
+      text-wrap: balance;
     }
     .magic-highlight {
       color: var(--gold-light);
@@ -520,7 +698,7 @@
 
     .session-tag {
       display: inline-block;
-      font-family: 'Cinzel', serif;
+      font-family: 'Cormorant SC', serif;
       font-size: 0.62rem;
       font-weight: 700;
       letter-spacing: 0.15em;
@@ -532,7 +710,7 @@
     .tag-offline { background: rgba(46,204,113,0.15); color: #5DCEA0; border: 1px solid rgba(46,204,113,0.3); }
 
     .session-title {
-      font-family: 'Cinzel', serif;
+      font-family: 'Cormorant SC', serif;
       font-size: 1.35rem;
       font-weight: 700;
       color: var(--gold-light);
@@ -573,14 +751,14 @@
       margin-top: 2px;
     }
     .spell-content h4 {
-      font-family: 'Cinzel', serif;
+      font-family: 'Cormorant SC', serif;
       font-size: 0.78rem;
       letter-spacing: 0.06em;
       color: var(--gold);
       margin-bottom: 5px;
     }
     .spell-content p {
-      font-size: 0.875rem;
+      font-size: 1.05rem;
       color: rgba(232,224,208,0.65);
       line-height: 1.6;
     }
@@ -604,8 +782,8 @@
 
     .benefits-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
     }
 
     .benefit-card {
@@ -631,13 +809,13 @@
     .benefit-card:hover::after { opacity: 1; }
     .benefit-ico { font-size: 2.2rem; display: block; margin-bottom: 14px; }
     .benefit-card h3 {
-      font-family: 'Cinzel', serif;
-      font-size: 0.82rem;
+      font-family: 'Cormorant SC', serif;
+      font-size: 1.15rem;
       letter-spacing: 0.07em;
       color: var(--gold-light);
       margin-bottom: 10px;
     }
-    .benefit-card p { font-size: 0.875rem; color: rgba(232,224,208,0.6); line-height: 1.6; }
+    .benefit-card p { font-size: 1.1rem; color: rgba(232,224,208,0.6); line-height: 1.6; }
 
     /* ═══════════════════════════════════════════
        FOR WHO
@@ -657,8 +835,8 @@
       gap: 48px;
     }
     .for-who-col h3 {
-      font-family: 'Cinzel', serif;
-      font-size: 0.8rem;
+      font-family: 'Cormorant SC', serif;
+      font-size: 1.15rem;
       letter-spacing: 0.15em;
       margin-bottom: 24px;
     }
@@ -670,7 +848,7 @@
       align-items: flex-start;
       gap: 12px;
       margin-bottom: 14px;
-      font-size: 0.9rem;
+      font-size: 1.1rem;
       color: rgba(232,224,208,0.75);
       line-height: 1.5;
     }
@@ -702,14 +880,14 @@
       flex-shrink: 0;
       background: linear-gradient(135deg, var(--gold-dim), var(--gold));
       display: flex; align-items: center; justify-content: center;
-      font-family: 'Cinzel', serif;
+      font-family: 'Cormorant SC', serif;
       font-size: 2rem;
       font-weight: 900;
       color: var(--ink);
       box-shadow: 0 0 30px rgba(201,168,76,0.3);
     }
     .instructor-info h3 {
-      font-family: 'Cinzel', serif;
+      font-family: 'Cormorant SC', serif;
       font-size: 1.2rem;
       color: var(--gold-light);
       margin-bottom: 4px;
@@ -718,15 +896,14 @@
       font-size: 0.78rem;
       color: rgba(232,224,208,0.5);
       letter-spacing: 0.08em;
-      font-family: 'Cinzel', serif;
+      font-family: 'Cormorant SC', serif;
       margin-bottom: 16px;
     }
     .instructor-info p {
-      font-family: 'EB Garamond', serif;
-      font-size: 1rem;
+      font-family: 'Cormorant SC', serif;
+      font-size: 1.15rem;
       color: rgba(232,224,208,0.75);
       line-height: 1.75;
-      font-style: italic;
     }
 
     /* ═══════════════════════════════════════════
@@ -774,7 +951,7 @@
       transform: translateX(-50%);
       background: linear-gradient(135deg, var(--gold-dim), var(--gold));
       color: var(--ink);
-      font-family: 'Cinzel', serif;
+      font-family: 'Cormorant SC', serif;
       font-size: 0.62rem;
       font-weight: 700;
       letter-spacing: 0.12em;
@@ -784,7 +961,7 @@
     }
 
     .pricing-type {
-      font-family: 'Cinzel', serif;
+      font-family: 'Cormorant SC', serif;
       font-size: 0.7rem;
       letter-spacing: 0.15em;
       color: rgba(232,224,208,0.5);
@@ -792,7 +969,7 @@
       text-transform: uppercase;
     }
     .pricing-amount {
-      font-family: 'Cinzel', serif;
+      font-family: 'Cormorant SC', serif;
       font-size: 2.4rem;
       font-weight: 900;
       color: var(--gold-light);
@@ -828,7 +1005,7 @@
       text-align: center;
       padding: 14px;
       border-radius: 8px;
-      font-family: 'Cinzel', serif;
+      font-family: 'Cormorant SC', serif;
       font-size: 0.82rem;
       font-weight: 700;
       letter-spacing: 0.08em;
@@ -887,7 +1064,7 @@
       justify-content: space-between;
       gap: 16px;
       cursor: pointer;
-      font-family: 'Cinzel', serif;
+      font-family: 'Cormorant SC', serif;
       font-size: 0.85rem;
       letter-spacing: 0.04em;
       color: var(--parchment);
@@ -912,10 +1089,10 @@
     .faq-item.open .faq-a { max-height: 300px; }
     .faq-a-inner {
       padding: 0 24px 20px;
-      font-family: 'EB Garamond', serif;
-      font-size: 1rem;
+      font-family: 'Cormorant SC', serif;
+      font-size: 1.1rem;
       color: rgba(232,224,208,0.7);
-      line-height: 1.75;
+      line-height: 1.8;
     }
 
     /* ═══════════════════════════════════════════
@@ -950,12 +1127,12 @@
       margin-bottom: 16px;
     }
     #final-cta p {
-      font-family: 'EB Garamond', serif;
-      font-size: 1.1rem;
+      font-family: 'Cormorant SC', serif;
+      font-size: 1.2rem;
       color: rgba(232,224,208,0.7);
-      font-style: italic;
       margin-bottom: 36px;
       line-height: 1.8;
+      text-wrap: balance;
     }
     .seat-warning {
       display: flex;
@@ -980,7 +1157,7 @@
       z-index: 1;
     }
     .footer-logo {
-      font-family: 'Cinzel', serif;
+      font-family: 'Cormorant SC', serif;
       font-size: 1rem;
       color: var(--gold);
       letter-spacing: 0.15em;
@@ -989,6 +1166,95 @@
     footer p {
       font-size: 0.78rem;
       color: rgba(232,224,208,0.3);
+    }
+
+    /* Showcase Section */
+    #showcase {
+      padding: 96px 24px;
+      position: relative;
+      z-index: 1;
+    }
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      margin-top: 48px;
+    }
+    .showcase-card {
+      background: var(--navy-card);
+      border: 1px solid rgba(201,168,76,0.1);
+      border-radius: var(--radius-lg);
+      padding: 12px;
+      transition: transform 0.3s, border-color 0.3s;
+      text-decoration: none;
+    }
+    .showcase-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(201,168,76,0.4);
+    }
+    .showcase-img {
+      width: 100%;
+      aspect-ratio: 16/10;
+      background: rgba(201,168,76,0.05);
+      border-radius: calc(var(--radius-lg) - 8px);
+      overflow: hidden;
+      margin-bottom: 16px;
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .showcase-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(13,15,26,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+      backdrop-filter: blur(4px);
+    }
+    .showcase-card:hover .showcase-overlay { opacity: 1; }
+    .btn-showcase {
+      background: var(--gold);
+      color: var(--ink);
+      font-family: 'Cormorant SC', serif;
+      font-size: 0.75rem;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transform: translateY(10px);
+      transition: transform 0.3s;
+    }
+    .showcase-card:hover .btn-showcase { transform: translateY(0); }
+    .showcase-img img { width: 100%; height: 100%; object-fit: cover; }
+    .showcase-placeholder {
+      font-size: 0.8rem;
+      color: rgba(232,224,208,0.2);
+      font-family: 'Cormorant SC', serif;
+    }
+    .showcase-info { padding: 0 8px 12px; text-align: center; }
+    .showcase-domain {
+      display: block;
+      font-family: 'Cormorant SC', serif;
+      font-size: 1.15rem;
+      color: var(--gold);
+      margin-bottom: 4px;
+      text-wrap: balance;
+    }
+    .showcase-student {
+      font-size: 0.75rem;
+      color: rgba(232,224,208,0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    @media (max-width: 900px) {
+      .showcase-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .showcase-grid { grid-template-columns: 1fr; }
     }
 
     /* ═══════════════════════════════════════════
@@ -1008,6 +1274,7 @@
        RESPONSIVE
     ═══════════════════════════════════════════ */
     @media (max-width: 640px) {
+      .pain-grid, .benefits-grid { grid-template-columns: 1fr; }
       .for-who-inner { grid-template-columns: 1fr; gap: 32px; }
       .instructor-inner { flex-direction: column; align-items: center; text-align: center; padding: 32px 24px; }
       .final-cta-inner { padding: 40px 24px; }
@@ -1018,17 +1285,35 @@
 </head>
 <body>
 
+  <div id="cursor-light"></div>
+  <div id="cursor-firefly"></div>
   <!-- Floating Particles -->
   <div class="particles" id="particles"></div>
 
   <!-- NAV -->
   <nav>
-    <div class="nav-logo">Founders<span> North</span></div>
+    <a href="#hero" class="nav-logo">Founders<span> North</span></a>
     <a href="#pricing" class="nav-cta" id="nav-cta-btn">✨ Đăng Ký Ngay</a>
   </nav>
+  
+  <!-- Sub-Nav / Table of Content -->
+  <div class="sub-nav">
+    <a href="#pain">Vấn đề</a>
+    <a href="#curriculum">Lộ trình</a>
+    <a href="#benefits">Kết quả</a>
+    <a href="#showcase">Dự án</a>
+    <a href="#instructor">Người dạy</a>
+    <a href="#pricing">Đăng ký</a>
+    <a href="#faq">FAQ</a>
+  </div>
 
   <!-- ───────────── HERO ───────────── -->
   <section id="hero">
+    <div class="aurora-container">
+      <div class="aurora-layer aurora-1"></div>
+      <div class="aurora-layer aurora-2"></div>
+      <div class="aurora-layer aurora-3"></div>
+    </div>
     <div class="container">
       <div class="hero-badge">
         <span class="dot"></span>
@@ -1348,6 +1633,83 @@
     </div>
   </section>
 
+  <!-- ───────────── SHOWCASE ───────────── -->
+  <section id="showcase">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:48px;" class="reveal">
+        <span class="section-label">✦ Thành Quả Thực Tế ✦</span>
+        <h2 style="margin-top:12px;">Những Trang Bán Hàng <span class="gold-text">Đã Launching</span></h2>
+      </div>
+      
+      <div class="showcase-grid">
+        <!-- Card 1 -->
+        <div class="showcase-card reveal">
+          <div class="showcase-img">
+            <img src="../Assets/website 1.png" alt="Chén Trà Nhỏ">
+            <div class="showcase-overlay">
+              <a href="https://lemonetartcafe.com/" class="btn-showcase" target="_blank">Xem Website</a>
+            </div>
+          </div>
+          <div class="showcase-info">
+            <span class="showcase-domain">Chén Trà Nhỏ</span>
+          </div>
+        </div>
+        
+        <!-- Card 2 -->
+        <div class="showcase-card reveal">
+          <div class="showcase-img">
+            <img src="../Assets/website 2.png" alt="Bài Test Tính Cách">
+            <div class="showcase-overlay">
+              <a href="https://lemonetartcafe.com/pages/tach-tra-cua-ban" class="btn-showcase" target="_blank">Xem Website</a>
+            </div>
+          </div>
+          <div class="showcase-info">
+            <span class="showcase-domain">Bài Test Tính Cách</span>
+          </div>
+        </div>
+        
+        <!-- Card 3 -->
+        <div class="showcase-card reveal">
+          <div class="showcase-img">
+            <img src="../Assets/website 3.png" alt="Founder's North">
+            <div class="showcase-overlay">
+              <a href="https://foundersnorth.com.vn/" class="btn-showcase" target="_blank">Xem Website</a>
+            </div>
+          </div>
+          <div class="showcase-info">
+            <span class="showcase-domain">Founder's North</span>
+          </div>
+        </div>
+        
+        <!-- Card 4 -->
+        <div class="showcase-card reveal">
+          <div class="showcase-img">
+            <img src="../Assets/website 4.png" alt="B-MAT">
+            <div class="showcase-overlay">
+              <a href="https://foundersnorth.com.vn/6truongphai" class="btn-showcase" target="_blank">Xem Website</a>
+            </div>
+          </div>
+          <div class="showcase-info">
+            <span class="showcase-domain">B-MAT</span>
+          </div>
+        </div>
+        
+        <!-- Card 5 -->
+        <div class="showcase-card reveal">
+          <div class="showcase-img">
+            <img src="../Assets/website 5.png" alt="Book Phòng Meeting">
+            <div class="showcase-overlay">
+              <a href="https://lemonetartcafe.com/pages/thue-phong" class="btn-showcase" target="_blank">Xem Website</a>
+            </div>
+          </div>
+          <div class="showcase-info">
+            <span class="showcase-domain">Book Phòng Meeting</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ───────────── INSTRUCTOR ───────────── -->
   <section id="instructor">
     <div class="container">
@@ -1506,9 +1868,9 @@
         <span class="cta-rune">⚡</span>
         <h2>Đã Đến Lúc <span class="gold-text">Ra Khỏi Cái Bẫy</span></h2>
         <p>
-          Mỗi ngày không có trang bán hàng là mỗi ngày bạn đang để tiền nằm trên bàn.
-          Bạn không cần thêm 1 khóa học 3 tháng. Bạn cần 2 ngày — và một người đã đi
-          trước để chỉ bạn từng bước.
+          Mỗi ngày không có trang bán hàng là mỗi ngày bạn đang để tiền nằm trên bàn. 
+          Bạn không cần thêm 1 khóa học 3 tháng. Bạn cần 2 ngày — và một người 
+          đã đi trước để chỉ bạn từng bước.
         </p>
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSd_PLACEHOLDER/viewform" id="final-cta-btn" class="btn-primary" target="_blank" rel="noopener" style="font-size:1rem; padding:18px 48px;">
           ✦ Tôi Muốn Học Phép Thuật Này &rarr;
@@ -1580,6 +1942,40 @@
         const s = Math.floor((diff % 60000) / 1000);
       }
       setInterval(tick, 1000);
+    })();
+
+    /* ── Cursor Light ── */
+    (function () {
+      const light = document.getElementById('cursor-light');
+      const firefly = document.getElementById('cursor-firefly');
+      window.addEventListener('mousemove', (e) => {
+        light.style.setProperty('--x', e.clientX + 'px');
+        light.style.setProperty('--y', e.clientY + 'px');
+        firefly.style.left = e.clientX + 'px';
+        firefly.style.top = e.clientY + 'px';
+      });
+    })();
+
+    /* ── Sub-Nav Active State ── */
+    (function () {
+      const sections = ['pain', 'curriculum', 'benefits', 'showcase', 'instructor', 'pricing', 'faq'];
+      const navLinks = document.querySelectorAll('.sub-nav a');
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(id => {
+          const section = document.getElementById(id);
+          const top = section.offsetTop;
+          if (pageYOffset >= (top - 120)) {
+            current = id;
+          }
+        });
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href').includes(current)) {
+            link.classList.add('active');
+          }
+        });
+      });
     })();
   </script>
 </body>
