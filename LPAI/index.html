@@ -1489,7 +1489,7 @@
         Bạn chỉ cần biết cách &ldquo;phù phép&rdquo; AI — và Ý sẽ chỉ bạn cách đó.
       </p>
 
-      <p class="hero-tagline">Online 28/4 · Offline 29/4 · TP.HCM</p>
+      <p class="hero-tagline">Online 13/5 · Offline 14/5 · TP.HCM</p>
 
       <div class="hero-cta-group">
         <div class="price-hero">
@@ -1616,7 +1616,7 @@
             <div class="session-title">The Magic</div>
             <div class="session-subtitle">Giải Mã Trò Ảo Thuật</div>
             <div class="session-meta">
-              <span>📅 28/4</span>
+              <span>📅 13/5</span>
               <span>🕛 12:00 – 13:30</span>
             </div>
           </div>
@@ -1661,7 +1661,7 @@
             <div class="session-title">The Machine</div>
             <div class="session-subtitle">Cỗ Máy Vận Hành</div>
             <div class="session-meta">
-              <span>📅 29/4</span>
+              <span>📅 14/5</span>
               <span>🕘 9:00 – 12:30</span>
             </div>
           </div>
@@ -1900,39 +1900,22 @@
         <h2>Chọn <span class="gold-text">Cánh Cổng</span> Của Bạn</h2>
       </div>
 
-      <div class="pricing-cards">
-        <!-- Early Bird -->
-        <div class="pricing-card featured reveal">
-          <div class="featured-badge">✨ ƯU ĐÃI EARLY BIRD</div>
-          <div class="pricing-type">Early Bird</div>
+      <div class="pricing-cards" style="max-width:480px;">
+        <!-- Single Pricing Card -->
+        <div class="pricing-card featured reveal" style="transform:none;">
+          <div class="featured-badge">✨ ƯU ĐÃI EARLY BIRD — HẾT HẠN 11/5</div>
+          <div class="pricing-type">Học Phí</div>
           <div class="pricing-amount">886.000đ</div>
-          <div class="pricing-period">Ưu đãi có hạn · Chỉ còn vài suất</div>
+          <div class="pricing-period">Đăng ký trước 11/5 · Sau ngày này học phí sẽ cao hơn</div>
           <ul class="pricing-features">
-            <li><span class="feat-check">✦</span> Buổi 1: Online 28/4 (12h–13h30)</li>
-            <li><span class="feat-check">✦</span> Buổi 2: Offline 29/4 (9h–12h30) tại TP.HCM</li>
+            <li><span class="feat-check">✦</span> Buổi 1: Online 13/5 (12h–13h30)</li>
+            <li><span class="feat-check">✦</span> Buổi 2: Offline 14/5 (9h–12h30) tại TP.HCM</li>
             <li><span class="feat-check">✦</span> Cam kết có Landing Page launching sau 2 ngày</li>
             <li><span class="feat-check">✦</span> Hỗ trợ trực tiếp 1:1 trong lớp (tối đa 5 người)</li>
             <li><span class="feat-check">✦</span> Template prompt AI & tài liệu workshop</li>
           </ul>
-          <a href="#dang-ky" id="early-bird-btn" class="btn-pricing btn-pricing-featured" target="_blank" rel="noopener">
-            ✦ Đặt Chỗ Early Bird →
-          </a>
-        </div>
-
-        <!-- Regular -->
-        <div class="pricing-card reveal">
-          <div class="pricing-type">Giá Gốc</div>
-          <div class="pricing-amount" style="color: var(--silver);">1.086.000đ</div>
-          <div class="pricing-period">Sau khi Early Bird kết thúc</div>
-          <ul class="pricing-features">
-            <li><span class="feat-check" style="color:var(--silver);">✓</span> Buổi 1: Online 28/4 (12h–13h30)</li>
-            <li><span class="feat-check" style="color:var(--silver);">✓</span> Buổi 2: Offline 29/4 (9h–12h30) tại TP.HCM</li>
-            <li><span class="feat-check" style="color:var(--silver);">✓</span> Cam kết có Landing Page launching sau 2 ngày</li>
-            <li><span class="feat-check" style="color:var(--silver);">✓</span> Hỗ trợ trực tiếp 1:1 trong lớp (tối đa 5 người)</li>
-            <li><span class="feat-check" style="color:var(--silver);">✓</span> Template prompt AI & tài liệu workshop</li>
-          </ul>
-          <a href="#dang-ky" id="regular-price-btn" class="btn-pricing btn-pricing-normal" target="_blank" rel="noopener">
-            Đăng Ký Giá Gốc →
+          <a href="#dang-ky" id="early-bird-btn" class="btn-pricing btn-pricing-featured">
+            ✦ Đặt Chỗ Của Tôi →
           </a>
         </div>
       </div>
@@ -2122,7 +2105,7 @@
 
     /* ── Countdown ── */
     (function () {
-      const target = new Date('2025-04-28T12:00:00+07:00');
+      const target = new Date('2025-05-13T12:00:00+07:00');
       function tick() {
         const now = new Date();
         const diff = target - now;
@@ -2150,7 +2133,7 @@
     /* ── Registration Modal ── */
     (function () {
       const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwsAUISzYHhDJCoWyfo-zYrNcwC6zHQ4HIPO1T8jkCvHF_2kQSRvh__jhSAGgSdAOxG/exec';
-      const EARLY_BIRD_DEADLINE = new Date('2025-04-27T23:59:59+07:00');
+      const EARLY_BIRD_DEADLINE = new Date('2025-05-11T23:59:59+07:00');
 
       function isEarlyBird() {
         return new Date() <= EARLY_BIRD_DEADLINE;
@@ -2179,7 +2162,7 @@
       }
 
       // Intercept all CTA buttons
-      ['hero-cta-btn', 'nav-cta-btn', 'early-bird-btn', 'regular-price-btn', 'final-cta-btn'].forEach(function (id) {
+      ['hero-cta-btn', 'nav-cta-btn', 'early-bird-btn', 'final-cta-btn'].forEach(function (id) {
         const el = document.getElementById(id);
         if (el) el.addEventListener('click', function (e) { e.preventDefault(); openModal(); });
       });
