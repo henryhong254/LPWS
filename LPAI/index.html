@@ -2120,16 +2120,13 @@
 
         fetch(SCRIPT_URL, {
           method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
           body: JSON.stringify({ name, phone, email, package: pkg })
         })
-          .then(function (res) { return res.json(); })
-          .then(function (data) {
-            if (data.result === 'success') {
-              document.getElementById('reg-form-view').style.display = 'none';
-              document.getElementById('reg-success-view').style.display = '';
-            } else {
-              throw new Error('failed');
-            }
+          .then(function () {
+            document.getElementById('reg-form-view').style.display = 'none';
+            document.getElementById('reg-success-view').style.display = '';
           })
           .catch(function () {
             document.getElementById('form-error').style.display = 'block';
