@@ -2058,7 +2058,11 @@
           <div id="reg-success-view" class="form-success" style="display:none;">
             <span class="success-icon">🎉</span>
             <h3>Đăng Ký Thành Công!</h3>
-            <p>Ý sẽ liên hệ với bạn sớm nhất để xác nhận và gửi thông tin thanh toán.<br/>Hẹn gặp bạn tại lớp nhé!</p>
+            <p style="margin-bottom:8px;">Scan QR bên dưới để hoàn tất thanh toán.</p>
+            <p style="font-family:'Cormorant SC',serif; font-size:0.9rem; color:var(--gold-light); margin-bottom:4px;">Nội dung chuyển khoản:</p>
+            <p id="order-code-display" style="font-family:'Cormorant SC',serif; font-size:1.3rem; font-weight:700; color:var(--gold); letter-spacing:0.1em; margin-bottom:16px;"></p>
+            <img id="payment-qr" src="" alt="QR thanh toán" style="width:210px; height:210px; border-radius:12px; border:2px solid rgba(201,168,76,0.4); display:block; margin:0 auto 12px;" />
+            <p style="font-family:'Cormorant SC',serif; font-size:0.82rem; color:rgba(232,224,208,0.5);">MBBank · 0362722725 · Thiên Ý</p>
           </div>
         </div>
       </div>
@@ -2237,7 +2241,7 @@
 
     /* ── Registration Form ── */
     (function () {
-      const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzjU1U4lC2wBzAm_MaAe73L5FXaW2wdNuABIk6WNRq0RjoSox2T-RD7wzxg28tq-G4q/exec';
+      const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyPmF4dZmlXdd09tXgZXM48NEE-xNAhhKk1xovtdQchk74DKeRZA3IAkhE9n2mMA6k3/exec';
       const EARLY_BIRD_DEADLINE = new Date('2026-05-11T23:59:59+07:00');
       function isEarlyBird() { return new Date() <= EARLY_BIRD_DEADLINE; }
 
@@ -2277,8 +2281,14 @@
         btn.textContent = 'Đang gửi...';
         const pkg = isEarlyBird() ? 'Early Bird - 886.000đ' : 'Giá Gốc - 1.086.000đ';
         const params = new URLSearchParams({ name, phone, email, package: pkg });
-        fetch(SCRIPT_URL + '?' + params.toString(), { mode: 'no-cors' })
-          .then(function () {
+        fetch(SCRIPT_URL + '?' + params.toString())
+          .then(function (res) { return res.json(); })
+          .then(function (data) {
+            const code = data.code || ('LPWS' + Math.random().toString(36).substring(2,6).toUpperCase());
+            const amount = isEarlyBird() ? 886000 : 1086000;
+            document.getElementById('order-code-display').textContent = code;
+            document.getElementById('payment-qr').src =
+              'https://qr.sepay.vn/img?acc=0362722725&bank=MBBank&amount=' + amount + '&des=' + encodeURIComponent(code);
             document.getElementById('reg-form-view').style.display = 'none';
             document.getElementById('reg-success-view').style.display = '';
           })
