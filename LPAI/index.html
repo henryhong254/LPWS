@@ -1281,6 +1281,164 @@
       nav { padding: 12px 16px; }
       .proof-divider { display: none; }
     }
+
+    /* ═══════════════════════════════════════════
+       REGISTRATION MODAL
+    ═══════════════════════════════════════════ */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .modal-box {
+      background: linear-gradient(135deg, var(--navy-card), rgba(18,21,43,0.98));
+      border: 1px solid rgba(201,168,76,0.35);
+      border-radius: var(--radius-lg);
+      padding: 48px 40px;
+      width: 100%;
+      max-width: 480px;
+      position: relative;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(201,168,76,0.15);
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+    .modal-overlay.active .modal-box {
+      transform: translateY(0);
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px; right: 20px;
+      background: none;
+      border: none;
+      color: rgba(232,224,208,0.4);
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .modal-close:hover { color: var(--gold); }
+    .modal-title {
+      font-family: 'Cormorant SC', serif;
+      font-size: 1.5rem;
+      color: var(--gold-light);
+      margin-bottom: 6px;
+      text-align: center;
+    }
+    .modal-subtitle {
+      font-family: 'Cormorant SC', serif;
+      font-size: 0.95rem;
+      color: rgba(232,224,208,0.5);
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .modal-package-badge {
+      display: inline-block;
+      font-family: 'Cormorant SC', serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      padding: 5px 16px;
+      border-radius: 4px;
+      margin-bottom: 24px;
+      text-align: center;
+      width: 100%;
+    }
+    .modal-package-badge.early-bird {
+      background: linear-gradient(135deg, var(--gold-dim), var(--gold));
+      color: var(--ink);
+    }
+    .modal-package-badge.regular {
+      background: rgba(192,200,216,0.15);
+      color: var(--silver);
+      border: 1px solid rgba(192,200,216,0.3);
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-family: 'Cormorant SC', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: rgba(232,224,208,0.6);
+      margin-bottom: 8px;
+    }
+    .form-group input {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: var(--parchment);
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .form-group input:focus {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.05);
+    }
+    .form-group input::placeholder { color: rgba(232,224,208,0.25); }
+    .btn-submit {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #8B6914, var(--gold) 40%, var(--gold-light));
+      color: var(--ink);
+      font-family: 'Cormorant SC', serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: filter 0.2s, transform 0.2s;
+      box-shadow: 0 4px 20px rgba(201,168,76,0.3);
+    }
+    .btn-submit:hover:not(:disabled) { filter: brightness(1.1); transform: translateY(-2px); }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+    .form-success {
+      text-align: center;
+      padding: 16px 0;
+    }
+    .form-success .success-icon { font-size: 3rem; display: block; margin-bottom: 16px; }
+    .form-success h3 {
+      font-family: 'Cormorant SC', serif;
+      font-size: 1.4rem;
+      color: var(--gold-light);
+      margin-bottom: 10px;
+    }
+    .form-success p {
+      font-family: 'Cormorant SC', serif;
+      font-size: 1rem;
+      color: rgba(232,224,208,0.65);
+      line-height: 1.7;
+    }
+    .form-error-msg {
+      color: #E57373;
+      font-size: 0.8rem;
+      font-family: 'Cormorant SC', serif;
+      margin-top: 12px;
+      text-align: center;
+      display: none;
+    }
+    @media (max-width: 520px) {
+      .modal-box { padding: 36px 24px; }
+    }
   </style>
 </head>
 <body>
@@ -1339,7 +1497,7 @@
           <span class="price-original">1.086.000đ</span>
           <span class="price-tag">EARLY BIRD</span>
         </div>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSd_PLACEHOLDER/viewform" id="hero-cta-btn" class="btn-primary" target="_blank" rel="noopener">
+        <a href="#dang-ky" id="hero-cta-btn" class="btn-primary" target="_blank" rel="noopener">
           ✦ Đặt Chỗ Của Tôi &rarr;
         </a>
         <p class="hero-note">Lớp chỉ 5 học viên · Cam kết có trang launching sau 2 ngày</p>
@@ -1756,7 +1914,7 @@
             <li><span class="feat-check">✦</span> Hỗ trợ trực tiếp 1:1 trong lớp (tối đa 5 người)</li>
             <li><span class="feat-check">✦</span> Template prompt AI & tài liệu workshop</li>
           </ul>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd_PLACEHOLDER/viewform" id="early-bird-btn" class="btn-pricing btn-pricing-featured" target="_blank" rel="noopener">
+          <a href="#dang-ky" id="early-bird-btn" class="btn-pricing btn-pricing-featured" target="_blank" rel="noopener">
             ✦ Đặt Chỗ Early Bird →
           </a>
         </div>
@@ -1773,7 +1931,7 @@
             <li><span class="feat-check" style="color:var(--silver);">✓</span> Hỗ trợ trực tiếp 1:1 trong lớp (tối đa 5 người)</li>
             <li><span class="feat-check" style="color:var(--silver);">✓</span> Template prompt AI & tài liệu workshop</li>
           </ul>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd_PLACEHOLDER/viewform" id="regular-price-btn" class="btn-pricing btn-pricing-normal" target="_blank" rel="noopener">
+          <a href="#dang-ky" id="regular-price-btn" class="btn-pricing btn-pricing-normal" target="_blank" rel="noopener">
             Đăng Ký Giá Gốc →
           </a>
         </div>
@@ -1872,13 +2030,46 @@
           Bạn không cần thêm 1 khóa học 3 tháng. Bạn cần 2 ngày — và một người 
           đã đi trước để chỉ bạn từng bước.
         </p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSd_PLACEHOLDER/viewform" id="final-cta-btn" class="btn-primary" target="_blank" rel="noopener" style="font-size:1rem; padding:18px 48px;">
+        <a href="#dang-ky" id="final-cta-btn" class="btn-primary" target="_blank" rel="noopener" style="font-size:1rem; padding:18px 48px;">
           ✦ Tôi Muốn Học Phép Thuật Này &rarr;
         </a>
         <div class="seat-warning">Chỉ còn vài suất Early Bird · Lớp tối đa 5 người</div>
       </div>
     </div>
   </section>
+
+  <!-- ───────────── REGISTRATION MODAL ───────────── -->
+  <div class="modal-overlay" id="reg-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-box">
+      <button class="modal-close" id="modal-close-btn" aria-label="Đóng">✕</button>
+      <div id="modal-form-view">
+        <h2 class="modal-title" id="modal-title">✦ Đăng Ký Tham Gia ✦</h2>
+        <p class="modal-subtitle">Workshop · 28 & 29/4 · Founders North</p>
+        <div class="modal-package-badge" id="modal-package-badge"></div>
+        <form id="reg-form" novalidate>
+          <div class="form-group">
+            <label for="reg-name">HỌ VÀ TÊN</label>
+            <input type="text" id="reg-name" name="name" placeholder="Nguyễn Văn A" required />
+          </div>
+          <div class="form-group">
+            <label for="reg-phone">SỐ ĐIỆN THOẠI</label>
+            <input type="tel" id="reg-phone" name="phone" placeholder="0901 234 567" required />
+          </div>
+          <div class="form-group">
+            <label for="reg-email">EMAIL</label>
+            <input type="email" id="reg-email" name="email" placeholder="ban@example.com" required />
+          </div>
+          <button type="submit" class="btn-submit" id="reg-submit-btn">✦ Xác Nhận Đăng Ký →</button>
+          <p class="form-error-msg" id="form-error">Có lỗi xảy ra. Vui lòng thử lại.</p>
+        </form>
+      </div>
+      <div id="modal-success-view" class="form-success" style="display:none;">
+        <span class="success-icon">🎉</span>
+        <h3>Đăng Ký Thành Công!</h3>
+        <p>Ý sẽ liên hệ với bạn sớm nhất để xác nhận và gửi thông tin thanh toán.<br/>Hẹn gặp bạn tại lớp nhé!</p>
+      </div>
+    </div>
+  </div>
 
   <!-- ───────────── FOOTER ───────────── -->
   <footer>
@@ -1953,6 +2144,85 @@
         light.style.setProperty('--y', e.clientY + 'px');
         firefly.style.left = e.clientX + 'px';
         firefly.style.top = e.clientY + 'px';
+      });
+    })();
+
+    /* ── Registration Modal ── */
+    (function () {
+      const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwsAUISzYHhDJCoWyfo-zYrNcwC6zHQ4HIPO1T8jkCvHF_2kQSRvh__jhSAGgSdAOxG/exec';
+      const EARLY_BIRD_DEADLINE = new Date('2025-04-27T23:59:59+07:00');
+
+      function isEarlyBird() {
+        return new Date() <= EARLY_BIRD_DEADLINE;
+      }
+
+      function openModal() {
+        const modal = document.getElementById('reg-modal');
+        const badge = document.getElementById('modal-package-badge');
+        if (isEarlyBird()) {
+          badge.textContent = '✨ Early Bird · 886.000đ';
+          badge.className = 'modal-package-badge early-bird';
+        } else {
+          badge.textContent = 'Giá Gốc · 1.086.000đ';
+          badge.className = 'modal-package-badge regular';
+        }
+        document.getElementById('modal-form-view').style.display = '';
+        document.getElementById('modal-success-view').style.display = 'none';
+        document.getElementById('form-error').style.display = 'none';
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        document.getElementById('reg-modal').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      // Intercept all CTA buttons
+      ['hero-cta-btn', 'nav-cta-btn', 'early-bird-btn', 'regular-price-btn', 'final-cta-btn'].forEach(function (id) {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('click', function (e) { e.preventDefault(); openModal(); });
+      });
+
+      document.getElementById('modal-close-btn').addEventListener('click', closeModal);
+      document.getElementById('reg-modal').addEventListener('click', function (e) {
+        if (e.target === this) closeModal();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeModal();
+      });
+
+      document.getElementById('reg-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const name  = document.getElementById('reg-name').value.trim();
+        const phone = document.getElementById('reg-phone').value.trim();
+        const email = document.getElementById('reg-email').value.trim();
+        if (!name || !phone || !email) return;
+
+        const btn = document.getElementById('reg-submit-btn');
+        btn.disabled = true;
+        btn.textContent = 'Đang gửi...';
+
+        const pkg = isEarlyBird() ? 'Early Bird - 886.000đ' : 'Giá Gốc - 1.086.000đ';
+
+        fetch(SCRIPT_URL, {
+          method: 'POST',
+          body: JSON.stringify({ name, phone, email, package: pkg })
+        })
+          .then(function (res) { return res.json(); })
+          .then(function (data) {
+            if (data.result === 'success') {
+              document.getElementById('modal-form-view').style.display = 'none';
+              document.getElementById('modal-success-view').style.display = '';
+            } else {
+              throw new Error('failed');
+            }
+          })
+          .catch(function () {
+            document.getElementById('form-error').style.display = 'block';
+            btn.disabled = false;
+            btn.textContent = '✦ Xác Nhận Đăng Ký →';
+          });
       });
     })();
 
