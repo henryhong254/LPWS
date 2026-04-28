@@ -2090,7 +2090,7 @@
 
     /* ── Registration Form ── */
     (function () {
-      const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwsAUISzYHhDJCoWyfo-zYrNcwC6zHQ4HIPO1T8jkCvHF_2kQSRvh__jhSAGgSdAOxG/exec';
+      const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzjU1U4lC2wBzAm_MaAe73L5FXaW2wdNuABIk6WNRq0RjoSox2T-RD7wzxg28tq-G4q/exec';
       const EARLY_BIRD_DEADLINE = new Date('2025-05-11T23:59:59+07:00');
 
       function isEarlyBird() { return new Date() <= EARLY_BIRD_DEADLINE; }
@@ -2118,12 +2118,8 @@
 
         const pkg = isEarlyBird() ? 'Early Bird - 886.000đ' : 'Giá Gốc - 1.086.000đ';
 
-        fetch(SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain' },
-          body: JSON.stringify({ name, phone, email, package: pkg })
-        })
+        const params = new URLSearchParams({ name, phone, email, package: pkg });
+        fetch(SCRIPT_URL + '?' + params.toString(), { mode: 'no-cors' })
           .then(function () {
             document.getElementById('reg-form-view').style.display = 'none';
             document.getElementById('reg-success-view').style.display = '';
