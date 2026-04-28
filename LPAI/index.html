@@ -74,12 +74,17 @@
 
     html { scroll-behavior: smooth; }
 
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
     body {
       font-family: 'Inter', sans-serif;
       font-size: 1.15rem;
       background: var(--navy);
       color: #E8E0D0;
-      overflow-x: hidden;
       line-height: 1.75;
     }
 
@@ -258,21 +263,26 @@
       padding: 12px 24px;
       z-index: 99;
       display: flex;
-      justify-content: center;
-      gap: 32px;
+      justify-content: flex-start;
+      padding: 12px 16px;
+      gap: 16px;
       white-space: nowrap;
       overflow-x: auto;
       scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    @media (min-width: 1024px) {
+      .sub-nav { justify-content: center; gap: 24px; }
     }
     .sub-nav::-webkit-scrollbar { display: none; }
     
     .sub-nav a {
       font-family: 'Cormorant SC', serif;
-      font-size: 0.72rem;
+      font-size: 0.65rem;
       text-transform: uppercase;
       color: rgba(232, 224, 208, 0.5);
       text-decoration: none;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
       transition: color 0.3s, transform 0.3s;
     }
     .sub-nav a:hover {
@@ -300,6 +310,7 @@
       text-align: center;
       padding: 120px 24px 80px;
       position: relative;
+      overflow: hidden;
       background:
         radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 70%),
         radial-gradient(ellipse 60% 40% at 30% 80%, rgba(30,50,120,0.3) 0%, transparent 60%);
@@ -1281,10 +1292,182 @@
       nav { padding: 12px 16px; }
       .proof-divider { display: none; }
     }
-
     /* ═══════════════════════════════════════════
-       REGISTRATION FORM SECTION
+       COMPARISON SECTION
     ═══════════════════════════════════════════ */
+    #comparison {
+      padding: 0 24px 80px;
+      position: relative;
+      z-index: 1;
+    }
+    .comparison-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 40px;
+    }
+    .comp-card {
+      background: var(--navy-card);
+      border: 1px solid rgba(201,168,76,0.1);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .comp-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(201,168,76,0.2);
+    }
+    .comp-card.ai-way {
+      border: 2px solid var(--gold-light);
+      background: linear-gradient(135deg, white -100%, var(--gold-light) 0%, var(--gold) 50%, var(--gold-dim) 100%);
+      box-shadow: 0 20px 80px rgba(201,168,76,0.3);
+      color: var(--ink);
+    }
+    .comp-card.ai-way:hover {
+      border-color: #fff;
+      transform: translateY(-8px) scale(1.02);
+    }
+    .comp-card.ai-way::after {
+      content: 'LỰA CHỌN TỐI ƯU';
+      position: absolute;
+      top: 15px; right: -35px;
+      background: var(--ink);
+      color: var(--gold-light);
+      font-size: 0.6rem;
+      font-weight: 800;
+      padding: 6px 40px;
+      transform: rotate(45deg);
+      font-family: 'Cormorant SC', serif;
+      letter-spacing: 0.05em;
+    }
+    .comp-label {
+      font-family: 'Cormorant SC', serif;
+      font-size: 1.4rem;
+      color: var(--gold-light);
+      margin-bottom: 32px;
+      text-align: center;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .ai-way .comp-label {
+        font-weight: 900;
+        color: var(--ink);
+        text-shadow: none;
+    }
+    .comp-list {
+      list-style: none;
+      flex-grow: 1;
+    }
+    .comp-list-sub {
+      list-style: none;
+      margin-top: 8px;
+    }
+    .comp-list-sub li {
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+      opacity: 0.85;
+    }
+    .comp-list-sub li::before {
+      content: '•';
+      color: var(--gold);
+    }
+    .ai-way .comp-list-sub li::before {
+      color: var(--ink);
+      opacity: 0.5;
+    }
+    .comp-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+      align-items: flex-start;
+    }
+    .comp-icon {
+      font-size: 1.4rem;
+      width: 32px;
+      height: 32px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .ai-way .comp-icon {
+      background: rgba(0,0,0,0.08);
+      color: var(--ink);
+      box-shadow: none;
+    }
+    .comp-text h4 {
+      font-family: 'Cormorant SC', serif;
+      font-size: 0.8rem;
+      opacity: 0.4;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .ai-way .comp-text h4 { color: var(--ink); opacity: 0.6; }
+    .comp-text p {
+      font-size: 1.05rem;
+      color: rgba(232,224,208,0.85);
+      line-height: 1.6;
+    }
+    .ai-way .comp-text p { color: var(--ink); font-weight: 500; }
+    .comp-footer {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .ai-way .comp-footer { border-top-color: rgba(0,0,0,0.1); }
+    .comp-total-label {
+      font-size: 0.75rem;
+      color: rgba(232,224,208,0.4);
+      margin-bottom: 8px;
+      letter-spacing: 0.1em;
+    }
+    .ai-way .comp-total-label { color: var(--ink); opacity: 0.6; }
+    .comp-total-price {
+      font-family: 'Cormorant SC', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--parchment);
+    }
+    .ai-way .comp-total-price {
+      font-size: 2.8rem;
+      color: var(--ink);
+      text-shadow: none;
+      line-height: 1;
+    }
+    .comp-note {
+      font-size: 0.75rem;
+      margin-top: 8px;
+      opacity: 0.6;
+    }
+    .ai-way .comp-note { color: var(--ink); }
+
+    @media (max-width: 768px) {
+      .comparison-grid { grid-template-columns: 1fr; gap: 24px; }
+      #comparison { padding-bottom: 40px; }
+      .comp-card { padding: 32px 24px; }
+      .ai-way .comp-total-price { font-size: 2.2rem; }
+    }
+
+    /* ── Pricing + Form Layout ── */
     .pricing-reg-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1301,20 +1484,16 @@
       padding: 36px 32px;
       box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,168,76,0.1);
     }
-    @media (max-width: 520px) {
-      .reg-section-box { padding: 28px 20px; }
-    }
+    @media (max-width: 520px) { .reg-section-box { padding: 28px 20px; } }
     .modal-package-badge {
-      display: inline-block;
+      display: block;
       font-family: 'Cormorant SC', serif;
       font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 0.12em;
       padding: 5px 16px;
       border-radius: 4px;
-      margin-bottom: 24px;
       text-align: center;
-      width: 100%;
     }
     .modal-package-badge.early-bird {
       background: linear-gradient(135deg, var(--gold-dim), var(--gold));
@@ -1325,9 +1504,7 @@
       color: var(--silver);
       border: 1px solid rgba(192,200,216,0.3);
     }
-    .form-group {
-      margin-bottom: 20px;
-    }
+    .form-group { margin-bottom: 20px; }
     .form-group label {
       display: block;
       font-family: 'Cormorant SC', serif;
@@ -1348,11 +1525,16 @@
       outline: none;
       transition: border-color 0.2s, background 0.2s;
     }
-    .form-group input:focus {
-      border-color: var(--gold);
-      background: rgba(201,168,76,0.05);
-    }
+    .form-group input:focus { border-color: var(--gold); background: rgba(201,168,76,0.05); }
     .form-group input::placeholder { color: rgba(232,224,208,0.25); }
+    .form-group input.invalid { border-color: #E57373; background: rgba(229,115,115,0.05); }
+    .field-error {
+      color: #E57373;
+      font-size: 0.78rem;
+      font-family: 'Cormorant SC', serif;
+      margin-top: 6px;
+      display: none;
+    }
     .btn-submit {
       width: 100%;
       padding: 16px;
@@ -1371,10 +1553,7 @@
     }
     .btn-submit:hover:not(:disabled) { filter: brightness(1.1); transform: translateY(-2px); }
     .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
-    .form-success {
-      text-align: center;
-      padding: 16px 0;
-    }
+    .form-success { text-align: center; padding: 16px 0; }
     .form-success .success-icon { font-size: 3rem; display: block; margin-bottom: 16px; }
     .form-success h3 {
       font-family: 'Cormorant SC', serif;
@@ -1382,12 +1561,7 @@
       color: var(--gold-light);
       margin-bottom: 10px;
     }
-    .form-success p {
-      font-family: 'Cormorant SC', serif;
-      font-size: 1rem;
-      color: rgba(232,224,208,0.65);
-      line-height: 1.7;
-    }
+    .form-success p { font-family: 'Cormorant SC', serif; font-size: 1rem; color: rgba(232,224,208,0.65); line-height: 1.7; }
     .form-error-msg {
       color: #E57373;
       font-size: 0.8rem;
@@ -1395,20 +1569,6 @@
       margin-top: 12px;
       text-align: center;
       display: none;
-    }
-    .field-error {
-      color: #E57373;
-      font-size: 0.78rem;
-      font-family: 'Cormorant SC', serif;
-      margin-top: 6px;
-      display: none;
-    }
-    .form-group input.invalid {
-      border-color: #E57373;
-      background: rgba(229,115,115,0.05);
-    }
-    @media (max-width: 520px) {
-      .modal-box { padding: 36px 24px; }
     }
   </style>
 </head>
@@ -1428,8 +1588,8 @@
   <!-- Sub-Nav / Table of Content -->
   <div class="sub-nav">
     <a href="#pain">Vấn đề</a>
-    <a href="#curriculum">Lộ trình</a>
-    <a href="#benefits">Kết quả</a>
+    <a href="#comparison">Thực tế</a>
+    <a href="#outcomes">Kết quả</a>
     <a href="#showcase">Dự án</a>
     <a href="#instructor">Người dạy</a>
     <a href="#pricing">Đăng ký</a>
@@ -1452,7 +1612,7 @@
       <h1>
         <span class="gold-text">Từ Trang Giấy Trắng</span><br/>
         Đến Trang Bán Hàng<br/>
-        <span class="gold-text">Trong 2 Ngày.</span>
+        <span class="gold-text">Trong 2 Ngày</span>
       </h1>
 
       <p class="hero-subtitle">
@@ -1463,11 +1623,7 @@
       <p class="hero-tagline">Online 13/5 · Offline 14/5 · TP.HCM</p>
 
       <div class="hero-cta-group">
-        <div class="price-hero">
-          <span class="price-early">886.000đ</span>
-          <span class="price-original">1.086.000đ</span>
-          <span class="price-tag">EARLY BIRD</span>
-        </div>
+        <!-- Price section removed per user request -->
         <a href="#pricing" id="hero-cta-btn" class="btn-primary">
           ✦ Đặt Chỗ Của Tôi &rarr;
         </a>
@@ -1550,6 +1706,94 @@
     </div>
   </section>
 
+  <!-- ───────────── COMPARISON SECTION ───────────── -->
+  <section id="comparison">
+    <div class="container" style="max-width: 1000px;">
+      <div class="comparison-container reveal">
+        <div class="pain-header" style="margin-bottom: 40px;">
+          <span class="section-label">✦ Phép Thử Thực Tế ✦</span>
+          <h2>Cỗ Máy Hay Con Người?</h2>
+        </div>
+        
+        <div class="comparison-grid">
+          <!-- Traditional Way -->
+          <div class="comp-card">
+            <div class="comp-label">Cách Làm Cũ</div>
+            <ul class="comp-list">
+              <li class="comp-item">
+                <div class="comp-icon">👥</div>
+                <div class="comp-text">
+                  <h4>Nhân Sự Phức Tạp</h4>
+                  <ul class="comp-list-sub">
+                    <li>1 Copywriter</li>
+                    <li>1 Designer</li>
+                    <li>1 Developer</li>
+                  </ul>
+                </div>
+              </li>
+              <li class="comp-item">
+                <div class="comp-icon">⏳</div>
+                <div class="comp-text">
+                  <h4>Thời Gian Chờ Đợi</h4>
+                  <p>Mất 7 - 14 ngày hoàn thiện. Phản hồi team chỉnh sửa nhiều lần.</p>
+                </div>
+              </li>
+              <li class="comp-item">
+                <div class="comp-icon">💰</div>
+                <div class="comp-text">
+                  <h4>Chi Phí Duy Trì</h4>
+                  <p>Tốn thêm tiền mua Hosting hàng năm (~1-2 triệu).</p>
+                </div>
+              </li>
+            </ul>
+            <div class="comp-footer">
+              <div class="comp-total-label">TỔNG CHI PHÍ</div>
+              <div class="comp-total-price">7 - 20 Triệu</div>
+              <div class="comp-note">+ Hosting 4M/năm + Domain</div>
+            </div>
+          </div>
+
+          <!-- AI Way -->
+          <div class="comp-card ai-way">
+            <div class="comp-label">Kỷ Nguyên AI</div>
+            <ul class="comp-list">
+              <li class="comp-item">
+                <div class="comp-icon">✨</div>
+                <div class="comp-text">
+                  <h4>Nhân Sự Toàn Năng</h4>
+                  <ul class="comp-list-sub">
+                    <li>Bạn (Người chỉ đạo)</li>
+                    <li>Không còn mệt mỏi giải thích ý tưởng</li>
+                    <li>Rút ngắn thời gian làm việc với con người</li>
+                  </ul>
+                </div>
+              </li>
+              <li class="comp-item">
+                <div class="comp-icon">⚡</div>
+                <div class="comp-text">
+                  <h4>Tốc Độ Ánh Sáng</h4>
+                  <p>Có bản Draft trong 15-30 phút. Mất thêm khoảng 1 ngày để hoàn thiện đúng ý bạn.</p>
+                </div>
+              </li>
+              <li class="comp-item">
+                <div class="comp-icon">🎁</div>
+                <div class="comp-text">
+                  <h4>Chi Phí Tối Ưu</h4>
+                  <p>Free 100%. Bạn chỉ tốn tiền mua Domain bạn thích.</p>
+                </div>
+              </li>
+            </ul>
+            <div class="comp-footer">
+              <div class="comp-total-label">TỔNG CHI PHÍ</div>
+              <div class="comp-total-price">0Đ</div>
+              <div class="comp-note">+ Tiền Domain (250k - 450k)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ───────────── THE MAGIC REVEAL ───────────── -->
   <section id="magic">
     <div class="container">
@@ -1571,150 +1815,41 @@
     </div>
   </section>
 
-  <!-- ───────────── CURRICULUM ───────────── -->
-  <section id="curriculum">
+  <!-- ───────────── OUTCOMES SECTION ───────────── -->
+  <section id="outcomes">
     <div class="container">
-      <div class="curriculum-header reveal">
-        <span class="section-label">✦ Chương Trình ✦</span>
-        <h2>Hai Buổi. Hai <span class="gold-text">Phép Thuật</span>.</h2>
+      <div class="benefits-header reveal" style="text-align: center; margin-top: 60px;">
+        <span class="section-label">✦ BẠN NHẬN ĐƯỢC GÌ ✦</span>
+        <h2 style="font-family: 'DFVN-ED-Lavonia', cursive; font-size: clamp(2.5rem, 6vw, 3.8rem); color: #fff; margin-top: 10px;">Sau 2 Ngày Bạn Sẽ Có</h2>
       </div>
 
-      <div class="session-container">
-        <!-- Session 1 -->
-        <div class="session-card reveal">
-          <div class="session-header">
-            <span class="session-tag tag-online">ONLINE</span>
-            <div class="session-title">The Magic</div>
-            <div class="session-subtitle">Giải Mã Trò Ảo Thuật</div>
-            <div class="session-meta">
-              <span>📅 13/5</span>
-              <span>🕛 12:00 – 13:30</span>
-            </div>
-          </div>
-          <div class="session-body">
-            <div class="spell-item">
-              <div class="spell-icon">🔮</div>
-              <div class="spell-content">
-                <h4>GỠ RÀO CẢN #1: CÓ KHÓ KHÔNG?</h4>
-                <p>
-                  Trực tiếp chứng kiến 1 người không biết code chỉ đạo AI tạo ra 1 trang bán hàng
-                  hoàn chỉnh trong 15 phút. Không phải video dựng sẵn. Làm live trước mắt bạn.
-                </p>
-              </div>
-            </div>
-            <div class="spell-item">
-              <div class="spell-icon">💎</div>
-              <div class="spell-content">
-                <h4>GỠ RÀO CẢN #2: TRÔNG CÓ "AI" QUÁ KHÔNG?</h4>
-                <p>
-                  Xem qua những trang team Ý làm bằng AI — đẹp hơn, có hồn hơn cả những trang
-                  làm thủ công trước đây. AI trong tay đúng người là nghệ thuật.
-                </p>
-              </div>
-            </div>
-            <div class="spell-item">
-              <div class="spell-icon">✍️</div>
-              <div class="spell-content">
-                <h4>GỠ RÀO CẢN #3: KHÔNG GIỎI CONTENT?</h4>
-                <p>
-                  Dùng luôn AI để ra content marketing, với sự hỗ trợ tư duy marketing của Ý.
-                  Bạn không cần học viết — bạn học cách đặt câu hỏi đúng.
-                </p>
-              </div>
-            </div>
-          </div>
+      <div class="session-container" style="grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px;">
+        <div class="session-card reveal" style="padding: 32px; text-align: center; border-color: rgba(201,168,76,0.25);">
+          <div style="font-size: 2.2rem; margin-bottom: 16px;">🚀</div>
+          <h4 style="font-family: 'Cormorant SC', serif; font-size: 0.9rem; letter-spacing: 0.08em; color: var(--gold-light); margin-bottom: 12px; font-weight: 700;">01 LANDING PAGE THẬT</h4>
+          <p style="font-size: 0.95rem; opacity: 0.8; line-height: 1.6;">Chạy được thật, điền form được thật, thu hút khách hàng được thật.</p>
         </div>
-
-        <!-- Session 2 -->
-        <div class="session-card reveal">
-          <div class="session-header">
-            <span class="session-tag tag-offline">OFFLINE</span>
-            <div class="session-title">The Machine</div>
-            <div class="session-subtitle">Cỗ Máy Vận Hành</div>
-            <div class="session-meta">
-              <span>📅 14/5</span>
-              <span>🕘 9:00 – 12:30</span>
-            </div>
-          </div>
-          <div class="session-body">
-            <div class="spell-item">
-              <div class="spell-icon">⚙️</div>
-              <div class="spell-content">
-                <h4>BẮT TAY VÀO LÀM</h4>
-                <p>
-                  Thay vì ngồi nghe lý thuyết, bạn sẽ mở máy tính và xây trang ngay tại lớp.
-                  Hướng dẫn từng bước, từng câu lệnh, từng quyết định thiết kế.
-                </p>
-              </div>
-            </div>
-            <div class="spell-item">
-              <div class="spell-icon">👥</div>
-              <div class="spell-content">
-                <h4>LỚP CHỈ 5 NGƯỜI</h4>
-                <p>
-                  Tối đa 5 học viên để đảm bảo Ý có thể hỗ trợ trực tiếp từng người.
-                  Đây là mentoring, không phải lớp học đại trà.
-                </p>
-              </div>
-            </div>
-            <div class="spell-item">
-              <div class="spell-icon">🚀</div>
-              <div class="spell-content">
-                <h4>CAM KẾT KẾT QUẢ</h4>
-                <p>
-                  Ra về, bạn có 1 Landing Page đã launching — đã có link thật, dùng được thật,
-                  bắt đầu nhận khách được ngay. Không phải template. Trang của bạn.
-                </p>
-              </div>
-            </div>
-          </div>
+        <div class="session-card reveal" style="padding: 32px; text-align: center; border-color: rgba(201,168,76,0.25);">
+          <div style="font-size: 2.2rem; margin-bottom: 16px;">🧠</div>
+          <h4 style="font-family: 'Cormorant SC', serif; font-size: 0.9rem; letter-spacing: 0.08em; color: var(--gold-light); margin-bottom: 12px; font-weight: 700;">KỸ NĂNG VIBE CODING</h4>
+          <p style="font-size: 0.95rem; opacity: 0.8; line-height: 1.6;">Biết cách chỉ đạo AI làm kỹ thuật thay bạn, bạn chỉ cần tập trung vào "Vibe" và nội dung.</p>
+        </div>
+        <div class="session-card reveal" style="padding: 32px; text-align: center; border-color: rgba(201,168,76,0.25);">
+          <div style="font-size: 2.2rem; margin-bottom: 16px;">💸</div>
+          <h4 style="font-family: 'Cormorant SC', serif; font-size: 0.9rem; letter-spacing: 0.08em; color: var(--gold-light); margin-bottom: 12px; font-weight: 700;">TIẾT KIỆM TƯƠNG LAI</h4>
+          <p style="font-size: 0.95rem; opacity: 0.8; line-height: 1.6;">Tự làm thêm nhiều trang, tiết kiệm thời gian và không còn mệt mỏi vì nhân sự không hiểu ý.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ───────────── BENEFITS ───────────── -->
-  <section id="benefits">
-    <div class="container">
-      <div class="benefits-header reveal">
-        <span class="section-label">✦ Bạn Nhận Được Gì ✦</span>
-        <h2>Sau 2 Ngày, <span class="gold-text">Bạn Sẽ Có</span></h2>
-      </div>
+  <style>
+    @media (max-width: 768px) {
+      #outcomes .session-container { grid-template-columns: 1fr !important; }
+    }
+  </style>
 
-      <div class="benefits-grid">
-        <div class="benefit-card reveal">
-          <span class="benefit-ico">🌐</span>
-          <h3>1 Trang Bán Hàng Thật</h3>
-          <p>Không phải mockup, không phải template — landing page của bạn với domain thật, live thật.</p>
-        </div>
-        <div class="benefit-card reveal">
-          <span class="benefit-ico">🧙</span>
-          <h3>Kỹ Năng "Phù Thủy AI"</h3>
-          <p>Biết cách ra lệnh cho AI để tạo design, viết copy, và tối ưu trang bán hàng mà không cần học code.</p>
-        </div>
-        <div class="benefit-card reveal">
-          <span class="benefit-ico">📝</span>
-          <h3>Content Marketing Cho Trang</h3>
-          <p>Tiêu đề, nội dung, CTA — tất cả đều được viết bằng AI với tư duy marketing chuẩn của Ý.</p>
-        </div>
-        <div class="benefit-card reveal">
-          <span class="benefit-ico">💡</span>
-          <h3>Tư Duy Làm Việc Với AI</h3>
-          <p>Không chỉ học làm trang — học cách nhìn AI như một nhân sự và khai thác tối đa tiềm năng của nó.</p>
-        </div>
-        <div class="benefit-card reveal">
-          <span class="benefit-ico">🔧</span>
-          <h3>Tự Chỉnh Sửa Sau Này</h3>
-          <p>Ra về biết cách tự cập nhật, tự chỉnh sửa trang mà không cần phụ thuộc ai hay trả thêm phí.</p>
-        </div>
-        <div class="benefit-card reveal">
-          <span class="benefit-ico">🤝</span>
-          <h3>Network Founders Cùng Chí Hướng</h3>
-          <p>5 người, 1 phòng — những Founder đang cùng build. Kết nối thật, không qua màn hình zoom.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- ───────────── BENEFITS REMOVED PER USER REQUEST ───────────── -->
 
   <!-- ───────────── FOR WHO ───────────── -->
   <section id="for-who">
@@ -1875,7 +2010,6 @@
         <!-- LEFT: Pricing info -->
         <div class="pricing-card featured" style="transform:none;">
           <div class="featured-badge">✨ ƯU ĐÃI EARLY BIRD — HẾT HẠN 11/5</div>
-
           <div style="margin-bottom:8px;">
             <div class="pricing-type" style="margin-bottom:4px;">Trước 11/5 · Early Bird</div>
             <div class="pricing-amount">886.000đ</div>
@@ -1885,7 +2019,6 @@
             <div class="pricing-amount" style="color:var(--silver); font-size:1.8rem;">1.086.000đ</div>
             <div class="pricing-period" style="margin-top:4px;">Đăng ký sớm tiết kiệm 200.000đ</div>
           </div>
-
           <ul class="pricing-features">
             <li><span class="feat-check">✦</span> Buổi 1: Online 13/5 (12h–13h30)</li>
             <li><span class="feat-check">✦</span> Buổi 2: Offline 14/5 (9h–12h30) tại TP.HCM</li>
@@ -1986,7 +2119,7 @@
           <div class="faq-a" id="faq4-a" role="region">
             <div class="faq-a-inner">
               Địa điểm cụ thể sẽ được thông báo sau khi bạn đăng ký và xác nhận thanh toán.
-              Ý sẽ liên hệ trực tiếp để cung cấp đầy đủ thông tin trước ngày 28/4.
+              Ý sẽ liên hệ trực tiếp để cung cấp đầy đủ thông tin trước ngày 13/5.
             </div>
           </div>
         </div>
@@ -2077,7 +2210,7 @@
 
     /* ── Countdown ── */
     (function () {
-      const target = new Date('2025-05-13T12:00:00+07:00');
+      const target = new Date('2026-05-13T12:00:00+07:00');
       function tick() {
         const now = new Date();
         const diff = target - now;
@@ -2106,10 +2239,8 @@
     (function () {
       const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzjU1U4lC2wBzAm_MaAe73L5FXaW2wdNuABIk6WNRq0RjoSox2T-RD7wzxg28tq-G4q/exec';
       const EARLY_BIRD_DEADLINE = new Date('2026-05-11T23:59:59+07:00');
-
       function isEarlyBird() { return new Date() <= EARLY_BIRD_DEADLINE; }
 
-      // Show price badge
       const badge = document.getElementById('modal-package-badge');
       if (isEarlyBird()) {
         badge.textContent = '✨ Early Bird · Đăng ký trước 11/5 chỉ 886.000đ';
@@ -2122,13 +2253,8 @@
       function validateField(id, errId, isValid) {
         const input = document.getElementById(id);
         const err   = document.getElementById(errId);
-        if (isValid) {
-          input.classList.remove('invalid');
-          err.style.display = 'none';
-        } else {
-          input.classList.add('invalid');
-          err.style.display = 'block';
-        }
+        if (isValid) { input.classList.remove('invalid'); err.style.display = 'none'; }
+        else         { input.classList.add('invalid');    err.style.display = 'block'; }
         return isValid;
       }
 
@@ -2139,24 +2265,17 @@
         const email = document.getElementById('reg-email').value.trim();
 
         const phoneClean = phone.replace(/\s|-/g, '');
-        const phoneValid = /^(0|\+84)[0-9]{8,10}$/.test(phoneClean);
-        const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        const nameValid  = name.length >= 2;
-
         const ok = [
-          validateField('reg-name',  'err-name',  nameValid),
-          validateField('reg-phone', 'err-phone', phoneValid),
-          validateField('reg-email', 'err-email', emailValid),
+          validateField('reg-name',  'err-name',  name.length >= 2),
+          validateField('reg-phone', 'err-phone', /^(0|\+84)[0-9]{8,10}$/.test(phoneClean)),
+          validateField('reg-email', 'err-email', /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)),
         ].every(Boolean);
-
         if (!ok) return;
 
         const btn = document.getElementById('reg-submit-btn');
         btn.disabled = true;
         btn.textContent = 'Đang gửi...';
-
         const pkg = isEarlyBird() ? 'Early Bird - 886.000đ' : 'Giá Gốc - 1.086.000đ';
-
         const params = new URLSearchParams({ name, phone, email, package: pkg });
         fetch(SCRIPT_URL + '?' + params.toString(), { mode: 'no-cors' })
           .then(function () {
@@ -2173,7 +2292,7 @@
 
     /* ── Sub-Nav Active State ── */
     (function () {
-      const sections = ['pain', 'curriculum', 'benefits', 'showcase', 'instructor', 'pricing', 'faq'];
+      const sections = ['pain', 'comparison', 'outcomes', 'showcase', 'instructor', 'pricing', 'faq'];
       const navLinks = document.querySelectorAll('.sub-nav a');
       window.addEventListener('scroll', () => {
         let current = '';
