@@ -1396,6 +1396,17 @@
       text-align: center;
       display: none;
     }
+    .field-error {
+      color: #E57373;
+      font-size: 0.78rem;
+      font-family: 'Cormorant SC', serif;
+      margin-top: 6px;
+      display: none;
+    }
+    .form-group input.invalid {
+      border-color: #E57373;
+      background: rgba(229,115,115,0.05);
+    }
     @media (max-width: 520px) {
       .modal-box { padding: 36px 24px; }
     }
@@ -1895,14 +1906,17 @@
               <div class="form-group">
                 <label for="reg-name">HỌ VÀ TÊN</label>
                 <input type="text" id="reg-name" name="name" placeholder="Nguyễn Văn A" required />
+                <p class="field-error" id="err-name">Vui lòng nhập họ tên (tối thiểu 2 ký tự)</p>
               </div>
               <div class="form-group">
                 <label for="reg-phone">SỐ ĐIỆN THOẠI</label>
                 <input type="tel" id="reg-phone" name="phone" placeholder="0901 234 567" required />
+                <p class="field-error" id="err-phone">Số điện thoại không hợp lệ (VD: 0901 234 567)</p>
               </div>
               <div class="form-group">
                 <label for="reg-email">EMAIL</label>
                 <input type="email" id="reg-email" name="email" placeholder="ban@example.com" required />
+                <p class="field-error" id="err-email">Email không đúng định dạng (VD: ban@gmail.com)</p>
               </div>
               <button type="submit" class="btn-submit" id="reg-submit-btn">✦ Xác Nhận Đăng Ký →</button>
               <p class="form-error-msg" id="form-error">Có lỗi xảy ra. Vui lòng thử lại.</p>
@@ -2105,12 +2119,37 @@
         badge.className = 'modal-package-badge regular';
       }
 
+      function validateField(id, errId, isValid) {
+        const input = document.getElementById(id);
+        const err   = document.getElementById(errId);
+        if (isValid) {
+          input.classList.remove('invalid');
+          err.style.display = 'none';
+        } else {
+          input.classList.add('invalid');
+          err.style.display = 'block';
+        }
+        return isValid;
+      }
+
       document.getElementById('reg-form').addEventListener('submit', function (e) {
         e.preventDefault();
         const name  = document.getElementById('reg-name').value.trim();
         const phone = document.getElementById('reg-phone').value.trim();
         const email = document.getElementById('reg-email').value.trim();
-        if (!name || !phone || !email) return;
+
+        const phoneClean = phone.replace(/\s|-/g, '');
+        const phoneValid = /^(0|\+84)[0-9]{8,10}$/.test(phoneClean);
+        const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        const nameValid  = name.length >= 2;
+
+        const ok = [
+          validateField('reg-name',  'err-name',  nameValid),
+          validateField('reg-phone', 'err-phone', phoneValid),
+          validateField('reg-email', 'err-email', emailValid),
+        ].every(Boolean);
+
+        if (!ok) return;
 
         const btn = document.getElementById('reg-submit-btn');
         btn.disabled = true;
