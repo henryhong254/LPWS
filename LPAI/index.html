@@ -2063,6 +2063,18 @@
             <p id="order-code-display" style="font-family:'Cormorant SC',serif; font-size:1.3rem; font-weight:700; color:var(--gold); letter-spacing:0.1em; margin-bottom:16px;"></p>
             <img id="payment-qr" src="" alt="QR thanh toán" style="width:210px; height:210px; border-radius:12px; border:2px solid rgba(201,168,76,0.4); display:block; margin:0 auto 12px;" />
             <p style="font-family:'Cormorant SC',serif; font-size:0.82rem; color:rgba(232,224,208,0.5);">MBBank · 0362722725 · Thiên Ý</p>
+            <div id="payment-countdown-wrap" style="margin-top:16px;">
+              <p style="font-size:0.88rem; color:rgba(232,224,208,0.65); margin-bottom:4px;">Đang chờ xác nhận thanh toán…</p>
+              <p id="payment-countdown" style="font-family:'Cormorant SC',serif; font-size:1.6rem; font-weight:700; color:var(--gold); letter-spacing:0.05em;">15:00</p>
+              <p id="payment-timeout-msg" style="display:none; font-size:0.88rem; color:#e57373; margin-top:8px;">Hết thời gian chờ. Nếu đã chuyển khoản, vui lòng nhắn tin cho Ý để được hỗ trợ.</p>
+            </div>
+          </div>
+
+          <div id="checkout-success-view" class="form-success" style="display:none;">
+            <span class="success-icon">✅</span>
+            <h3 style="color:var(--gold);">Thanh Toán Thành Công!</h3>
+            <p style="margin-top:12px; line-height:1.8;">Email xác nhận sẽ được gửi về hộp thư của bạn.<br/>Vui lòng kiểm tra cả <strong>hộp thư spam</strong> nếu chưa thấy.</p>
+            <p style="margin-top:16px; font-size:0.88rem; color:rgba(232,224,208,0.6);">Hẹn gặp bạn tại workshop! 🎓</p>
           </div>
         </div>
       </div>
@@ -2291,6 +2303,7 @@
               'https://qr.sepay.vn/img?acc=0362722725&bank=MBBank&amount=' + amount + '&des=' + encodeURIComponent(code);
             document.getElementById('reg-form-view').style.display = 'none';
             document.getElementById('reg-success-view').style.display = '';
+            startPaymentWatcher(code);
           })
           .catch(function () {
             document.getElementById('form-error').style.display = 'block';
@@ -2298,6 +2311,57 @@
             btn.textContent = '✦ Xác Nhận Đăng Ký →';
           });
       });
+
+      function startPaymentWatcher(code) {
+        const TOTAL = 15 * 60; // 15 minutes in seconds
+        let remaining = TOTAL;
+        let pollInterval, countdownInterval;
+
+        const countdownEl = document.getElementById('payment-countdown');
+        const timeoutMsgEl = document.getElementById('payment-timeout-msg');
+
+        function formatTime(sec) {
+          const m = String(Math.floor(sec / 60)).padStart(2, '0');
+          const s = String(sec % 60).padStart(2, '0');
+          return m + ':' + s;
+        }
+
+        function stopAll() {
+          clearInterval(pollInterval);
+          clearInterval(countdownInterval);
+        }
+
+        function showCheckoutSuccess() {
+          stopAll();
+          document.getElementById('reg-success-view').style.display = 'none';
+          document.getElementById('checkout-success-view').style.display = '';
+        }
+
+        function checkPayment() {
+          fetch(SCRIPT_URL + '?action=check&code=' + encodeURIComponent(code))
+            .then(function (res) { return res.json(); })
+            .then(function (data) {
+              if (data.paid) showCheckoutSuccess();
+            })
+            .catch(function () {}); // silent fail, keep polling
+        }
+
+        // Start countdown
+        countdownEl.textContent = formatTime(remaining);
+        countdownInterval = setInterval(function () {
+          remaining--;
+          countdownEl.textContent = formatTime(remaining);
+          if (remaining <= 0) {
+            stopAll();
+            countdownEl.style.display = 'none';
+            timeoutMsgEl.style.display = 'block';
+          }
+        }, 1000);
+
+        // Poll every 5 seconds
+        checkPayment(); // immediate first check
+        pollInterval = setInterval(checkPayment, 5000);
+      }
     })();
 
     /* ── Sub-Nav Active State ── */
