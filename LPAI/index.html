@@ -16,6 +16,13 @@
       font-display: swap;
     }
     @font-face {
+      font-family: 'Beautique Display';
+      src: url('../Fonts/BeautiqueDisplay-Black copy.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
       font-family: 'DFVN-ED-Lavonia';
       src: url('../Fonts/DFVN ED Lavonia copy.otf') format('opentype');
       font-weight: normal;
@@ -138,7 +145,7 @@
 
     h1 { font-family: 'Cormorant SC', serif; line-height: 1.15; text-wrap: balance; }
     h2 { 
-      font-family: 'DFVN-ED-Lavonia', 'Cormorant SC', serif; 
+      font-family: 'Beautique Display', 'Cormorant SC', serif; 
       line-height: 1.5; 
       padding-top: 5px;
       padding-bottom: 5px;
@@ -1023,7 +1030,7 @@
     }
     .schedule-day {
       font-family: 'Cormorant SC', serif;
-      font-size: 1.15rem;
+      font-size: 1.35rem;
       color: var(--gold-light);
       letter-spacing: 0.08em;
       margin-bottom: 12px;
@@ -1031,7 +1038,7 @@
     }
     .schedule-date {
       font-family: 'Cormorant SC', serif;
-      font-size: 0.85rem;
+      font-size: 1.15rem;
       color: rgba(232,224,208,0.5);
       margin-bottom: 20px;
       letter-spacing: 0.05em;
@@ -1058,6 +1065,13 @@
     }
     .schedule-type.online { background: rgba(60,100,200,0.2); border-color: rgba(60,100,200,0.4); color: #7BA3FF; }
     .schedule-type.offline { background: rgba(46,204,113,0.2); border-color: rgba(46,204,113,0.4); color: #5DCEA0; }
+    .schedule-location {
+      font-family: 'Cormorant SC', serif;
+      font-size: 1rem;
+      color: rgba(232,224,208,0.65);
+      line-height: 1.5;
+      margin: 12px 0 0;
+    }
     
     @media (max-width: 640px) {
       .schedule-grid { grid-template-columns: 1fr; }
@@ -1964,7 +1978,7 @@
     <div class="container">
       <div class="benefits-header reveal" style="text-align: center; margin-top: 60px;">
         <span class="section-label">✦ BẠN NHẬN ĐƯỢC GÌ ✦</span>
-        <h2 style="font-family: 'DFVN-ED-Lavonia', cursive; font-size: clamp(2.5rem, 6vw, 3.8rem); color: #fff; margin-top: 10px;">Sau 2 Ngày Bạn Sẽ Có</h2>
+        <h2 style="font-family: 'Beautique Display', cursive; font-size: clamp(2.5rem, 6vw, 3.8rem); color: #fff; margin-top: 10px;">Sau 2 Ngày Bạn Sẽ Có</h2>
       </div>
 
       <div class="session-container" style="grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px;">
@@ -2199,6 +2213,7 @@
           <div class="schedule-time">19h30 - 21h00</div>
           <p style="font-family: 'Cormorant SC', serif; font-size: 1.1rem; color: rgba(232,224,208,0.7); margin: 16px 0;">Buổi Online</p>
           <span class="schedule-type online">• ONLINE LIVE</span>
+          <p class="schedule-location">Qua Google Meet</p>
         </div>
         
         <div class="schedule-card reveal">
@@ -2207,6 +2222,7 @@
           <div class="schedule-time">09h00 - 12h00</div>
           <p style="font-family: 'Cormorant SC', serif; font-size: 1.1rem; color: rgba(232,224,208,0.7); margin: 16px 0;">Buổi Offline</p>
           <span class="schedule-type offline">• OFFLINE - TP.HCM</span>
+          <p class="schedule-location">29 Đường R, KĐT Lakeview City, Bình Trưng (Q2)</p>
         </div>
       </div>
     </div>
