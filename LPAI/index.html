@@ -2724,6 +2724,32 @@
         <h2>Học Phí & <span class="gold-text">Đặt Chỗ</span></h2>
       </div>
 
+      <!-- Early Bird Countdown -->
+      <div class="reveal" style="text-align:center; margin-bottom:32px;" id="early-bird-countdown-wrap">
+        <p style="font-family:'Cormorant SC',serif; font-size:0.78rem; letter-spacing:0.16em; color:rgba(201,168,76,0.6); text-transform:uppercase; margin-bottom:12px;">⏳ Ưu đãi Early Bird kết thúc sau</p>
+        <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
+          <div style="text-align:center;">
+            <div id="cd-days" style="font-family:'Cormorant SC',serif; font-size:2.8rem; font-weight:700; color:var(--gold); line-height:1;">00</div>
+            <div style="font-size:0.7rem; letter-spacing:0.1em; color:rgba(232,224,208,0.45); margin-top:4px;">NGÀY</div>
+          </div>
+          <div style="font-family:'Cormorant SC',serif; font-size:2.8rem; color:rgba(201,168,76,0.3); line-height:1;">:</div>
+          <div style="text-align:center;">
+            <div id="cd-hours" style="font-family:'Cormorant SC',serif; font-size:2.8rem; font-weight:700; color:var(--gold); line-height:1;">00</div>
+            <div style="font-size:0.7rem; letter-spacing:0.1em; color:rgba(232,224,208,0.45); margin-top:4px;">GIỜ</div>
+          </div>
+          <div style="font-family:'Cormorant SC',serif; font-size:2.8rem; color:rgba(201,168,76,0.3); line-height:1;">:</div>
+          <div style="text-align:center;">
+            <div id="cd-mins" style="font-family:'Cormorant SC',serif; font-size:2.8rem; font-weight:700; color:var(--gold); line-height:1;">00</div>
+            <div style="font-size:0.7rem; letter-spacing:0.1em; color:rgba(232,224,208,0.45); margin-top:4px;">PHÚT</div>
+          </div>
+          <div style="font-family:'Cormorant SC',serif; font-size:2.8rem; color:rgba(201,168,76,0.3); line-height:1;">:</div>
+          <div style="text-align:center;">
+            <div id="cd-secs" style="font-family:'Cormorant SC',serif; font-size:2.8rem; font-weight:700; color:var(--gold); line-height:1;">00</div>
+            <div style="font-size:0.7rem; letter-spacing:0.1em; color:rgba(232,224,208,0.45); margin-top:4px;">GIÂY</div>
+          </div>
+        </div>
+      </div>
+
       <div class="pricing-reg-grid reveal">
         <!-- LEFT: Pricing info -->
         <div class="pricing-card featured" style="transform:none;">
@@ -2751,6 +2777,35 @@
 
         <!-- RIGHT: Registration form -->
         <div class="reg-section-box" id="dang-ky">
+          <!-- Waitlist form (hidden by default, shown when class full) -->
+          <div id="waitlist-view" style="display:none; text-align:center; padding:16px 0;">
+            <span style="font-size:2rem;">📋</span>
+            <h3 style="font-family:'Cormorant SC',serif; font-size:1.4rem; color:var(--gold-light); margin:12px 0 8px;">Lớp Đã Đủ 5 Học Viên</h3>
+            <p style="font-size:0.92rem; color:rgba(232,224,208,0.7); margin-bottom:24px; line-height:1.7;">
+              Đăng ký Waitlist để được ưu tiên thông báo<br/>khi <strong style="color:var(--parchment);">Workshop Kế Tiếp</strong> mở đăng ký.
+            </p>
+            <form id="waitlist-form" novalidate>
+              <div class="form-group">
+                <label for="wl-name">HỌ VÀ TÊN</label>
+                <input type="text" id="wl-name" placeholder="Nguyễn Văn A" required />
+              </div>
+              <div class="form-group">
+                <label for="wl-phone">SỐ ĐIỆN THOẠI</label>
+                <input type="tel" id="wl-phone" placeholder="0901 234 567" required />
+              </div>
+              <div class="form-group">
+                <label for="wl-email">EMAIL</label>
+                <input type="email" id="wl-email" placeholder="ban@example.com" required />
+              </div>
+              <button type="submit" class="btn-submit" id="wl-submit-btn">✦ Đăng Ký Waitlist →</button>
+            </form>
+          </div>
+          <div id="waitlist-success-view" style="display:none; text-align:center; padding:24px 0;">
+            <span style="font-size:2.5rem;">🎯</span>
+            <h3 style="font-family:'Cormorant SC',serif; font-size:1.3rem; color:var(--gold-light); margin:12px 0 8px;">Đã Vào Danh Sách Chờ!</h3>
+            <p style="font-size:0.92rem; color:rgba(232,224,208,0.75); line-height:1.7;">Ý sẽ liên hệ bạn ngay khi Workshop kế tiếp mở đăng ký. Cảm ơn bạn đã quan tâm! 🙏</p>
+          </div>
+
           <div id="reg-form-view">
             <div class="modal-package-badge" id="modal-package-badge" style="margin-bottom:24px;"></div>
             <form id="reg-form" novalidate>
@@ -3105,6 +3160,70 @@
           }
         });
       });
+    })();
+
+    /* ── Early Bird Countdown ── */
+    (function () {
+      var deadline = new Date('2026-05-11T23:59:59+07:00');
+      var wrap = document.getElementById('early-bird-countdown-wrap');
+
+      function pad(n) { return String(n).padStart(2, '0'); }
+      function tick() {
+        var now  = new Date();
+        var diff = deadline - now;
+        if (diff <= 0) {
+          if (wrap) wrap.style.display = 'none';
+          return;
+        }
+        var days  = Math.floor(diff / 86400000);
+        var hours = Math.floor((diff % 86400000) / 3600000);
+        var mins  = Math.floor((diff % 3600000)  / 60000);
+        var secs  = Math.floor((diff % 60000)    / 1000);
+        document.getElementById('cd-days').textContent  = pad(days);
+        document.getElementById('cd-hours').textContent = pad(hours);
+        document.getElementById('cd-mins').textContent  = pad(mins);
+        document.getElementById('cd-secs').textContent  = pad(secs);
+      }
+      tick();
+      setInterval(tick, 1000);
+    })();
+
+    /* ── Capacity check → show Waitlist if full ── */
+    (function () {
+      var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbym1l_YvHTBLX9tH5Q2N7Sx4o8KxT4hcwJwRXaRg5HELxEjMWLJ7QjAo1_1K-YN78JV/exec';
+
+      fetch(SCRIPT_URL + '?action=status')
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (data.full) {
+            document.getElementById('reg-form-view').style.display  = 'none';
+            document.getElementById('waitlist-view').style.display  = '';
+          }
+        })
+        .catch(function () {});
+
+      // Waitlist submit
+      var wlForm = document.getElementById('waitlist-form');
+      if (wlForm) {
+        wlForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var name  = document.getElementById('wl-name').value.trim();
+          var phone = document.getElementById('wl-phone').value.trim();
+          var email = document.getElementById('wl-email').value.trim();
+          if (!name || !phone || !email) return;
+          var btn = document.getElementById('wl-submit-btn');
+          btn.disabled = true; btn.textContent = 'Đang gửi...';
+          var params = new URLSearchParams({ action: 'waitlist', name: name, phone: phone, email: email });
+          fetch(SCRIPT_URL + '?' + params.toString())
+            .then(function () {
+              document.getElementById('waitlist-view').style.display         = 'none';
+              document.getElementById('waitlist-success-view').style.display = '';
+            })
+            .catch(function () {
+              btn.disabled = false; btn.textContent = '✦ Đăng Ký Waitlist →';
+            });
+        });
+      }
     })();
 
     /* ── Typewriter effect ── */
