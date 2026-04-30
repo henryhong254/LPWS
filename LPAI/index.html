@@ -90,7 +90,19 @@
     body {
       font-family: 'Inter', sans-serif;
       font-size: 1.15rem;
-      background: var(--navy);
+      background: linear-gradient(
+        180deg,
+        #0D0F1A 0%,
+        #100D20 15%,
+        #130D26 28%,
+        #110A22 40%,
+        #0E0818 52%,
+        #130D26 64%,
+        #100D20 76%,
+        #0C0A1C 88%,
+        #0D0F1A 100%
+      );
+      background-attachment: fixed;
       color: #E8E0D0;
       line-height: 1.75;
     }
@@ -101,6 +113,12 @@
       position: fixed;
       inset: 0;
       background-image:
+        radial-gradient(ellipse 55% 40% at 50% 25%, rgba(220,100,60,0.13) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 30% 50%, rgba(200,80,120,0.10) 0%, transparent 65%),
+        radial-gradient(ellipse 45% 35% at 70% 45%, rgba(180,60,160,0.09) 0%, transparent 65%),
+        radial-gradient(ellipse 70% 50% at 20% 40%, rgba(120,60,180,0.10) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(90,40,160,0.09) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 30% at 50% 20%, rgba(160,80,200,0.07) 0%, transparent 60%),
         radial-gradient(1px 1px at 20% 30%, rgba(201,168,76,0.5) 0%, transparent 100%),
         radial-gradient(1px 1px at 80% 10%, rgba(255,255,255,0.3) 0%, transparent 100%),
         radial-gradient(1.5px 1.5px at 60% 70%, rgba(201,168,76,0.4) 0%, transparent 100%),
@@ -1761,6 +1779,7 @@
       display: none;
     }
 
+
     /* ═══ SHIMMER on gold text ═══ */
     @keyframes gold-shimmer {
       0%   { background-position: -200% center; }
@@ -2014,12 +2033,6 @@
       </div>
 
       <p class="hero-tagline">Online 13/5 · Offline 14/5 · TP.HCM</p>
-
-      <div class="hero-cta-group">
-        <a href="#pricing" id="hero-cta-btn" class="btn-primary">
-          ✦ Đặt Chỗ Của Tôi &rarr;
-        </a>
-      </div>
     </div>
   </section>
 
@@ -2252,19 +2265,19 @@
         <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 32px 0;">
           <div style="padding: 16px 20px; background: rgba(201,168,76,0.07); border: 1px solid rgba(201,168,76,0.2); border-radius: 10px;">
             <div style="font-size: 1.4rem; margin-bottom: 6px;">💰</div>
-            <p style="margin:0; font-size: 0.95rem; color: var(--parchment);">Chốt đơn <strong>nhàn hơn hẳn</strong>, tỉ lệ cao hơn</p>
+            <p style="margin:0; font-size: 1rem; color: #fff;">Chốt đơn <strong style="color:#FFD966; font-weight:800;">nhàn hơn hẳn</strong>, tỉ lệ cao hơn</p>
           </div>
           <div style="padding: 16px 20px; background: rgba(201,168,76,0.07); border: 1px solid rgba(201,168,76,0.2); border-radius: 10px;">
             <div style="font-size: 1.4rem; margin-bottom: 6px;">⏱️</div>
-            <p style="margin:0; font-size: 0.95rem; color: var(--parchment);">Thời gian trả lời khách <strong>giảm hẳn</strong></p>
+            <p style="margin:0; font-size: 1rem; color: #fff;">Thời gian trả lời khách <strong style="color:#FFD966; font-weight:800;">giảm hẳn</strong></p>
           </div>
           <div style="padding: 16px 20px; background: rgba(201,168,76,0.07); border: 1px solid rgba(201,168,76,0.2); border-radius: 10px;">
             <div style="font-size: 1.4rem; margin-bottom: 6px;">😴</div>
-            <p style="margin:0; font-size: 0.95rem; color: var(--parchment);"><strong>Ngủ ngon hơn</strong>, tiền về túi đều hơn</p>
+            <p style="margin:0; font-size: 1rem; color: #fff;"><strong style="color:#FFD966; font-weight:800;">Ngủ ngon hơn</strong>, tiền về túi đều hơn</p>
           </div>
           <div style="padding: 16px 20px; background: rgba(201,168,76,0.07); border: 1px solid rgba(201,168,76,0.2); border-radius: 10px;">
             <div style="font-size: 1.4rem; margin-bottom: 6px;">🏆</div>
-            <p style="margin:0; font-size: 0.95rem; color: var(--parchment);">Trông <strong>chuyên nghiệp</strong> hơn đối thủ ngay lập tức</p>
+            <p style="margin:0; font-size: 1rem; color: #fff;">Trông <strong style="color:#FFD966; font-weight:800;">chuyên nghiệp</strong> hơn đối thủ ngay lập tức</p>
           </div>
         </div>
 
