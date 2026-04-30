@@ -1906,14 +1906,8 @@
 
       <h1>
         Khởi Tạo Landing Page<br/>
-        <span class="gold-shimmer" style="font-size:1.15em; letter-spacing:0.04em;">3 Không</span>
+        <span class="gold-shimmer" id="typewriter-word" style="font-size:1.15em; letter-spacing:0.04em;">3 Không</span><span class="typewriter-cursor" style="width:4px; height:0.85em; background:var(--gold); display:inline-block; vertical-align:middle; margin-left:4px; animation:blink 0.8s step-end infinite;"></span>
       </h1>
-
-      <div class="hero-typewriter">
-        <span class="typewriter-static">Không Cần</span>
-        <span class="typewriter-word" id="typewriter-word"></span>
-        <span class="typewriter-cursor"></span>
-      </div>
 
       <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin:0 0 24px; position:relative;">
         <span class="hero-pill">Không Cần Code</span>
@@ -2768,7 +2762,7 @@
 
     /* ── Typewriter effect ── */
     (function () {
-      var words   = ['Code', 'Design', 'Content'];
+      var words   = ['Không Cần Code', 'Không Cần Design', 'Không Cần Content'];
       var el      = document.getElementById('typewriter-word');
       if (!el) return;
       var wi      = 0;
