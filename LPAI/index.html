@@ -409,7 +409,7 @@
 
     #hero h1 {
       font-family: 'Cormorant SC', serif;
-      font-size: clamp(3.8rem, 12vw, 8rem);
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
       font-weight: 700;
       line-height: 1.0;
       letter-spacing: 0.03em;
@@ -422,7 +422,7 @@
     /* Typewriter line */
     .hero-typewriter {
       font-family: 'Cormorant SC', serif;
-      font-size: clamp(1.1rem, 2.8vw, 1.5rem);
+      font-size: clamp(1.6rem, 4.5vw, 2.8rem);
       color: rgba(232,224,208,0.75);
       margin: 0 auto 28px;
       min-height: 2em;
@@ -1906,8 +1906,13 @@
 
       <h1>
         Khởi Tạo Landing Page<br/>
-        <span class="gold-shimmer" id="typewriter-word" style="font-size:1.15em; letter-spacing:0.04em;">3 Không</span><span class="typewriter-cursor" style="width:4px; height:0.85em; background:var(--gold); display:inline-block; vertical-align:middle; margin-left:4px; animation:blink 0.8s step-end infinite;"></span>
+        <span class="gold-shimmer" style="letter-spacing:0.04em;">3 Không</span>
       </h1>
+
+      <div class="hero-typewriter">
+        <span class="typewriter-word" id="typewriter-word"></span>
+        <span class="typewriter-cursor"></span>
+      </div>
 
       <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin:0 0 24px; position:relative;">
         <span class="hero-pill">Không Cần Code</span>
@@ -2762,7 +2767,7 @@
 
     /* ── Typewriter effect ── */
     (function () {
-      var words   = ['Không Cần Code', 'Không Cần Design', 'Không Cần Content'];
+      var words = ['Không Cần Code', 'Không Cần Design', 'Không Cần Content'];
       var el      = document.getElementById('typewriter-word');
       if (!el) return;
       var wi      = 0;
