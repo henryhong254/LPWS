@@ -3188,21 +3188,16 @@
       setInterval(tick, 1000);
     })();
 
-    /* ── Capacity check → show Waitlist if full ── */
+    /* ── Waitlist mode (đổi thành true khi lớp đủ người) ── */
     (function () {
+      var CLASS_FULL = false; // ← đổi thành true khi đủ 5 học viên
+
+      if (CLASS_FULL) {
+        document.getElementById('reg-form-view').style.display = 'none';
+        document.getElementById('waitlist-view').style.display = '';
+      }
+
       var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbym1l_YvHTBLX9tH5Q2N7Sx4o8KxT4hcwJwRXaRg5HELxEjMWLJ7QjAo1_1K-YN78JV/exec';
-
-      fetch(SCRIPT_URL + '?action=status')
-        .then(function (r) { return r.json(); })
-        .then(function (data) {
-          if (data.full) {
-            document.getElementById('reg-form-view').style.display  = 'none';
-            document.getElementById('waitlist-view').style.display  = '';
-          }
-        })
-        .catch(function () {});
-
-      // Waitlist submit
       var wlForm = document.getElementById('waitlist-form');
       if (wlForm) {
         wlForm.addEventListener('submit', function (e) {
