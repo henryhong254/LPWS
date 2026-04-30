@@ -16,6 +16,13 @@
       font-display: swap;
     }
     @font-face {
+      font-family: 'Beautique Display';
+      src: url('../Fonts/BeautiqueDisplay-Black copy.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
       font-family: 'DFVN-ED-Lavonia';
       src: url('../Fonts/DFVN ED Lavonia copy.otf') format('opentype');
       font-weight: normal;
@@ -138,7 +145,7 @@
 
     h1 { font-family: 'Cormorant SC', serif; line-height: 1.15; text-wrap: balance; }
     h2 { 
-      font-family: 'DFVN-ED-Lavonia', 'Cormorant SC', serif; 
+      font-family: 'Beautique Display', 'Cormorant SC', serif; 
       line-height: 1.5; 
       padding-top: 5px;
       padding-bottom: 5px;
@@ -873,9 +880,21 @@
       position: relative;
       z-index: 1;
     }
-    .instructor-inner {
-      max-width: 700px;
+    .instructor-carousel-wrap {
+      max-width: 1100px;
       margin: 0 auto;
+      position: relative;
+    }
+    .instructor-carousel {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      width: 100%;
+    }
+    .instructor-carousel-inner {
+      display: contents;
+    }
+    .instructor-card {
       background: linear-gradient(135deg, rgba(22,25,51,0.9), rgba(20,20,35,0.9));
       border: 1px solid rgba(201,168,76,0.2);
       border-radius: var(--radius-lg);
@@ -884,17 +903,59 @@
       gap: 32px;
       align-items: flex-start;
     }
+    .carousel-nav {
+      display: none;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .carousel-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.3);
+      background: rgba(22,25,51,0.5);
+      color: var(--gold);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant SC', serif;
+      font-weight: 700;
+    }
+    .carousel-btn:hover {
+      background: rgba(201,168,76,0.2);
+      border-color: rgba(201,168,76,0.6);
+      transform: translateY(-2px);
+    }
+    .carousel-dots {
+      display: none;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.3);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .dot.active {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
     .instructor-avatar {
-      width: 90px; height: 90px;
+      width: 90px;
+      height: 90px;
       border-radius: 50%;
       border: 2px solid var(--gold);
       flex-shrink: 0;
-      background: linear-gradient(135deg, var(--gold-dim), var(--gold));
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Cormorant SC', serif;
-      font-size: 2rem;
-      font-weight: 900;
-      color: var(--ink);
+      object-fit: cover;
       box-shadow: 0 0 30px rgba(201,168,76,0.3);
     }
     .instructor-info h3 {
@@ -902,6 +963,10 @@
       font-size: 1.2rem;
       color: var(--gold-light);
       margin-bottom: 4px;
+    }
+    .instructor-info {
+      flex: 1;
+      min-width: 0;
     }
     .instructor-role {
       font-size: 0.78rem;
@@ -918,8 +983,100 @@
     }
 
     /* ═══════════════════════════════════════════
-       PRICING
+       SCHEDULE
     ═══════════════════════════════════════════ */
+    #schedule {
+      padding: 80px 24px;
+      position: relative;
+      z-index: 1;
+    }
+    .schedule-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .schedule-header h2 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      margin-top: 12px;
+    }
+    .schedule-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .schedule-card {
+      background: linear-gradient(135deg, rgba(22,25,51,0.9), rgba(26,61,47,0.4));
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: var(--radius-lg);
+      padding: 40px 32px;
+      text-align: center;
+      transition: transform 0.3s, border-color 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .schedule-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .schedule-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(201,168,76,0.4);
+    }
+    .schedule-day {
+      font-family: 'Cormorant SC', serif;
+      font-size: 1.35rem;
+      color: var(--gold-light);
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+    .schedule-date {
+      font-family: 'Cormorant SC', serif;
+      font-size: 1.15rem;
+      color: #FFFFFF;
+      margin-bottom: 20px;
+      letter-spacing: 0.05em;
+    }
+    .schedule-time {
+      font-family: 'Cormorant SC', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 16px;
+      letter-spacing: 0.02em;
+    }
+    .schedule-type {
+      display: inline-block;
+      background: rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold-light);
+      font-family: 'Cormorant SC', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 10px 24px;
+      border-radius: 999px;
+      margin-top: 12px;
+    }
+    .schedule-type.online { background: rgba(60,100,200,0.32); border-color: rgba(123,163,255,0.75); color: #FFFFFF; box-shadow: 0 0 22px rgba(123,163,255,0.18); }
+    .schedule-type.offline { background: rgba(46,204,113,0.26); border-color: rgba(93,206,160,0.8); color: #FFFFFF; box-shadow: 0 0 22px rgba(93,206,160,0.18); }
+    .schedule-location {
+      font-family: 'Cormorant SC', serif;
+      font-size: 1rem;
+      color: #FFFFFF;
+      line-height: 1.5;
+      margin: 12px 0 0;
+    }
+    
+    @media (max-width: 640px) {
+      .schedule-grid { grid-template-columns: 1fr; }
+    }
     #pricing {
       padding: 80px 24px;
       position: relative;
@@ -1187,7 +1344,7 @@
     }
     .showcase-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 32px;
       margin-top: 48px;
     }
@@ -1287,7 +1444,8 @@
     @media (max-width: 640px) {
       .pain-grid, .benefits-grid { grid-template-columns: 1fr; }
       .for-who-inner { grid-template-columns: 1fr; gap: 32px; }
-      .instructor-inner { flex-direction: column; align-items: center; text-align: center; padding: 32px 24px; }
+      .instructor-carousel { grid-template-columns: 1fr; }
+      .instructor-card { flex-direction: column; align-items: center; text-align: center; padding: 32px 24px; }
       .final-cta-inner { padding: 40px 24px; }
       nav { padding: 12px 16px; }
       .proof-divider { display: none; }
@@ -1592,6 +1750,7 @@
     <a href="#outcomes">Kết quả</a>
     <a href="#showcase">Dự án</a>
     <a href="#instructor">Người dạy</a>
+    <a href="#schedule">Lịch học</a>
     <a href="#pricing">Đăng ký</a>
     <a href="#faq">FAQ</a>
   </div>
@@ -1820,7 +1979,7 @@
     <div class="container">
       <div class="benefits-header reveal" style="text-align: center; margin-top: 60px;">
         <span class="section-label">✦ BẠN NHẬN ĐƯỢC GÌ ✦</span>
-        <h2 style="font-family: 'DFVN-ED-Lavonia', cursive; font-size: clamp(2.5rem, 6vw, 3.8rem); color: #fff; margin-top: 10px;">Sau 2 Ngày Bạn Sẽ Có</h2>
+        <h2 style="font-family: 'Beautique Display', cursive; font-size: clamp(2.5rem, 6vw, 3.8rem); color: #fff; margin-top: 10px;">Sau 2 Ngày Bạn Sẽ Có</h2>
       </div>
 
       <div class="session-container" style="grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px;">
@@ -1970,6 +2129,19 @@
             <span class="showcase-domain">Book Phòng Meeting</span>
           </div>
         </div>
+
+        <!-- Card 6 -->
+        <div class="showcase-card reveal">
+          <div class="showcase-img">
+            <img src="../Assets/website 6.png" alt="Giới Thiệu Sản Phẩm: UBE COLLECTION">
+            <div class="showcase-overlay">
+              <a href="https://lemonetartcafe.com/pages/ubecollection" class="btn-showcase" target="_blank">Xem Website</a>
+            </div>
+          </div>
+          <div class="showcase-info">
+            <span class="showcase-domain">Giới Thiệu Sản Phẩm: UBE COLLECTION</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1981,18 +2153,75 @@
         <span class="section-label">✦ Người Dẫn Đường ✦</span>
         <h2 style="margin-top:12px; font-size:clamp(1.4rem,3.5vw,2rem);">Ai Sẽ <span class="gold-text">Chỉ Bạn Phép Thuật?</span></h2>
       </div>
-      <div class="instructor-inner reveal">
-        <div class="instructor-avatar">Ý</div>
-        <div class="instructor-info">
-          <h3>Thiên Ý</h3>
-          <div class="instructor-role">Founder · Founders North</div>
-          <p>
-            Ý không phải developer. Ý không phải designer. Ý là Founder — và Ý đã tự tay xây
-            những trang bán hàng chạy ra doanh thu thật bằng AI, không thuê ai. Workshop này
-            không phải lý thuyết giáo khoa — đây là những gì Ý đang làm mỗi ngày, chia sẻ lại
-            cho Founders với góc nhìn "Founder-to-Founder": thực tế, không hoa mỹ, không thêm
-            thắt. Nếu Ý làm được, bạn cũng làm được.
-          </p>
+      <div class="instructor-carousel-wrap">
+        <div class="instructor-carousel">
+          <div class="instructor-carousel-inner" id="instructor-carousel-inner">
+            <div class="instructor-card reveal">
+              <img src="../Assets/hongthieny.png" alt="Thiên Ý" class="instructor-avatar" />
+              <div class="instructor-info">
+                <h3>Thiên Ý</h3>
+                <div class="instructor-role">Founder · Founders North</div>
+                <p>
+                  Ý không phải developer. Ý không phải designer. Ý là Founder — và Ý đã tự tay xây
+                  những trang bán hàng chạy ra doanh thu thật bằng AI, không thuê ai. Workshop này
+                  không phải lý thuyết giáo khoa — đây là những gì Ý đang làm mỗi ngày, chia sẻ lại
+                  cho Founders với góc nhìn "Founder-to-Founder": thực tế, không hoa mỹ, không thêm
+                  thắt. Nếu Ý làm được, bạn cũng làm được.
+                </p>
+              </div>
+            </div>
+
+            <div class="instructor-card reveal">
+              <img src="../Assets/violet.png" alt="Violet Bùi" class="instructor-avatar" />
+              <div class="instructor-info">
+                <h3>Violet Bùi</h3>
+                <div class="instructor-role">Chủ Doanh Nghiệp Nhỏ · Art Director</div>
+                <p>
+                  Violet không phải coder, không phải marketer, nhưng cô là người có gu và hiểu rõ cách
+                  biến một trang bán hàng trở nên tinh tế, thu hút và dễ nhớ. Với tư cách chủ doanh
+                  nghiệp nhỏ, Violet giữ quyền chọn từng mood hình ảnh và từng câu chữ, để sản phẩm
+                  trông có giá trị và vẫn gần gũi với khách hàng. Cô đến workshop này để cùng bạn tạo
+                  nên landing page có cá tính, chuyên nghiệp và dễ bán hàng.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-nav">
+          <button class="carousel-btn" id="instructor-prev">‹</button>
+          <button class="carousel-btn" id="instructor-next">›</button>
+        </div>
+        <div class="carousel-dots">
+          <span class="dot active" data-index="0"></span>
+          <span class="dot" data-index="1"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── SCHEDULE ───────────── -->
+  <section id="schedule">
+    <div class="container">
+      <div class="schedule-header reveal">
+        <span class="section-label">✦ Lịch Học Sắp Tới ✦</span>
+        <h2>Khóa Học Lần <span class="gold-text">Tới Đây</span></h2>
+      </div>
+      
+      <div class="schedule-grid">
+        <div class="schedule-card reveal">
+          <div class="schedule-day">Ngày 1</div>
+          <div class="schedule-date">13/05/2026</div>
+          <div class="schedule-time">19h30 - 21h00</div>
+          <span class="schedule-type online">• ONLINE LIVE</span>
+          <p class="schedule-location">Qua Google Meet</p>
+        </div>
+        
+        <div class="schedule-card reveal">
+          <div class="schedule-day">Ngày 2</div>
+          <div class="schedule-date">14/05/2026</div>
+          <div class="schedule-time">09h00 - 12h00</div>
+          <span class="schedule-type offline">• OFFLINE - TP.HCM</span>
+          <p class="schedule-location">29 Đường R, KĐT Lakeview City, Bình Trưng (Q2)</p>
         </div>
       </div>
     </div>
