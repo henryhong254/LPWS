@@ -1574,6 +1574,66 @@
     }
 
     /* ═══════════════════════════════════════════
+       MAGIC SPLIT LAYOUT
+    ═══════════════════════════════════════════ */
+    .magic-split-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 24px;
+      margin: 8px 0;
+    }
+    .magic-stat-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(201,168,76,0.12);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      text-align: center;
+    }
+    .magic-stat-card--highlight {
+      background: rgba(201,168,76,0.06);
+      border-color: rgba(201,168,76,0.3);
+      box-shadow: 0 0 40px rgba(201,168,76,0.08);
+    }
+    .magic-stat-score {
+      font-family: 'Cormorant SC', serif;
+      font-size: 4rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .magic-stat-label {
+      font-family: 'Cormorant SC', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(232,224,208,0.45);
+      margin-bottom: 16px;
+    }
+    .magic-stat-desc {
+      font-family: 'EB Garamond', serif;
+      font-size: 1rem;
+      color: rgba(232,224,208,0.65);
+      line-height: 1.75;
+      text-align: left;
+    }
+    .magic-split-arrow {
+      font-size: 2rem;
+      color: rgba(201,168,76,0.35);
+      font-family: sans-serif;
+    }
+    @media (max-width: 640px) {
+      .magic-split-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .magic-split-arrow {
+        text-align: center;
+        transform: rotate(90deg);
+      }
+    }
+
+    /* ═══════════════════════════════════════════
        SCROLL ANIMATIONS
     ═══════════════════════════════════════════ */
     .reveal {
@@ -2536,19 +2596,27 @@
         </h2>
       </div>
 
-      <!-- AI vs Traditional -->
-      <p class="reveal">
-        Trước đây, Ý làm landing page với đầy đủ designer và developer. Kết quả? Ý tự chấm <strong style="color:#FFD966;">8/10</strong>.
-        Đẹp, nhưng ý tưởng trong đầu và thứ hiện ra trên màn hình vẫn còn khoảng cách —
-        vì designer có giới hạn của họ, dev có timeline của họ, và cả hai đều có ý kiến riêng.
-      </p>
+      <!-- AI vs Traditional — Split Layout -->
+      <div class="reveal magic-split-grid">
 
-      <p class="reveal" style="margin-top:20px;">
-        Còn bây giờ, làm bằng AI — Ý tự chấm <strong style="color:#FFD966;">ít nhất 8.5/10</strong>.
-        Không phải vì AI giỏi hơn người. Mà vì <em>AI không cằn nhằn.</em>
-        Nó làm đúng những gì Ý muốn, thử những kỹ thuật phức tạp mà dev cần cả tuần,
-        và không bao giờ nói "cái này khó làm lắm."
-      </p>
+        <!-- Stat card: Trước -->
+        <div class="magic-stat-card">
+          <div class="magic-stat-score" style="color:rgba(232,224,208,0.5);">8<span style="font-size:1.8rem;">/10</span></div>
+          <div class="magic-stat-label">Trước — Với Designer & Dev</div>
+          <p class="magic-stat-desc">Đẹp, nhưng ý tưởng trong đầu và thứ hiện ra trên màn hình vẫn còn khoảng cách — vì designer có giới hạn của họ, dev có timeline của họ, và cả hai đều có ý kiến riêng.</p>
+        </div>
+
+        <!-- Arrow -->
+        <div class="magic-split-arrow">→</div>
+
+        <!-- Stat card: Bây giờ -->
+        <div class="magic-stat-card magic-stat-card--highlight">
+          <div class="magic-stat-score gold-text">8.5<span style="font-size:1.8rem;">/10</span></div>
+          <div class="magic-stat-label" style="color:var(--gold-light);">Bây Giờ — Với AI</div>
+          <p class="magic-stat-desc">Không phải vì AI giỏi hơn người. Mà vì <em>AI không cằn nhằn.</em> Nó làm đúng những gì Ý muốn, thử kỹ thuật phức tạp mà dev cần cả tuần, và không bao giờ nói "cái này khó làm lắm."</p>
+        </div>
+
+      </div>
 
       <!-- Divider -->
       <div class="reveal" style="display:flex; align-items:center; gap:16px; margin:44px 0;">
