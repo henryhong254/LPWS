@@ -327,13 +327,12 @@
        HERO
     ═══════════════════════════════════════════ */
     #hero {
-      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-end;
       text-align: center;
-      padding: 120px 24px 80px;
+      padding: 120px 24px 56px;
       position: relative;
       overflow: hidden;
       background:
@@ -600,7 +599,7 @@
        PAIN SECTION
     ═══════════════════════════════════════════ */
     #pain {
-      padding: 96px 24px 80px;
+      padding: 64px 24px 16px;
       position: relative;
       z-index: 1;
     }
@@ -670,7 +669,7 @@
        THE MAGIC REVEAL
     ═══════════════════════════════════════════ */
     #magic {
-      padding: 80px 24px;
+      padding: 56px 24px;
       position: relative;
       z-index: 1;
       text-align: center;
@@ -709,11 +708,11 @@
       margin-bottom: 16px;
     }
     #magic p {
-      font-family: 'Cormorant SC', serif;
-      font-size: 1.3rem;
-      color: rgba(232,224,208,0.8);
-      line-height: 1.8;
-      text-wrap: balance;
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+      color: rgba(232,224,208,0.82);
+      line-height: 1.95;
+      text-align: left;
     }
     .magic-highlight {
       color: var(--gold-light);
@@ -889,9 +888,10 @@
        FOR WHO
     ═══════════════════════════════════════════ */
     #for-who {
-      padding: 80px 24px;
+      padding: 56px 24px;
       position: relative;
       z-index: 1;
+      background: linear-gradient(180deg, transparent 0%, rgba(15,25,60,0.6) 25%, rgba(15,25,60,0.6) 75%, transparent 100%);
     }
     .for-who-inner {
       background: var(--navy-card);
@@ -926,117 +926,109 @@
        INSTRUCTOR
     ═══════════════════════════════════════════ */
     #instructor {
-      padding: 80px 24px;
+      padding: 56px 24px;
+      background: linear-gradient(180deg, transparent 0%, rgba(15,25,60,0.6) 20%, rgba(15,25,60,0.6) 80%, transparent 100%);
       position: relative;
       z-index: 1;
     }
-    .instructor-carousel-wrap {
-      max-width: 1100px;
-      margin: 0 auto;
-      position: relative;
-    }
-    .instructor-carousel {
+    .instructor-grid {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 24px;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .instructor-col {
+      background: linear-gradient(160deg, rgba(22,25,51,0.95), rgba(18,21,43,0.95));
+      border: 1px solid rgba(201,168,76,0.18);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .instructor-col:hover {
+      transform: translateY(-4px);
+      border-color: rgba(201,168,76,0.35);
+    }
+    .instructor-img-wrap {
       width: 100%;
+      aspect-ratio: 3 / 2;
+      overflow: hidden;
     }
-    .instructor-carousel-inner {
-      display: contents;
-    }
-    .instructor-card {
-      background: linear-gradient(135deg, rgba(22,25,51,0.9), rgba(20,20,35,0.9));
-      border: 1px solid rgba(201,168,76,0.2);
-      border-radius: var(--radius-lg);
-      padding: 48px;
-      display: flex;
-      gap: 32px;
-      align-items: flex-start;
-    }
-    .carousel-nav {
-      display: none;
-      justify-content: center;
-      gap: 16px;
-      margin-top: 32px;
-    }
-    .carousel-btn {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      border: 1px solid rgba(201,168,76,0.3);
-      background: rgba(22,25,51,0.5);
-      color: var(--gold);
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: all 0.3s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Cormorant SC', serif;
-      font-weight: 700;
-    }
-    .carousel-btn:hover {
-      background: rgba(201,168,76,0.2);
-      border-color: rgba(201,168,76,0.6);
-      transform: translateY(-2px);
-    }
-    .carousel-dots {
-      display: none;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 20px;
-    }
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      border: 1px solid rgba(201,168,76,0.3);
-      background: transparent;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    .dot.active {
-      background: var(--gold);
-      border-color: var(--gold);
-    }
-    .instructor-avatar {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      border: 2px solid var(--gold);
-      flex-shrink: 0;
+    .instructor-img-wrap img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      box-shadow: 0 0 30px rgba(201,168,76,0.3);
+      object-position: center 50%;
+      display: block;
+      transition: transform 0.4s ease;
     }
-    .instructor-info h3 {
-      font-family: 'Cormorant SC', serif;
-      font-size: 1.2rem;
-      color: var(--gold-light);
+    .instructor-col:hover .instructor-img-wrap img {
+      transform: scale(1.04);
+    }
+    .instructor-body {
+      padding: 24px 28px 28px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .instructor-name {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+      font-weight: 500;
+      color: var(--parchment);
       margin-bottom: 4px;
     }
-    .instructor-info {
-      flex: 1;
-      min-width: 0;
-    }
     .instructor-role {
-      font-size: 0.78rem;
-      color: rgba(232,224,208,0.5);
-      letter-spacing: 0.08em;
       font-family: 'Cormorant SC', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      color: rgba(201,168,76,0.6);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .instructor-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
       margin-bottom: 16px;
     }
-    .instructor-info p {
+    .inst-tag {
       font-family: 'Cormorant SC', serif;
-      font-size: 1.15rem;
-      color: rgba(232,224,208,0.75);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      border: 1px solid rgba(201,168,76,0.28);
+      padding: 3px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+    .instructor-bio {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+      color: rgba(232,224,208,0.72);
       line-height: 1.75;
+      flex: 1;
+    }
+    @media (max-width: 640px) {
+      .instructor-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .instructor-img-wrap {
+        aspect-ratio: 4 / 3;
+      }
+      .instructor-body {
+        padding: 20px 22px 24px;
+      }
     }
 
     /* ═══════════════════════════════════════════
        SCHEDULE
     ═══════════════════════════════════════════ */
     #schedule {
-      padding: 80px 24px;
+      padding: 56px 24px;
       position: relative;
       z-index: 1;
     }
@@ -1131,6 +1123,7 @@
       padding: 80px 24px;
       position: relative;
       z-index: 1;
+      background: linear-gradient(180deg, transparent 0%, rgba(201,168,76,0.06) 20%, rgba(201,168,76,0.08) 50%, rgba(201,168,76,0.06) 80%, transparent 100%);
     }
     .pricing-header {
       text-align: center;
@@ -1260,6 +1253,7 @@
       padding: 80px 24px;
       position: relative;
       z-index: 1;
+      background: linear-gradient(180deg, transparent 0%, rgba(15,25,60,0.5) 20%, rgba(15,25,60,0.5) 80%, transparent 100%);
     }
     .faq-header { text-align: center; margin-bottom: 48px; }
     .faq-header h2 { font-size: clamp(1.4rem, 3.5vw, 2rem); margin-top: 12px; }
@@ -1316,6 +1310,110 @@
     /* ═══════════════════════════════════════════
        FINAL CTA
     ═══════════════════════════════════════════ */
+    /* ── Mid CTA Sections ── */
+    .mid-cta-section {
+      padding: 32px 24px;
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(135deg, #8B6914 0%, #C9A84C 35%, #D4B04A 65%, #A07820 100%);
+    }
+    .mid-cta-box {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .mid-cta-text {
+      flex: 1;
+      min-width: 320px;
+      text-align: left;
+    }
+    .mid-cta-overline {
+      font-family: 'Cormorant SC', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: rgba(26,18,8,0.75);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .mid-cta-headline {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      font-weight: 500;
+      color: #0d0a04;
+      line-height: 1.45;
+      margin: 0 0 6px 0;
+    }
+    .mid-cta-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      color: rgba(26,18,8,0.85);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .mid-cta-action {
+      flex-shrink: 0;
+      text-align: center;
+    }
+    @keyframes btn-shine {
+      0%   { left: -80%; }
+      40%, 100% { left: 130%; }
+    }
+    @keyframes btn-breathe {
+      0%, 100% { transform: scale(1); }
+      50%       { transform: scale(1.04); }
+    }
+    .btn-mid-cta {
+      display: inline-block;
+      background: #FFF8EE;
+      color: #1a1208;
+      font-family: 'Cormorant SC', serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 13px 28px;
+      border-radius: 4px;
+      text-decoration: none;
+      white-space: nowrap;
+      position: relative;
+      overflow: hidden;
+      animation: btn-breathe 2s ease-in-out infinite;
+      transition: box-shadow 0.2s ease;
+    }
+    .btn-mid-cta::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -80%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.75) 50%, transparent 100%);
+      transform: skewX(-15deg);
+      animation: btn-shine 2.8s ease-in-out infinite;
+    }
+    .btn-mid-cta:hover {
+      animation-play-state: paused;
+      transform: translateY(-3px) scale(1.06);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.25);
+    }
+    .btn-mid-cta:hover::after {
+      animation-duration: 0.6s;
+    }
+    .mid-cta-note {
+      font-family: 'Cormorant SC', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      color: rgba(26,18,8,0.5);
+      text-transform: uppercase;
+      margin-top: 8px;
+      display: block;
+    }
+
     #final-cta {
       padding: 100px 24px;
       position: relative;
@@ -1507,6 +1605,7 @@
       padding: 0 24px 80px;
       position: relative;
       z-index: 1;
+      background: linear-gradient(180deg, transparent 0%, rgba(201,168,76,0.05) 30%, rgba(201,168,76,0.05) 70%, transparent 100%);
     }
     .comparison-container {
       max-width: 1000px;
@@ -1515,17 +1614,17 @@
     .comparison-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      margin-top: 40px;
+      grid-template-rows: auto auto auto auto auto;
+      gap: 0 28px;
+      margin-top: 32px;
     }
     .comp-card {
+      display: grid;
+      grid-template-rows: subgrid;
+      grid-row: 1 / 6;
       background: var(--navy-card);
       border: 1px solid rgba(201,168,76,0.1);
       border-radius: var(--radius-lg);
-      padding: 40px;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
       position: relative;
       overflow: hidden;
       transition: transform 0.3s, border-color 0.3s;
@@ -1561,10 +1660,11 @@
       font-family: 'Cormorant SC', serif;
       font-size: 1.4rem;
       color: var(--gold-light);
-      margin-bottom: 32px;
       text-align: center;
       letter-spacing: 0.1em;
       text-transform: uppercase;
+      padding: 36px 32px 20px;
+      align-self: start;
     }
     .ai-way .comp-label {
         font-weight: 900;
@@ -1572,8 +1672,7 @@
         text-shadow: none;
     }
     .comp-list {
-      list-style: none;
-      flex-grow: 1;
+      display: contents;
     }
     .comp-list-sub {
       list-style: none;
@@ -1598,8 +1697,8 @@
     .comp-item {
       display: flex;
       gap: 16px;
-      margin-bottom: 24px;
       align-items: flex-start;
+      padding: 12px 32px;
     }
     .comp-icon {
       font-size: 1.4rem;
@@ -1633,13 +1732,13 @@
     }
     .ai-way .comp-text p { color: var(--ink); font-weight: 500; }
     .comp-footer {
-      margin-top: 32px;
-      padding-top: 24px;
-      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 20px 32px 36px;
+      border-top: 1px solid rgba(255,255,255,0.07);
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
+      align-self: end;
     }
     .ai-way .comp-footer { border-top-color: rgba(0,0,0,0.1); }
     .comp-total-label {
@@ -1669,9 +1768,21 @@
     .ai-way .comp-note { color: var(--ink); }
 
     @media (max-width: 768px) {
-      .comparison-grid { grid-template-columns: 1fr; gap: 24px; }
-      #comparison { padding-bottom: 40px; }
-      .comp-card { padding: 32px 24px; }
+      .comparison-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: none;
+        gap: 20px;
+      }
+      .comp-card {
+        display: flex;
+        flex-direction: column;
+        grid-row: auto;
+      }
+      .comp-list { display: block; }
+      .comp-label { padding: 28px 24px 16px; }
+      .comp-item { padding: 10px 24px; }
+      .comp-footer { padding: 16px 24px 28px; }
+      #comparison { padding-bottom: 32px; }
       .ai-way .comp-total-price { font-size: 2.2rem; }
     }
 
@@ -1692,7 +1803,21 @@
       padding: 36px 32px;
       box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,168,76,0.1);
     }
-    @media (max-width: 520px) { .reg-section-box { padding: 28px 20px; } }
+    @media (max-width: 520px) {
+      .reg-section-box { padding: 28px 20px; }
+      #pain { padding: 48px 16px 40px; }
+      #magic { padding: 40px 16px; }
+      #for-who { padding: 40px 16px; }
+      #instructor { padding: 40px 16px; }
+      #schedule { padding: 40px 16px; }
+      #faq { padding: 40px 16px; }
+      #pricing { padding: 40px 16px; }
+      .mid-cta-section { padding: 36px 16px; }
+      .mid-cta-box { padding: 28px 0; flex-direction: column; gap: 20px; }
+      .mid-cta-text { text-align: center; }
+      .mid-cta-action { width: 100%; }
+      .btn-mid-cta { width: 100%; text-align: center; box-sizing: border-box; }
+    }
     .modal-package-badge {
       display: block;
       font-family: 'Cormorant SC', serif;
@@ -1857,9 +1982,9 @@
     .marquee-label {
       text-align: center;
       font-family: 'Cormorant SC', serif;
-      font-size: 0.78rem;
-      letter-spacing: 0.18em;
-      color: rgba(201,168,76,0.5);
+      font-size: 1rem;
+      letter-spacing: 0.16em;
+      color: rgba(201,168,76,0.75);
       text-transform: uppercase;
       margin-bottom: 20px;
       padding-top: 8px;
@@ -2191,7 +2316,7 @@
   </div>
 
   <!-- ───────────── PAIN SECTION ───────────── -->
-  <section id="pain" style="padding: 100px 24px;">
+  <section id="pain" style="padding: 72px 24px 64px;">
     <div style="max-width: 720px; margin: 0 auto;">
 
       <!-- Hook -->
@@ -2283,18 +2408,17 @@
 
         <p class="reveal">
           Một trang bán hàng thật sự có giá trị. Nếu không, người ta đã không sẵn sàng trả
-          <strong style="color: var(--gold-light);">từ 7 đến 20 triệu</strong> để có nó.
+          <strong style="color: var(--gold-light); font-size: 1.35em; letter-spacing: 0.01em;">từ 7 đến 20 triệu</strong> để có nó.
         </p>
 
         <!-- Bridge -->
-        <div class="reveal" style="margin-top: 56px; text-align: center;">
+        <div class="reveal" style="margin-top: 32px; text-align: center;">
           <p style="font-family:'Cormorant SC', serif; font-size: clamp(1.1rem, 2.5vw, 1.4rem); color: rgba(232,224,208,0.55); margin-bottom: 12px;">
             Nhưng tin mừng — đó là cái giá của <em>ngày trước</em>.
           </p>
           <p style="font-family:'Cormorant SC', serif; font-size: clamp(1.5rem, 3.5vw, 2.2rem); font-weight: 700; color: var(--parchment);">
-            Còn bây giờ thì...
+            Còn bây giờ thì... AI đã thay đổi hoàn toàn cuộc chơi.
           </p>
-          <div style="margin-top: 24px; font-size: 1.8rem; animation: float-particle 2s ease-in-out infinite;">↓</div>
         </div>
 
       </div>
@@ -2305,15 +2429,10 @@
   <section id="comparison">
     <div class="container" style="max-width: 1000px;">
       <div class="comparison-container reveal">
-        <div class="pain-header" style="margin-bottom: 40px;">
-          <span class="section-label">✦ Phép Thử Thực Tế ✦</span>
-          <h2>Cỗ Máy Hay Con Người?</h2>
-        </div>
-        
         <div class="comparison-grid">
           <!-- Traditional Way -->
           <div class="comp-card">
-            <div class="comp-label">Cách Làm Cũ</div>
+            <div class="comp-label">Cách Làm Landing Page Trước Đây</div>
             <ul class="comp-list">
               <li class="comp-item">
                 <div class="comp-icon">👥</div>
@@ -2389,8 +2508,24 @@
     </div>
   </section>
 
+  <!-- ───────────── MID CTA 1 ───────────── -->
+  <section class="mid-cta-section">
+    <div class="container">
+      <div class="mid-cta-box reveal">
+        <div class="mid-cta-text">
+          <span class="mid-cta-overline">✦ Landing Page 3 Không</span>
+          <p class="mid-cta-headline">Bạn đã từng mong khách hàng hiểu rõ sản phẩm hơn — vì nếu họ hiểu, họ nhất định sẽ mua.</p>
+          <p class="mid-cta-sub">Landing Page Chính Là Điều Bạn Cần.</p>
+        </div>
+        <div class="mid-cta-action">
+          <a href="#pricing" class="btn-mid-cta">✦ Tôi Muốn Khách Chốt Đơn →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ───────────── WHY AI + WHY OFFLINE ───────────── -->
-  <section id="magic" style="padding: 90px 24px;">
+  <section id="magic" style="padding: 64px 24px;">
     <div style="max-width: 700px; margin: 0 auto; font-family:'EB Garamond',serif; font-size:clamp(1.05rem,2vw,1.2rem); line-height:1.95; color:rgba(232,224,208,0.8);">
 
       <!-- Hook -->
@@ -2635,54 +2770,70 @@
     </div>
   </section>
 
+  <!-- ───────────── MID CTA 2 ───────────── -->
+  <section class="mid-cta-section">
+    <div class="container">
+      <div class="mid-cta-box reveal">
+        <div class="mid-cta-text">
+          <p class="mid-cta-headline" style="font-size:clamp(1.15rem,2.5vw,1.5rem);">⚡ Cái Giá Đắt Nhất Không Phải Là Học Phí 886.000đ</p>
+          <p class="mid-cta-sub">Mà là mỗi ngày khách bỏ đi vì họ không hiểu bạn đang bán gì — và tại sao nên mua.</p>
+        </div>
+        <div class="mid-cta-action">
+          <a href="#pricing" class="btn-mid-cta">✦ Đăng Ký Ngay →</a>
+          <span class="mid-cta-note">Còn vài suất · Lớp tối đa 5 người</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ───────────── INSTRUCTOR ───────────── -->
   <section id="instructor">
     <div class="container">
-      <div style="text-align:center; margin-bottom:40px;" class="reveal">
+      <div style="text-align:center; margin-bottom:36px;" class="reveal">
         <span class="section-label">✦ Người Dẫn Đường ✦</span>
-        <h2 style="margin-top:12px; font-size:clamp(1.4rem,3.5vw,2rem);">Ai Sẽ <span class="gold-text">Chỉ Bạn Phép Thuật?</span></h2>
       </div>
-      <div class="instructor-carousel-wrap">
-        <div class="instructor-carousel">
-          <div class="instructor-carousel-inner" id="instructor-carousel-inner">
-            <div class="instructor-card reveal">
-              <img src="../Assets/hongthieny.png" alt="Thiên Ý" class="instructor-avatar" />
-              <div class="instructor-info">
-                <h3>Thiên Ý</h3>
-                <div class="instructor-role">Founder · Founders North</div>
-                <p>
-                  Ý không phải developer. Ý không phải designer. Ý là Founder — và Ý đã tự tay xây
-                  những trang bán hàng chạy ra doanh thu thật bằng AI, không thuê ai. Workshop này
-                  không phải lý thuyết giáo khoa — đây là những gì Ý đang làm mỗi ngày, chia sẻ lại
-                  cho Founders với góc nhìn "Founder-to-Founder": thực tế, không hoa mỹ, không thêm
-                  thắt. Nếu Ý làm được, bạn cũng làm được.
-                </p>
-              </div>
-            </div>
 
-            <div class="instructor-card reveal">
-              <img src="../Assets/violet.png" alt="Violet Bùi" class="instructor-avatar" />
-              <div class="instructor-info">
-                <h3>Violet Bùi</h3>
-                <div class="instructor-role">Chủ Doanh Nghiệp Nhỏ · Art Director</div>
-                <p>
-                  Violet không phải coder, không phải marketer, nhưng cô là người có gu và hiểu rõ cách
-                  biến một trang bán hàng trở nên tinh tế, thu hút và dễ nhớ. Với tư cách chủ doanh
-                  nghiệp nhỏ, Violet giữ quyền chọn từng mood hình ảnh và từng câu chữ, để sản phẩm
-                  trông có giá trị và vẫn gần gũi với khách hàng. Cô đến workshop này để cùng bạn tạo
-                  nên landing page có cá tính, chuyên nghiệp và dễ bán hàng.
-                </p>
-              </div>
+      <div class="instructor-grid">
+        <!-- Hồng Thiên Ý -->
+        <div class="instructor-col reveal">
+          <div class="instructor-img-wrap">
+            <img src="../Assets/hongthieny.png" alt="Hồng Thiên Ý" style="object-position: center 55%;" />
+          </div>
+          <div class="instructor-body">
+            <h3 class="instructor-name">Hồng Thiên Ý</h3>
+            <div class="instructor-role">Founder · Founders North</div>
+            <div class="instructor-tags">
+              <span class="inst-tag">✦ Marketing Manager</span>
+              <span class="inst-tag">✦ AI Builder</span>
             </div>
+            <ul class="instructor-bio" style="list-style:none; padding:0; margin:0;">
+              <li style="margin-bottom:6px;">✦ 10 năm kinh nghiệm làm Marketing</li>
+              <li style="margin-bottom:6px;">✦ Đã làm việc cùng 50+ SME &amp; Startup</li>
+              <li style="margin-bottom:16px;">✦ Chuyên tối ưu nguồn lực, cắt giảm lãng phí</li>
+              <li><em style="color:var(--gold-light);">Vai Trò Dẫn Dắt Workshop: Marketing Strategy &amp; AI.</em></li>
+            </ul>
           </div>
         </div>
-        <div class="carousel-nav">
-          <button class="carousel-btn" id="instructor-prev">‹</button>
-          <button class="carousel-btn" id="instructor-next">›</button>
-        </div>
-        <div class="carousel-dots">
-          <span class="dot active" data-index="0"></span>
-          <span class="dot" data-index="1"></span>
+
+        <!-- Violet Bùi -->
+        <div class="instructor-col reveal">
+          <div class="instructor-img-wrap">
+            <img src="../Assets/violet.png" alt="Violet Bùi" style="object-position: center 42%;" />
+          </div>
+          <div class="instructor-body">
+            <h3 class="instructor-name">Violet Bùi</h3>
+            <div class="instructor-role">Founder · Le'Monet Art Cafe &amp; Studio</div>
+            <div class="instructor-tags">
+              <span class="inst-tag">✦ Art Director</span>
+              <span class="inst-tag">✦ Visual &amp; Brand</span>
+            </div>
+            <ul class="instructor-bio" style="list-style:none; padding:0; margin:0;">
+              <li style="margin-bottom:6px;">✦ RMIT — Digital Media, Bachelor with Distinction</li>
+              <li style="margin-bottom:6px;">✦ 8 năm Thiết Kế &amp; Visual Directing</li>
+              <li style="margin-bottom:16px;">✦ Chuyên Định Hướng Hình Ảnh Doanh Nghiệp</li>
+              <li><em style="color:var(--gold-light);">Vai Trò Dẫn Dắt Workshop: Visual &amp; Brand.</em></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -2693,7 +2844,7 @@
     <div class="container">
       <div class="schedule-header reveal">
         <span class="section-label">✦ Lịch Học Sắp Tới ✦</span>
-        <h2>Khóa Học Lần <span class="gold-text">Tới Đây</span></h2>
+        <h2>Lịch Học Landing Page 3 Không <span class="gold-text">K01</span></h2>
       </div>
       
       <div class="schedule-grid">
@@ -2897,21 +3048,23 @@
           </div>
           <div class="faq-a" id="faq3-a" role="region">
             <div class="faq-a-inner">
-              Đây là câu hỏi Ý được hỏi nhiều nhất — và đây cũng là điều Ý sẽ trực tiếp chứng minh
-              cho bạn thấy trong buổi 1. Kết quả phụ thuộc vào cách bạn ra lệnh, không phải vào AI.
-              Khi bạn biết "ngôn ngữ" đúng, trang làm bằng AI còn đẹp hơn trang thuê designer.
+              Ý đã trả lời cho câu hỏi này ở trên. Nhưng nếu bạn muốn tự kiểm chứng, bạn có thể
+              click vào các trang mà Ý, đội ngũ và học viên từng làm ở trên và tự đánh giá nhé.
+              Mỗi trang của mỗi học viên làm khác nhau đều có 1 cá tính khác nhau — và cá tính đó
+              là của con người tạo thành chứ không phải AI.
             </div>
           </div>
         </div>
         <div class="faq-item reveal">
           <div class="faq-q" id="faq4-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq4-a">
-            <span>Offline diễn ra ở đâu tại TP.HCM?</span>
+            <span>Tôi không ở HCM, Ý có dự tính mở lớp Online cả 2 buổi không?</span>
             <span class="faq-arrow">▾</span>
           </div>
           <div class="faq-a" id="faq4-a" role="region">
             <div class="faq-a-inner">
-              Địa điểm cụ thể sẽ được thông báo sau khi bạn đăng ký và xác nhận thanh toán.
-              Ý sẽ liên hệ trực tiếp để cung cấp đầy đủ thông tin trước ngày 13/5.
+              Có thể có nếu nhiều người có nhu cầu — nhưng thời điểm hiện tại Ý muốn trao giá trị
+              tốt nhất cho người học nên Ý chọn hình thức offline. Bạn có thể để lại thông tin và
+              Ý sẽ thông báo khi có lớp online.
             </div>
           </div>
         </div>
@@ -2924,7 +3077,8 @@
             <div class="faq-a-inner">
               Chỉ cần: laptop có kết nối internet, và biết sơ về sản phẩm/dịch vụ bạn muốn bán
               (tên, giá, đối tượng). Ý sẽ hướng dẫn bạn từng bước còn lại — kể cả phần bạn không
-              biết bắt đầu từ đâu.
+              biết bắt đầu từ đâu. Một điều quan trọng: nhớ check email (kể cả thư mục spam) vì
+              mọi điều Ý dặn dò trước buổi học sẽ được gửi qua Email.
             </div>
           </div>
         </div>
@@ -2932,21 +3086,19 @@
     </div>
   </section>
 
-  <!-- ───────────── FINAL CTA ───────────── -->
-  <section id="final-cta">
+  <!-- ───────────── MID CTA 3 ───────────── -->
+  <section class="mid-cta-section">
     <div class="container">
-      <div class="final-cta-inner reveal">
-        <span class="cta-rune">⚡</span>
-        <h2>Đã Đến Lúc <span class="gold-text">Ra Khỏi Cái Bẫy</span></h2>
-        <p>
-          Mỗi ngày không có trang bán hàng là mỗi ngày bạn đang để tiền nằm trên bàn. 
-          Bạn không cần thêm 1 khóa học 3 tháng. Bạn cần 2 ngày — và một người 
-          đã đi trước để chỉ bạn từng bước.
-        </p>
-        <a href="#pricing" id="final-cta-btn" class="btn-primary" style="font-size:1rem; padding:18px 48px;">
-          ✦ Tôi Muốn Học Phép Thuật Này &rarr;
-        </a>
-        <div class="seat-warning">Chỉ còn vài suất Early Bird · Lớp tối đa 5 người</div>
+      <div class="mid-cta-box reveal">
+        <div class="mid-cta-text">
+          <span class="mid-cta-overline">✦ Bây giờ hoặc sau này</span>
+          <p class="mid-cta-headline">Bạn cũng sẽ tham gia workshop này. Nhưng bây giờ là lúc giá hời nhất.</p>
+          <p class="mid-cta-sub">Càng nhiều học viên thành công — workshop càng tăng giá. Đó không phải chiêu marketing. Đó là cách Ý vận hành.</p>
+        </div>
+        <div class="mid-cta-action">
+          <a href="#pricing" class="btn-mid-cta">✦ Tham Gia Giá Tốt Nhất →</a>
+          <span class="mid-cta-note">⚡ Early Bird kết thúc khi hết chỗ</span>
+        </div>
       </div>
     </div>
   </section>
@@ -3305,6 +3457,13 @@
         hero.appendChild(s);
       }
     })();
+  </script>
+  <script>
+    // Luôn scroll về đầu trang khi load/reload
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
   </script>
 </body>
 </html>
