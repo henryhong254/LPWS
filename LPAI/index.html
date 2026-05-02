@@ -1570,7 +1570,24 @@
       .showcase-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 640px) {
-      .showcase-grid { grid-template-columns: 1fr; }
+      /* Showcase: horizontal scroll on mobile */
+      .showcase-grid {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 14px;
+        padding-bottom: 12px;
+        scrollbar-width: none;
+        margin-top: 28px;
+      }
+      .showcase-grid::-webkit-scrollbar { display: none; }
+      .showcase-card {
+        flex: 0 0 72vw;
+        max-width: 260px;
+        scroll-snap-align: start;
+      }
     }
 
     /* ═══════════════════════════════════════════
@@ -1625,12 +1642,9 @@
     @media (max-width: 640px) {
       .magic-split-grid {
         grid-template-columns: 1fr;
-        gap: 16px;
+        gap: 12px;
       }
-      .magic-split-arrow {
-        text-align: center;
-        transform: rotate(90deg);
-      }
+      .magic-split-arrow { display: none; }
     }
 
     /* ═══════════════════════════════════════════
@@ -1831,7 +1845,7 @@
       .comparison-grid {
         grid-template-columns: 1fr;
         grid-template-rows: none;
-        gap: 20px;
+        gap: 16px;
       }
       .comp-card {
         display: flex;
@@ -1839,11 +1853,18 @@
         grid-row: auto;
       }
       .comp-list { display: block; }
-      .comp-label { padding: 28px 24px 16px; }
-      .comp-item { padding: 10px 24px; }
-      .comp-footer { padding: 16px 24px 28px; }
-      #comparison { padding-bottom: 32px; }
-      .ai-way .comp-total-price { font-size: 2.2rem; }
+      .comp-label { padding: 20px 16px 10px; font-size: 1.15rem; }
+      .comp-item { padding: 8px 16px; }
+      .comp-text p { font-size: 0.92rem; line-height: 1.5; }
+      .comp-list-sub li { font-size: 0.82rem; }
+      .comp-footer { padding: 12px 16px 20px; text-align: center; align-items: center; }
+      .comp-total-label { text-align: center; }
+      .comp-total-price { font-size: 1.7rem; }
+      .ai-way .comp-total-price { font-size: 2rem; }
+      .comp-icon { font-size: 1.1rem; width: 26px; height: 26px; }
+      #comparison { padding: 0 12px 24px; }
+      /* Ribbon fix on mobile */
+      .comp-card.ai-way::after { font-size: 0.52rem; top: 12px; right: -36px; padding: 5px 38px; }
     }
 
     /* ── Pricing + Form Layout ── */
@@ -1865,18 +1886,62 @@
     }
     @media (max-width: 520px) {
       .reg-section-box { padding: 28px 20px; }
-      #pain { padding: 48px 16px 40px; }
-      #magic { padding: 40px 16px; }
-      #for-who { padding: 40px 16px; }
-      #instructor { padding: 40px 16px; }
-      #schedule { padding: 40px 16px; }
-      #faq { padding: 40px 16px; }
-      #pricing { padding: 40px 16px; }
-      .mid-cta-section { padding: 36px 16px; }
-      .mid-cta-box { padding: 28px 0; flex-direction: column; gap: 20px; }
+
+      /* ── Section paddings ── */
+      #pain { padding: 32px 16px 24px; }
+      #magic { padding: 28px 16px; }
+      #for-who { padding: 28px 16px; }
+      #instructor { padding: 28px 16px; }
+      #schedule { padding: 28px 16px; }
+      #faq { padding: 28px 16px; }
+      #pricing { padding: 28px 16px; }
+      #showcase { padding: 32px 0 32px 16px; }
+      #showcase .container { padding-right: 0; max-width: 100%; }
+      #comparison { padding: 0 12px 20px; }
+
+      /* ── Section label spacing ── */
+      .section-label { margin-bottom: 8px; font-size: 1rem; }
+      .pain-header { margin-bottom: 24px; }
+      .benefits-header { margin-bottom: 24px; }
+      .schedule-header { margin-bottom: 24px; }
+
+      /* ── Mid-CTA compact ── */
+      .mid-cta-section { padding: 22px 16px; }
+      .mid-cta-box { padding: 14px 0; flex-direction: column; gap: 14px; }
       .mid-cta-text { text-align: center; }
+      .mid-cta-overline { font-size: 0.65rem; }
+      .mid-cta-headline { font-size: clamp(0.95rem, 3.5vw, 1.1rem) !important; line-height: 1.45; }
+      .mid-cta-sub { font-size: 0.85rem; }
       .mid-cta-action { width: 100%; }
-      .btn-mid-cta { width: 100%; text-align: center; box-sizing: border-box; }
+      .btn-mid-cta { width: 100%; text-align: center; box-sizing: border-box; font-size: 0.82rem; padding: 12px 16px; }
+
+      /* ── Magic section compact ── */
+      .magic-inner { padding: 28px 20px; }
+      .magic-stat-card { padding: 18px 14px; }
+      .magic-stat-score { font-size: 2.8rem; }
+      .magic-stat-label { margin-bottom: 10px; }
+      .magic-stat-desc { font-size: 0.88rem; line-height: 1.6; }
+
+      /* ── Proof strip fix ── */
+      .proof-strip-inner { gap: 12px 20px; }
+
+      /* ── Benefit cards compact ── */
+      .benefits-grid { gap: 14px; }
+      .benefit-card { padding: 16px 14px; }
+      .benefit-ico { font-size: 1.6rem; margin-bottom: 8px; }
+      .benefit-card h3 { font-size: 1rem; margin-bottom: 6px; }
+      .benefit-card p { font-size: 0.88rem; line-height: 1.5; }
+
+      /* ── For-who compact ── */
+      .for-who-inner { padding: 20px 16px; gap: 20px; }
+      .for-who-col h3 { font-size: 1rem; margin-bottom: 12px; }
+      .check-item { font-size: 0.88rem; margin-bottom: 8px; gap: 8px; line-height: 1.45; }
+
+      /* ── Schedule cards compact ── */
+      .schedule-grid { gap: 14px; }
+      .schedule-card { padding: 22px 18px; }
+      .schedule-day { font-size: 1.1rem; margin-bottom: 6px; }
+      .schedule-date { font-size: 0.95rem; margin-bottom: 12px; }
     }
     .modal-package-badge {
       display: block;
@@ -2004,6 +2069,13 @@
       background: rgba(13,15,26,0.92);
       border-radius: 12px;
       padding: 16px 24px;
+    }
+
+    @media (max-width: 520px) {
+      #hero h1 { font-size: clamp(2.6rem, 11vw, 3.2rem); }
+      .camket-box { max-width: 320px; }
+      .camket-box-inner { padding: 10px 16px; }
+      .camket-box-inner p { font-size: 0.9rem !important; line-height: 1.5; }
     }
 
     /* ═══ FLOAT on pill tags ═══ */
@@ -2233,7 +2305,7 @@
           <span class="marquee-dot" style="background:#28c840;"></span>
           <span class="marquee-url">lemonetartcafe.com</span>
         </div>
-        <img src="../Assets/website 1.png" alt="Chén Trà Nhỏ">
+        <img src="Assets/website 1.png" alt="Chén Trà Nhỏ">
         <div class="marquee-card-label">Chén Trà Nhỏ</div>
       </a>
       <a class="marquee-card" href="https://lemonetartcafe.com/pages/tach-tra-cua-ban" target="_blank">
@@ -2243,7 +2315,7 @@
           <span class="marquee-dot" style="background:#28c840;"></span>
           <span class="marquee-url">lemonetartcafe.com/pages/tach-tra-cua-ban</span>
         </div>
-        <img src="../Assets/website 2.png" alt="Bài Test Tính Cách">
+        <img src="Assets/website 2.png" alt="Bài Test Tính Cách">
         <div class="marquee-card-label">Bài Test Tính Cách</div>
       </a>
       <a class="marquee-card" href="https://foundersnorth.com.vn/" target="_blank">
@@ -2253,7 +2325,7 @@
           <span class="marquee-dot" style="background:#28c840;"></span>
           <span class="marquee-url">foundersnorth.com.vn</span>
         </div>
-        <img src="../Assets/website 3.png" alt="Founder's North">
+        <img src="Assets/website 3.png" alt="Founder's North">
         <div class="marquee-card-label">Founder's North</div>
       </a>
       <a class="marquee-card" href="https://foundersnorth.com.vn/6truongphai" target="_blank">
@@ -2263,7 +2335,7 @@
           <span class="marquee-dot" style="background:#28c840;"></span>
           <span class="marquee-url">foundersnorth.com.vn/6truongphai</span>
         </div>
-        <img src="../Assets/website 4.png" alt="B-MAT">
+        <img src="Assets/website 4.png" alt="B-MAT">
         <div class="marquee-card-label">B-MAT</div>
       </a>
       <a class="marquee-card" href="https://lemonetartcafe.com/pages/thue-phong" target="_blank">
@@ -2273,7 +2345,7 @@
           <span class="marquee-dot" style="background:#28c840;"></span>
           <span class="marquee-url">lemonetartcafe.com/pages/thue-phong</span>
         </div>
-        <img src="../Assets/website 5.png" alt="Book Phòng Meeting">
+        <img src="Assets/website 5.png" alt="Book Phòng Meeting">
         <div class="marquee-card-label">Book Phòng Meeting</div>
       </a>
       <a class="marquee-card" href="https://lemonetartcafe.com/pages/ubecollection" target="_blank">
@@ -2283,7 +2355,7 @@
           <span class="marquee-dot" style="background:#28c840;"></span>
           <span class="marquee-url">lemonetartcafe.com/pages/ubecollection</span>
         </div>
-        <img src="../Assets/website 6.png" alt="UBE Collection">
+        <img src="Assets/website 6.png" alt="UBE Collection">
         <div class="marquee-card-label">UBE Collection</div>
       </a>
       <!-- Set 2 (duplicate for seamless loop) -->
@@ -2294,7 +2366,7 @@
           <span class="marquee-dot" style="background:#28c840;"></span>
           <span class="marquee-url">lemonetartcafe.com</span>
         </div>
-        <img src="../Assets/website 1.png" alt="Chén Trà Nhỏ">
+        <img src="Assets/website 1.png" alt="Chén Trà Nhỏ">
         <div class="marquee-card-label">Chén Trà Nhỏ</div>
       </a>
       <a class="marquee-card" href="https://lemonetartcafe.com/pages/tach-tra-cua-ban" target="_blank">
@@ -2304,7 +2376,7 @@
           <span class="marquee-dot" style="background:#28c840;"></span>
           <span class="marquee-url">lemonetartcafe.com/pages/tach-tra-cua-ban</span>
         </div>
-        <img src="../Assets/website 2.png" alt="Bài Test Tính Cách">
+        <img src="Assets/website 2.png" alt="Bài Test Tính Cách">
         <div class="marquee-card-label">Bài Test Tính Cách</div>
       </a>
       <a class="marquee-card" href="https://foundersnorth.com.vn/" target="_blank">
@@ -2314,7 +2386,7 @@
           <span class="marquee-dot" style="background:#28c840;"></span>
           <span class="marquee-url">foundersnorth.com.vn</span>
         </div>
-        <img src="../Assets/website 3.png" alt="Founder's North">
+        <img src="Assets/website 3.png" alt="Founder's North">
         <div class="marquee-card-label">Founder's North</div>
       </a>
       <a class="marquee-card" href="https://foundersnorth.com.vn/6truongphai" target="_blank">
@@ -2324,7 +2396,7 @@
           <span class="marquee-dot" style="background:#28c840;"></span>
           <span class="marquee-url">foundersnorth.com.vn/6truongphai</span>
         </div>
-        <img src="../Assets/website 4.png" alt="B-MAT">
+        <img src="Assets/website 4.png" alt="B-MAT">
         <div class="marquee-card-label">B-MAT</div>
       </a>
       <a class="marquee-card" href="https://lemonetartcafe.com/pages/thue-phong" target="_blank">
@@ -2334,7 +2406,7 @@
           <span class="marquee-dot" style="background:#28c840;"></span>
           <span class="marquee-url">lemonetartcafe.com/pages/thue-phong</span>
         </div>
-        <img src="../Assets/website 5.png" alt="Book Phòng Meeting">
+        <img src="Assets/website 5.png" alt="Book Phòng Meeting">
         <div class="marquee-card-label">Book Phòng Meeting</div>
       </a>
       <a class="marquee-card" href="https://lemonetartcafe.com/pages/ubecollection" target="_blank">
@@ -2344,7 +2416,7 @@
           <span class="marquee-dot" style="background:#28c840;"></span>
           <span class="marquee-url">lemonetartcafe.com/pages/ubecollection</span>
         </div>
-        <img src="../Assets/website 6.png" alt="UBE Collection">
+        <img src="Assets/website 6.png" alt="UBE Collection">
         <div class="marquee-card-label">UBE Collection</div>
       </a>
     </div>
@@ -2760,7 +2832,7 @@
         <!-- Card 1 -->
         <div class="showcase-card reveal">
           <div class="showcase-img">
-            <img src="../Assets/website 1.png" alt="Chén Trà Nhỏ">
+            <img src="Assets/website 1.png" alt="Chén Trà Nhỏ">
             <div class="showcase-overlay">
               <a href="https://lemonetartcafe.com/" class="btn-showcase" target="_blank">Xem Website</a>
             </div>
@@ -2773,7 +2845,7 @@
         <!-- Card 2 -->
         <div class="showcase-card reveal">
           <div class="showcase-img">
-            <img src="../Assets/website 2.png" alt="Bài Test Tính Cách">
+            <img src="Assets/website 2.png" alt="Bài Test Tính Cách">
             <div class="showcase-overlay">
               <a href="https://lemonetartcafe.com/pages/tach-tra-cua-ban" class="btn-showcase" target="_blank">Xem Website</a>
             </div>
@@ -2786,7 +2858,7 @@
         <!-- Card 3 -->
         <div class="showcase-card reveal">
           <div class="showcase-img">
-            <img src="../Assets/website 3.png" alt="Founder's North">
+            <img src="Assets/website 3.png" alt="Founder's North">
             <div class="showcase-overlay">
               <a href="https://foundersnorth.com.vn/" class="btn-showcase" target="_blank">Xem Website</a>
             </div>
@@ -2799,7 +2871,7 @@
         <!-- Card 4 -->
         <div class="showcase-card reveal">
           <div class="showcase-img">
-            <img src="../Assets/website 4.png" alt="B-MAT">
+            <img src="Assets/website 4.png" alt="B-MAT">
             <div class="showcase-overlay">
               <a href="https://foundersnorth.com.vn/6truongphai" class="btn-showcase" target="_blank">Xem Website</a>
             </div>
@@ -2812,7 +2884,7 @@
         <!-- Card 5 -->
         <div class="showcase-card reveal">
           <div class="showcase-img">
-            <img src="../Assets/website 5.png" alt="Book Phòng Meeting">
+            <img src="Assets/website 5.png" alt="Book Phòng Meeting">
             <div class="showcase-overlay">
               <a href="https://lemonetartcafe.com/pages/thue-phong" class="btn-showcase" target="_blank">Xem Website</a>
             </div>
@@ -2825,7 +2897,7 @@
         <!-- Card 6 -->
         <div class="showcase-card reveal">
           <div class="showcase-img">
-            <img src="../Assets/website 6.png" alt="Giới Thiệu Sản Phẩm: UBE COLLECTION">
+            <img src="Assets/website 6.png" alt="Giới Thiệu Sản Phẩm: UBE COLLECTION">
             <div class="showcase-overlay">
               <a href="https://lemonetartcafe.com/pages/ubecollection" class="btn-showcase" target="_blank">Xem Website</a>
             </div>
@@ -2865,7 +2937,7 @@
         <!-- Hồng Thiên Ý -->
         <div class="instructor-col reveal">
           <div class="instructor-img-wrap">
-            <img src="../Assets/hongthieny.png" alt="Hồng Thiên Ý" style="object-position: center 55%;" />
+            <img src="Assets/hongthieny.png" alt="Hồng Thiên Ý" style="object-position: center 55%;" />
           </div>
           <div class="instructor-body">
             <h3 class="instructor-name">Hồng Thiên Ý</h3>
@@ -2886,7 +2958,7 @@
         <!-- Violet Bùi -->
         <div class="instructor-col reveal">
           <div class="instructor-img-wrap">
-            <img src="../Assets/violet.png" alt="Violet Bùi" style="object-position: center 42%;" />
+            <img src="Assets/violet.png" alt="Violet Bùi" style="object-position: center 42%;" />
           </div>
           <div class="instructor-body">
             <h3 class="instructor-name">Violet Bùi</h3>
