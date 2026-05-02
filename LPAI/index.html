@@ -1666,9 +1666,8 @@
 
     @media (max-width: 640px) {
       /* Outcomes horizontal scroll */
-      #outcomes { padding: 28px 0 28px 16px; }
-      #outcomes .container { padding-right: 0; max-width: 100%; overflow: visible; }
-      .outcomes-scroll-wrap { position: relative; }
+      #outcomes { padding: 28px 24px; }
+      .outcomes-scroll-wrap { position: relative; margin: 0 -24px; padding-left: 24px; width: calc(100% + 24px); }
       .outcomes-scroll-wrap::after {
         content: '';
         position: absolute;
@@ -1970,8 +1969,8 @@
       #schedule { padding: 28px 16px; }
       #faq { padding: 28px 16px; }
       #pricing { padding: 28px 16px; }
-      #showcase { padding: 32px 0 32px 16px; }
-      #showcase .container { padding-right: 0; max-width: 100%; }
+      #showcase { padding: 32px 24px; }
+      #showcase .showcase-grid { margin: 0 -24px; padding-left: 24px; width: calc(100% + 24px); }
       #comparison { padding: 0 12px 20px; margin-top: -8px; }
       .comparison-grid { margin-top: 12px; }
 
