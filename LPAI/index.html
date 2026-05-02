@@ -236,9 +236,15 @@
       padding: 10px 20px;
       border-radius: 6px;
       text-decoration: none;
+      white-space: nowrap;
       transition: filter 0.2s, transform 0.2s;
     }
     .nav-cta:hover { filter: brightness(1.15); transform: translateY(-1px); }
+    
+    @media (max-width: 640px) {
+      nav { padding: 12px 16px; }
+      .nav-cta { padding: 8px 12px; font-size: 0.8rem; }
+    }
     
     /* Sub-Nav / TOC */
     .sub-nav {
@@ -2756,7 +2762,7 @@
     <div class="container">
       <div class="benefits-header reveal" style="text-align: center; margin-top: 60px;">
         <span class="section-label">✦ BẠN NHẬN ĐƯỢC GÌ ✦</span>
-        <h2 style="font-family: 'Beautique Display', cursive; font-size: clamp(2.5rem, 6vw, 3.8rem); color: #fff; margin-top: 10px;">Sau 2 Ngày Bạn Sẽ Có</h2>
+        <h2 style="font-family: 'Beautique Display', serif; font-size: clamp(2.5rem, 6vw, 3.8rem); color: #fff; margin-top: 10px;">Sau 2 Ngày Bạn Sẽ Có</h2>
       </div>
 
       <div class="outcomes-scroll-wrap">
