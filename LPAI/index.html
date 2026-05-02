@@ -305,18 +305,24 @@
       font-family: 'Cormorant SC', serif;
       font-size: 0.65rem;
       text-transform: uppercase;
-      color: rgba(232, 224, 208, 0.5);
+      color: rgba(232, 224, 208, 0.45);
       text-decoration: none;
       letter-spacing: 0.1em;
-      transition: color 0.3s, transform 0.3s;
+      padding: 5px 12px;
+      border-radius: 20px;
+      transition: color 0.25s, background 0.25s, transform 0.2s;
+      white-space: nowrap;
     }
     .sub-nav a:hover {
       color: var(--gold-light);
-      transform: translateY(-1px);
+      background: rgba(201,168,76,0.08);
     }
     .sub-nav a.active {
-      color: var(--gold);
-      border-bottom: 1px solid var(--gold);
+      color: var(--ink);
+      background: linear-gradient(135deg, #8B6914, var(--gold) 50%, var(--gold-light));
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      box-shadow: 0 2px 12px rgba(201,168,76,0.35);
     }
     
     @media (max-width: 640px) {
@@ -3472,24 +3478,29 @@
 
     /* ── Sub-Nav Active State ── */
     (function () {
-      const sections = ['pain', 'comparison', 'outcomes', 'showcase', 'instructor', 'pricing', 'faq'];
+      const sections = ['pain', 'comparison', 'outcomes', 'for-who', 'showcase', 'instructor', 'schedule', 'pricing', 'faq'];
       const navLinks = document.querySelectorAll('.sub-nav a');
-      window.addEventListener('scroll', () => {
+      function updateActiveNav() {
         let current = '';
+        const offset = window.innerHeight * 0.35;
         sections.forEach(id => {
-          const section = document.getElementById(id);
-          const top = section.offsetTop;
-          if (pageYOffset >= (top - 120)) {
+          const el = document.getElementById(id);
+          if (!el) return;
+          if (el.getBoundingClientRect().top <= offset) {
             current = id;
           }
         });
         navLinks.forEach(link => {
           link.classList.remove('active');
-          if (link.getAttribute('href').includes(current)) {
+          if (current && link.getAttribute('href') === '#' + current) {
             link.classList.add('active');
+            // auto-scroll sub-nav to keep active link visible
+            link.scrollIntoView({ inline: 'nearest', block: 'nearest' });
           }
         });
-      });
+      }
+      window.addEventListener('scroll', updateActiveNav, { passive: true });
+      updateActiveNav();
     })();
 
     /* ── Early Bird Countdown ── */
