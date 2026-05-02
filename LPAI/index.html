@@ -1928,10 +1928,18 @@
       #comparison { padding: 0 12px 24px; }
       /* Ribbon: hide on mobile (gold card already stands out) */
       .comp-card.ai-way::after { display: none; }
-      /* TỔNG CHÍ PHÍ centering enforce */
-      .comp-footer { text-align: center !important; align-items: center !important; }
-      .comp-total-label { width: 100%; text-align: center !important; }
-      .comp-total-price { text-align: center; }
+      /* Fix comp-footer: align-self:end on desktop pushes it right in mobile flex */
+      .comp-footer {
+        align-self: stretch !important;
+        text-align: center !important;
+        align-items: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+      }
+      .comp-total-label, .comp-total-price, .comp-note {
+        width: 100%;
+        text-align: center !important;
+      }
     }
 
     /* ── Pricing + Form Layout ── */
