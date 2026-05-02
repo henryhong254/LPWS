@@ -6,11 +6,11 @@
   <title>Workshop: Tự Xây Trang Bán Hàng Bằng AI – Founder's North</title>
   <meta name="description" content="Workshop 2 ngày giúp Founder SME/Startup tự tay xây Landing Page bằng AI. Không cần biết code. Cam kết ra về có trang đã launching. Early Bird 886.000đ." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&family=Cormorant+SC:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
   <style>
     @font-face {
       font-family: 'Beautique Display';
-      src: url('Fonts/BeautiqueDisplay-Black copy.otf') format('opentype');
+      src: url('../Fonts/BeautiqueDisplay-Black copy.otf') format('opentype');
       font-weight: normal;
       font-style: normal;
       font-display: swap;
@@ -37,7 +37,11 @@
       --radius-lg:  20px;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
 
     html, body {
       overflow-x: hidden;
@@ -46,8 +50,8 @@
       padding: 0;
     }
     body {
-      font-family: 'Inter', sans-serif;
-      font-size: 1.15rem;
+      font-family: 'EB Garamond', serif;
+      font-size: 1.25rem;
       background: linear-gradient(
         180deg,
         #0D0F1A 0%,
@@ -62,7 +66,7 @@
       );
       background-attachment: fixed;
       color: #E8E0D0;
-      line-height: 1.75;
+      line-height: 1.8;
     }
 
     /* Animated starfield background */
@@ -116,21 +120,21 @@
     /* ═══════════════════════════════════════════
        TYPOGRAPHY
     ═══════════════════════════════════════════ */
-    .cinzel  { font-family: 'Cormorant SC', serif; }
-    .garamond { font-family: 'Cormorant SC', serif; }
+    .cinzel  { font-family: 'Beautique Display', serif; }
+    .garamond { font-family: 'EB Garamond', serif; }
 
-    h1 { font-family: 'Cormorant SC', serif; line-height: 1.15; text-wrap: balance; }
+    h1 { font-family: 'Beautique Display', serif; line-height: 1.15; text-wrap: balance; }
     h2 { 
-      font-family: 'Beautique Display', 'Cormorant SC', serif; 
+      font-family: 'Beautique Display', serif; 
       line-height: 1.5; 
       padding-top: 5px;
       padding-bottom: 5px;
       text-wrap: balance;
     }
-    h3 { font-family: 'Cormorant SC', serif; }
+    h3 { font-family: 'Beautique Display', serif; }
     
     .section-label {
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 1.25rem;
       letter-spacing: 0.25em;
       text-transform: uppercase;
@@ -213,40 +217,48 @@
       border-bottom: 1px solid rgba(201,168,76,0.15);
     }
     .nav-logo {
-      font-family: 'Cormorant SC', serif;
-      font-size: 0.9rem;
+      font-family: 'Beautique Display', serif;
+      font-size: 1.15rem;
       font-weight: 700;
       color: var(--gold-light);
       letter-spacing: 0.1em;
       text-decoration: none;
       cursor: pointer;
     }
-    .nav-logo span { color: #fff; opacity: 0.6; font-weight: 400; }
+    .nav-logo span { color: #fff; opacity: 1; font-weight: 400; }
     .nav-cta {
       background: linear-gradient(135deg, var(--gold-dim), var(--gold));
       color: var(--ink);
-      font-family: 'Cormorant SC', serif;
-      font-size: 0.7rem;
+      font-family: 'Beautique Display', serif;
+      font-size: 0.9rem;
       font-weight: 700;
       letter-spacing: 0.1em;
-      padding: 8px 18px;
+      padding: 10px 20px;
       border-radius: 6px;
       text-decoration: none;
+      white-space: nowrap;
       transition: filter 0.2s, transform 0.2s;
     }
     .nav-cta:hover { filter: brightness(1.15); transform: translateY(-1px); }
     
+    @media (max-width: 640px) {
+      nav { padding: 12px 16px; }
+      .nav-cta { padding: 8px 12px; font-size: 0.8rem; }
+    }
+    
     /* Sub-Nav / TOC */
     .sub-nav {
       position: fixed;
-      top: 57px;
+      top: 64px;
       left: 0; right: 0;
       background: rgba(13,15,26,0.95);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(201,168,76,0.1);
-      padding: 8px 16px;
+      min-height: 48px;
+      padding: 0 16px;
       z-index: 98;
       display: flex;
+      align-items: center;
       justify-content: flex-start;
       gap: 4px;
       white-space: nowrap;
@@ -260,14 +272,18 @@
     .sub-nav::-webkit-scrollbar { display: none; }
     
     .sub-nav a {
-      font-family: 'Cormorant SC', serif;
-      font-size: 0.65rem;
+      display: inline-flex;
+      align-items: center;
+      font-family: 'Beautique Display', serif;
+      font-size: 0.85rem;
       text-transform: uppercase;
-      color: rgba(232, 224, 208, 0.45);
+      color: #FFFFFF;
       text-decoration: none;
       letter-spacing: 0.1em;
-      padding: 5px 12px;
+      line-height: 1.2;
+      padding: 7px 14px;
       border-radius: 20px;
+      transform: translateY(9px);
       transition: color 0.25s, background 0.25s, transform 0.2s;
       white-space: nowrap;
     }
@@ -284,7 +300,7 @@
     }
     
     @media (max-width: 640px) {
-      .sub-nav { justify-content: flex-start; gap: 4px; padding: 8px 16px; top: 52px; }
+      .sub-nav { justify-content: flex-start; gap: 4px; min-height: 44px; padding: 0 16px; top: 58px; }
     }
 
     /* ═══════════════════════════════════════════
@@ -313,7 +329,7 @@
       padding: 6px 18px;
       font-size: 0.75rem;
       color: var(--gold-light);
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       letter-spacing: 0.12em;
       margin-bottom: 28px;
       background: rgba(201,168,76,0.06);
@@ -389,7 +405,7 @@
     }
 
     #hero h1 {
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: clamp(2.8rem, 8vw, 5.5rem);
       font-weight: 700;
       line-height: 1.0;
@@ -402,9 +418,9 @@
 
     /* Typewriter line */
     .hero-typewriter {
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: clamp(1.6rem, 4.5vw, 2.8rem);
-      color: rgba(232,224,208,0.75);
+      color: #FFFFFF;
       margin: 0 auto 28px;
       min-height: 2em;
       display: flex;
@@ -413,7 +429,7 @@
       gap: 8px;
     }
     .typewriter-static {
-      color: rgba(232,224,208,0.45);
+      color: #FFFFFF;
       white-space: nowrap;
     }
     .typewriter-word {
@@ -432,9 +448,9 @@
     }
 
     .hero-subtitle {
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-      color: rgba(232,224,208,0.8);
+      color: #FFFFFF;
       max-width: 600px;
       margin: 0 auto 20px;
       text-wrap: balance;
@@ -442,7 +458,7 @@
 
     .hero-tagline {
       font-size: 0.9rem;
-      color: rgba(232,224,208,0.45);
+      color: #FFFFFF;
       letter-spacing: 0.08em;
       margin-bottom: 40px;
       text-transform: uppercase;
@@ -461,7 +477,7 @@
       gap: 10px;
       background: linear-gradient(135deg, #8B6914, var(--gold) 40%, var(--gold-light) 60%, var(--gold));
       color: var(--ink);
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-weight: 700;
       font-size: 1.15rem;
       letter-spacing: 0.08em;
@@ -492,7 +508,7 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
     }
     .price-early {
       font-size: 2.2rem;
@@ -501,14 +517,14 @@
     }
     .price-original {
       font-size: 1.1rem;
-      color: rgba(232,224,208,0.4);
+      color: #FFFFFF;
       text-decoration: line-through;
     }
     .price-tag {
       background: var(--crimson);
       color: #fff;
       font-size: 0.75rem;
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-weight: 700;
       letter-spacing: 0.1em;
       padding: 4px 12px;
@@ -517,9 +533,9 @@
 
     .hero-note {
       font-size: 1rem;
-      color: rgba(232,224,208,0.4);
+      color: #FFFFFF;
       font-style: italic;
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
     }
 
     /* ═══════════════════════════════════════════
@@ -546,7 +562,7 @@
       text-align: center;
     }
     .proof-num {
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 1.4rem;
       font-weight: 900;
       color: var(--gold-light);
@@ -554,7 +570,7 @@
     }
     .proof-label {
       font-size: 0.72rem;
-      color: rgba(232,224,208,0.5);
+      color: #FFFFFF;
       letter-spacing: 0.05em;
     }
     .proof-divider { width: 1px; height: 40px; background: rgba(201,168,76,0.2); }
@@ -577,9 +593,9 @@
       color: var(--parchment);
     }
     .pain-intro {
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 1.25rem;
-      color: rgba(232,224,208,0.75);
+      color: #FFFFFF;
       max-width: 640px;
       margin: 16px auto 0;
       text-align: center;
@@ -617,7 +633,7 @@
       display: block;
     }
     .pain-card h3 {
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 0.85rem;
       letter-spacing: 0.08em;
       color: var(--gold-light);
@@ -625,7 +641,7 @@
     }
     .pain-card p {
       font-size: 1.05rem;
-      color: rgba(232,224,208,0.65);
+      color: #FFFFFF;
       line-height: 1.65;
     }
 
@@ -674,7 +690,7 @@
     #magic p {
       font-family: 'EB Garamond', serif;
       font-size: clamp(1.05rem, 2vw, 1.2rem);
-      color: rgba(232,224,208,0.82);
+      color: #FFFFFF;
       line-height: 1.95;
       text-align: left;
     }
@@ -729,7 +745,7 @@
 
     .session-tag {
       display: inline-block;
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 0.62rem;
       font-weight: 700;
       letter-spacing: 0.15em;
@@ -741,7 +757,7 @@
     .tag-offline { background: rgba(46,204,113,0.15); color: #5DCEA0; border: 1px solid rgba(46,204,113,0.3); }
 
     .session-title {
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 1.35rem;
       font-weight: 700;
       color: var(--gold-light);
@@ -750,7 +766,7 @@
     .session-subtitle {
       font-family: 'EB Garamond', serif;
       font-size: 1rem;
-      color: rgba(232,224,208,0.6);
+      color: #FFFFFF;
       font-style: italic;
     }
     .session-meta {
@@ -758,7 +774,7 @@
       gap: 16px;
       margin-top: 14px;
       font-size: 0.78rem;
-      color: rgba(232,224,208,0.5);
+      color: #FFFFFF;
     }
     .session-meta span { display: flex; align-items: center; gap: 5px; }
 
@@ -782,7 +798,7 @@
       margin-top: 2px;
     }
     .spell-content h4 {
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 0.78rem;
       letter-spacing: 0.06em;
       color: var(--gold);
@@ -790,7 +806,7 @@
     }
     .spell-content p {
       font-size: 1.05rem;
-      color: rgba(232,224,208,0.65);
+      color: #FFFFFF;
       line-height: 1.6;
     }
 
@@ -840,13 +856,13 @@
     .benefit-card:hover::after { opacity: 1; }
     .benefit-ico { font-size: 2.2rem; display: block; margin-bottom: 14px; }
     .benefit-card h3 {
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 1.15rem;
       letter-spacing: 0.07em;
       color: var(--gold-light);
       margin-bottom: 10px;
     }
-    .benefit-card p { font-size: 1.1rem; color: rgba(232,224,208,0.6); line-height: 1.6; }
+    .benefit-card p { font-size: 1.1rem; color: #FFFFFF; line-height: 1.6; }
 
     /* ═══════════════════════════════════════════
        FOR WHO
@@ -867,7 +883,7 @@
       gap: 48px;
     }
     .for-who-col h3 {
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 1.15rem;
       letter-spacing: 0.15em;
       margin-bottom: 24px;
@@ -881,7 +897,7 @@
       gap: 12px;
       margin-bottom: 14px;
       font-size: 1.1rem;
-      color: rgba(232,224,208,0.75);
+      color: #FFFFFF;
       line-height: 1.5;
     }
     .check-item .ico { flex-shrink: 0; margin-top: 2px; }
@@ -945,7 +961,7 @@
       margin-bottom: 4px;
     }
     .instructor-role {
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 0.7rem;
       letter-spacing: 0.14em;
       color: rgba(201,168,76,0.6);
@@ -959,7 +975,7 @@
       margin-bottom: 16px;
     }
     .inst-tag {
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 0.65rem;
       letter-spacing: 0.1em;
       color: var(--gold);
@@ -971,7 +987,7 @@
     .instructor-bio {
       font-family: 'EB Garamond', serif;
       font-size: clamp(0.95rem, 1.8vw, 1.05rem);
-      color: rgba(232,224,208,0.72);
+      color: #FFFFFF;
       line-height: 1.75;
       flex: 1;
     }
@@ -1035,7 +1051,7 @@
       border-color: rgba(201,168,76,0.4);
     }
     .schedule-day {
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 1.35rem;
       color: var(--gold-light);
       letter-spacing: 0.08em;
@@ -1043,14 +1059,14 @@
       text-transform: uppercase;
     }
     .schedule-date {
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 1.15rem;
       color: #FFFFFF;
       margin-bottom: 20px;
       letter-spacing: 0.05em;
     }
     .schedule-time {
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 1.8rem;
       font-weight: 700;
       color: var(--gold);
@@ -1062,7 +1078,7 @@
       background: rgba(201,168,76,0.15);
       border: 1px solid rgba(201,168,76,0.3);
       color: var(--gold-light);
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 1rem;
       font-weight: 700;
       letter-spacing: 0.1em;
@@ -1073,7 +1089,7 @@
     .schedule-type.online { background: rgba(60,100,200,0.32); border-color: rgba(123,163,255,0.75); color: #FFFFFF; box-shadow: 0 0 22px rgba(123,163,255,0.18); }
     .schedule-type.offline { background: rgba(46,204,113,0.26); border-color: rgba(93,206,160,0.8); color: #FFFFFF; box-shadow: 0 0 22px rgba(93,206,160,0.18); }
     .schedule-location {
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 1rem;
       color: #FFFFFF;
       line-height: 1.5;
@@ -1126,7 +1142,7 @@
       transform: translateX(-50%);
       background: linear-gradient(135deg, var(--gold-dim), var(--gold));
       color: var(--ink);
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 0.62rem;
       font-weight: 700;
       letter-spacing: 0.12em;
@@ -1136,15 +1152,15 @@
     }
 
     .pricing-type {
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 0.7rem;
       letter-spacing: 0.15em;
-      color: rgba(232,224,208,0.5);
+      color: #FFFFFF;
       margin-bottom: 16px;
       text-transform: uppercase;
     }
     .pricing-amount {
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 2.4rem;
       font-weight: 900;
       color: var(--gold-light);
@@ -1154,7 +1170,7 @@
     .pricing-card.featured .pricing-amount { color: var(--gold-light); }
     .pricing-period {
       font-size: 0.78rem;
-      color: rgba(232,224,208,0.4);
+      color: #FFFFFF;
       margin-bottom: 28px;
     }
 
@@ -1167,7 +1183,7 @@
       align-items: flex-start;
       gap: 10px;
       font-size: 0.875rem;
-      color: rgba(232,224,208,0.7);
+      color: #FFFFFF;
       padding: 8px 0;
       border-bottom: 1px solid rgba(201,168,76,0.06);
       line-height: 1.5;
@@ -1180,7 +1196,7 @@
       text-align: center;
       padding: 14px;
       border-radius: 8px;
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 0.82rem;
       font-weight: 700;
       letter-spacing: 0.08em;
@@ -1205,7 +1221,7 @@
       margin-top: 28px;
       font-family: 'EB Garamond', serif;
       font-size: 0.95rem;
-      color: rgba(232,224,208,0.5);
+      color: #FFFFFF;
       font-style: italic;
     }
     .deadline-note strong { color: var(--gold); font-style: normal; }
@@ -1234,15 +1250,16 @@
     .faq-item.open { border-color: rgba(201,168,76,0.3); }
 
     .faq-q {
-      padding: 20px 24px;
+      padding: 24px 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
       cursor: pointer;
-      font-family: 'Cormorant SC', serif;
-      font-size: 0.85rem;
+      font-family: 'Beautique Display', serif;
+      font-size: clamp(1.05rem, 2.4vw, 1.15rem);
       letter-spacing: 0.04em;
+      line-height: 1.45;
       color: var(--parchment);
       background: var(--navy-card);
       transition: background 0.2s;
@@ -1250,7 +1267,7 @@
     .faq-item.open .faq-q { background: rgba(201,168,76,0.06); }
     .faq-arrow {
       color: var(--gold);
-      font-size: 1rem;
+      font-size: 1.25rem;
       transition: transform 0.3s;
       flex-shrink: 0;
     }
@@ -1262,13 +1279,22 @@
       transition: max-height 0.4s ease, padding 0.3s;
       background: var(--navy-card);
     }
-    .faq-item.open .faq-a { max-height: 300px; }
+    .faq-item.open .faq-a { max-height: 1200px; }
     .faq-a-inner {
-      padding: 0 24px 20px;
-      font-family: 'Cormorant SC', serif;
-      font-size: 1.1rem;
-      color: rgba(232,224,208,0.7);
-      line-height: 1.8;
+      padding: 0 28px 24px;
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(1.05rem, 2.4vw, 1.2rem);
+      color: #FFFFFF;
+      line-height: 1.75;
+    }
+    @media (max-width: 640px) {
+      .faq-q {
+        padding: 20px 22px;
+      }
+      .faq-a-inner {
+        padding: 0 22px 22px;
+      }
+      .faq-item.open .faq-a { max-height: 1600px; }
     }
 
     /* ═══════════════════════════════════════════
@@ -1297,7 +1323,7 @@
       text-align: left;
     }
     .mid-cta-overline {
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 0.7rem;
       letter-spacing: 0.2em;
       color: rgba(26,18,8,0.75);
@@ -1314,7 +1340,7 @@
       margin: 0 0 6px 0;
     }
     .mid-cta-sub {
-      font-family: 'Inter', sans-serif;
+      font-family: 'EB Garamond', serif;
       font-size: 0.8rem;
       color: rgba(26,18,8,0.85);
       line-height: 1.6;
@@ -1336,7 +1362,7 @@
       display: inline-block;
       background: #FFF8EE;
       color: #1a1208;
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 0.78rem;
       font-weight: 700;
       letter-spacing: 0.12em;
@@ -1369,7 +1395,7 @@
       animation-duration: 0.6s;
     }
     .mid-cta-note {
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 0.65rem;
       letter-spacing: 0.14em;
       color: rgba(26,18,8,0.5);
@@ -1407,9 +1433,9 @@
       margin-bottom: 16px;
     }
     #final-cta p {
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 1.2rem;
-      color: rgba(232,224,208,0.7);
+      color: #FFFFFF;
       margin-bottom: 36px;
       line-height: 1.8;
       text-wrap: balance;
@@ -1421,7 +1447,7 @@
       gap: 8px;
       margin-top: 20px;
       font-size: 0.8rem;
-      color: rgba(232,224,208,0.45);
+      color: #FFFFFF;
       font-family: 'EB Garamond', serif;
     }
     .seat-warning::before { content: '⚡'; }
@@ -1437,7 +1463,7 @@
       z-index: 1;
     }
     .footer-logo {
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 1rem;
       color: var(--gold);
       letter-spacing: 0.15em;
@@ -1445,7 +1471,7 @@
     }
     footer p {
       font-size: 0.78rem;
-      color: rgba(232,224,208,0.3);
+      color: #FFFFFF;
     }
 
     /* Showcase Section */
@@ -1497,7 +1523,7 @@
     .btn-showcase {
       background: var(--gold);
       color: var(--ink);
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 0.75rem;
       padding: 10px 20px;
       border-radius: 4px;
@@ -1511,13 +1537,13 @@
     .showcase-img img { width: 100%; height: 100%; object-fit: cover; }
     .showcase-placeholder {
       font-size: 0.8rem;
-      color: rgba(232,224,208,0.2);
-      font-family: 'Cormorant SC', serif;
+      color: #FFFFFF;
+      font-family: 'Beautique Display', serif;
     }
     .showcase-info { padding: 0 8px 12px; text-align: center; }
     .showcase-domain {
       display: block;
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 1.15rem;
       color: var(--gold);
       margin-bottom: 4px;
@@ -1525,7 +1551,7 @@
     }
     .showcase-student {
       font-size: 0.75rem;
-      color: rgba(232,224,208,0.4);
+      color: #FFFFFF;
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
@@ -1577,31 +1603,31 @@
       box-shadow: 0 0 40px rgba(201,168,76,0.08);
     }
     .magic-stat-score {
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 4rem;
       font-weight: 700;
       line-height: 1;
       margin-bottom: 10px;
     }
     .magic-stat-label {
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 0.72rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: rgba(232,224,208,0.45);
+      color: #FFFFFF;
       margin-bottom: 16px;
     }
     .magic-stat-desc {
       font-family: 'EB Garamond', serif;
       font-size: 1rem;
-      color: rgba(232,224,208,0.65);
+      color: #FFFFFF;
       line-height: 1.75;
       text-align: left;
     }
     .magic-split-arrow {
       font-size: 2rem;
       color: rgba(201,168,76,0.35);
-      font-family: sans-serif;
+      font-family: 'EB Garamond', serif;
     }
     @media (max-width: 640px) {
       .magic-split-grid {
@@ -1627,7 +1653,7 @@
       padding: 20px 28px;
       cursor: pointer;
       list-style: none;
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: clamp(1rem, 2vw, 1.2rem);
       color: var(--gold-light);
       letter-spacing: 0.04em;
@@ -1648,7 +1674,7 @@
       padding: 24px 28px;
       font-family: 'EB Garamond', serif;
       font-size: clamp(1rem, 1.8vw, 1.1rem);
-      color: rgba(232,224,208,0.82);
+      color: #FFFFFF;
       line-height: 1.85;
     }
 
@@ -1660,7 +1686,7 @@
       padding: 32px 24px;
     }
     .outcomes-card-num {
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 0.65rem;
       font-weight: 700;
       letter-spacing: 0.2em;
@@ -1705,7 +1731,7 @@
       .outcomes-swipe-hint {
         display: block;
         text-align: center;
-        font-family: 'Cormorant SC', serif;
+        font-family: 'Beautique Display', serif;
         font-size: 0.68rem;
         letter-spacing: 0.12em;
         color: rgba(201,168,76,0.4);
@@ -1787,25 +1813,30 @@
     .comp-card.ai-way::after {
       content: 'LỰA CHỌN TỐI ƯU';
       position: absolute;
-      top: 15px; right: -35px;
+      top: 20px; right: -58px;
+      width: 210px;
       background: var(--ink);
       color: var(--gold-light);
-      font-size: 0.6rem;
+      font-size: 0.58rem;
       font-weight: 800;
-      padding: 6px 40px;
+      padding: 7px 0;
       transform: rotate(45deg);
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       letter-spacing: 0.05em;
+      line-height: 1.2;
+      text-align: center;
+      white-space: nowrap;
     }
     .comp-label {
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 1.4rem;
       color: var(--gold-light);
       text-align: center;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       padding: 36px 32px 20px;
-      align-self: start;
+      align-self: stretch;
+      width: 100%;
     }
     .ai-way .comp-label {
         font-weight: 900;
@@ -1820,20 +1851,23 @@
       margin-top: 8px;
     }
     .comp-list-sub li {
-      font-size: 0.9rem;
+      font-size: 1.05rem;
+      font-weight: 400;
+      line-height: 1.6;
       display: flex;
       align-items: center;
       gap: 8px;
       margin-bottom: 4px;
-      opacity: 0.85;
+      opacity: 1;
     }
+    .ai-way .comp-list-sub li { font-weight: 500; }
     .comp-list-sub li::before {
       content: '•';
       color: var(--gold);
     }
     .ai-way .comp-list-sub li::before {
       color: var(--ink);
-      opacity: 0.5;
+      opacity: 1;
     }
     .comp-item {
       display: flex;
@@ -1858,17 +1892,17 @@
       box-shadow: none;
     }
     .comp-text h4 {
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 0.8rem;
-      opacity: 0.4;
+      opacity: 1;
       margin-bottom: 4px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
-    .ai-way .comp-text h4 { color: var(--ink); opacity: 0.6; }
+    .ai-way .comp-text h4 { color: var(--ink); opacity: 1; }
     .comp-text p {
       font-size: 1.05rem;
-      color: rgba(232,224,208,0.85);
+      color: #FFFFFF;
       line-height: 1.6;
     }
     .ai-way .comp-text p { color: var(--ink); font-weight: 500; }
@@ -1884,13 +1918,13 @@
     .ai-way .comp-footer { border-top-color: rgba(0,0,0,0.1); }
     .comp-total-label {
       font-size: 0.75rem;
-      color: rgba(232,224,208,0.4);
+      color: #FFFFFF;
       margin-bottom: 8px;
       letter-spacing: 0.1em;
     }
-    .ai-way .comp-total-label { color: var(--ink); opacity: 0.6; }
+    .ai-way .comp-total-label { color: var(--ink); opacity: 1; }
     .comp-total-price {
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 2rem;
       font-weight: 700;
       color: var(--parchment);
@@ -1904,7 +1938,7 @@
     .comp-note {
       font-size: 0.75rem;
       margin-top: 8px;
-      opacity: 0.6;
+      opacity: 1;
     }
     .ai-way .comp-note { color: var(--ink); }
 
@@ -1920,10 +1954,10 @@
         grid-row: auto;
       }
       .comp-list { display: block; }
-      .comp-label { padding: 20px 16px 10px; font-size: 1.15rem; }
+      .comp-label { padding: 20px 16px 10px; font-size: 1.15rem; text-align: center; align-self: stretch; width: 100%; }
       .comp-item { padding: 8px 16px; }
       .comp-text p { font-size: 0.92rem; line-height: 1.5; }
-      .comp-list-sub li { font-size: 0.82rem; }
+      .comp-list-sub li { font-size: 0.92rem; line-height: 1.5; }
       .comp-footer { padding: 12px 16px 20px; text-align: center; align-items: center; }
       .comp-total-label { text-align: center; }
       .comp-total-price { font-size: 1.7rem; }
@@ -1951,7 +1985,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 32px;
-      align-items: start;
+      align-items: stretch;
     }
     @media (max-width: 780px) {
       .pricing-reg-grid { grid-template-columns: 1fr; }
@@ -1962,6 +1996,7 @@
       border-radius: var(--radius-lg);
       padding: 36px 32px;
       box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,168,76,0.1);
+      height: 100%;
     }
     @media (max-width: 520px) {
       .reg-section-box { padding: 28px 20px; }
@@ -2025,7 +2060,7 @@
     }
     .modal-package-badge {
       display: block;
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 0.12em;
@@ -2045,10 +2080,10 @@
     .form-group { margin-bottom: 20px; }
     .form-group label {
       display: block;
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 0.75rem;
       letter-spacing: 0.1em;
-      color: rgba(232,224,208,0.6);
+      color: #FFFFFF;
       margin-bottom: 8px;
     }
     .form-group input {
@@ -2058,18 +2093,18 @@
       border-radius: 8px;
       padding: 12px 16px;
       color: var(--parchment);
-      font-family: 'Inter', sans-serif;
+      font-family: 'EB Garamond', serif;
       font-size: 1rem;
       outline: none;
       transition: border-color 0.2s, background 0.2s;
     }
     .form-group input:focus { border-color: var(--gold); background: rgba(201,168,76,0.05); }
-    .form-group input::placeholder { color: rgba(232,224,208,0.25); }
+    .form-group input::placeholder { color: #FFFFFF; }
     .form-group input.invalid { border-color: #E57373; background: rgba(229,115,115,0.05); }
     .field-error {
       color: #E57373;
       font-size: 0.78rem;
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       margin-top: 6px;
       display: none;
     }
@@ -2078,7 +2113,7 @@
       padding: 16px;
       background: linear-gradient(135deg, #8B6914, var(--gold) 40%, var(--gold-light));
       color: var(--ink);
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-weight: 700;
       font-size: 1rem;
       letter-spacing: 0.08em;
@@ -2094,16 +2129,16 @@
     .form-success { text-align: center; padding: 16px 0; }
     .form-success .success-icon { font-size: 3rem; display: block; margin-bottom: 16px; }
     .form-success h3 {
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 1.4rem;
       color: var(--gold-light);
       margin-bottom: 10px;
     }
-    .form-success p { font-family: 'Cormorant SC', serif; font-size: 1rem; color: rgba(232,224,208,0.65); line-height: 1.7; }
+    .form-success p { font-family: 'EB Garamond', serif; font-size: 1rem; color: #FFFFFF; line-height: 1.7; }
     .form-error-msg {
       color: #E57373;
       font-size: 0.8rem;
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       margin-top: 12px;
       text-align: center;
       display: none;
@@ -2168,7 +2203,7 @@
       padding: 6px 16px;
       border: 1px solid rgba(201,168,76,0.5);
       border-radius: 999px;
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 0.95rem;
       color: var(--gold-light);
       letter-spacing: 0.05em;
@@ -2193,7 +2228,7 @@
     }
     .marquee-label {
       text-align: center;
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 1rem;
       letter-spacing: 0.16em;
       color: rgba(201,168,76,0.75);
@@ -2248,11 +2283,11 @@
       border-radius: 4px;
       height: 16px;
       font-size: 0.6rem;
-      color: rgba(255,255,255,0.3);
+      color: #FFFFFF;
       display: flex;
       align-items: center;
       padding: 0 8px;
-      font-family: monospace;
+      font-family: 'EB Garamond', serif;
       overflow: hidden;
       white-space: nowrap;
     }
@@ -2265,7 +2300,7 @@
     }
     .marquee-card-label {
       padding: 8px 12px;
-      font-family: 'Cormorant SC', serif;
+      font-family: 'Beautique Display', serif;
       font-size: 0.78rem;
       color: rgba(201,168,76,0.6);
       letter-spacing: 0.08em;
@@ -2356,14 +2391,14 @@
       </h1>
 
       <div class="hero-typewriter">
-        <span style="color:var(--parchment); opacity:0.85;">Không Cần&nbsp;</span>
+        <span style="color:var(--parchment); opacity:1;">Không Cần&nbsp;</span>
         <span class="gold-shimmer" id="typewriter-word"></span>
         <span class="typewriter-cursor"></span>
       </div>
 
       <div class="camket-box" style="margin:0 auto 28px; max-width:560px;">
         <div class="camket-box-inner">
-          <p style="font-family:'Cormorant SC',serif; font-size:1.15rem; font-weight:700; color:#fff; line-height:1.6; margin:0; letter-spacing:0.02em;">
+          <p style="font-family:'Beautique Display',serif; font-size:1.15rem; font-weight:700; color:#fff; line-height:1.6; margin:0; letter-spacing:0.02em;">
             Lớp Chỉ <span style="color:var(--gold);">5 Học Viên</span> — Cam Kết Có Landing Page<br/>Chạy Được Thật Chỉ Sau <span style="color:var(--gold);">2 Ngày</span>
           </p>
         </div>
@@ -2541,7 +2576,7 @@
       </div>
 
       <!-- Story body -->
-      <div style="font-family:'EB Garamond', serif; font-size: clamp(1.05rem, 2vw, 1.2rem); line-height: 1.9; color: rgba(232,224,208,0.82);">
+      <div style="font-family:'EB Garamond', serif; font-size: clamp(1.05rem, 2vw, 1.2rem); line-height: 1.9; color: #FFFFFF;">
 
         <p class="reveal">
           Tôi có một người bạn chuẩn bị mở quán cafe. Tôi giới thiệu cho anh ấy một nhà cung cấp cực kỳ tâm huyết —
@@ -2551,7 +2586,7 @@
 
         <!-- Pull quote -->
         <div class="reveal" style="margin: 32px 0; padding: 22px 28px; border-left: 3px solid var(--gold); background: rgba(201,168,76,0.06); border-radius: 0 10px 10px 0;">
-          <p style="font-family:'Cormorant SC', serif; font-size: clamp(1.2rem, 2.5vw, 1.45rem); color: var(--gold-light); font-style: italic; margin:0; line-height: 1.6;">
+          <p style="font-family:'Beautique Display', serif; font-size: clamp(1.2rem, 2.5vw, 1.45rem); color: var(--gold-light); font-style: italic; margin:0; line-height: 1.6;">
             "Không. Anh hãy đến trực tiếp."
           </p>
         </div>
@@ -2574,45 +2609,45 @@
 
         <!-- Stat highlight -->
         <div class="reveal" style="margin: 28px 0; display: flex; align-items: flex-start; gap: 20px;">
-          <span style="font-family:'Cormorant SC', serif; font-size: clamp(2.8rem, 7vw, 4.5rem); font-weight:700; color: var(--gold); line-height:1; flex-shrink:0;">50+</span>
+          <span style="font-family:'Beautique Display', serif; font-size: clamp(2.8rem, 7vw, 4.5rem); font-weight:700; color: var(--gold); line-height:1; flex-shrink:0;">50+</span>
           <p style="margin:0; padding-top: 6px;">
             SME & Startup Ý đã làm việc cùng — và hầu như tất cả đều gặp
             <strong style="color: var(--parchment);">cùng một kịch bản:</strong> sản phẩm tốt đến đâu, khách vẫn hỏi:
-            <em>"Bạn có trang thông tin sản phẩm không?"</em> Nếu không có, họ bỏ qua bạn ngay lập tức.
+            <strong style="color: var(--parchment);">"Bạn có trang thông tin sản phẩm không?"</strong> Nếu không có, họ bỏ qua bạn ngay lập tức.
           </p>
         </div>
 
         <!-- Sub-heading -->
-        <p class="reveal" style="font-family:'Cormorant SC', serif; font-size: clamp(1.2rem, 2.5vw, 1.5rem); color: var(--gold-light); font-weight: 600; margin: 32px 0 16px;">
+        <p class="reveal" style="font-family:'Beautique Display', serif; font-size: clamp(1.2rem, 2.5vw, 1.5rem); color: var(--gold-light); font-weight: 600; margin: 32px 0 16px;">
           Landing Page là "Nhân Viên Bán Hàng" Không Bao Giờ Ngủ
         </p>
 
         <!-- Results grid -->
         <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 0 0 32px;">
           <div style="padding: 14px 18px; background: rgba(201,168,76,0.07); border: 1px solid rgba(201,168,76,0.2); border-radius: 10px;">
-            <div style="font-size: 1.3rem; margin-bottom: 5px;">💰</div>
-            <p style="margin:0; font-size: 0.95rem; color: #fff; line-height:1.5;"><strong style="color:#FFD966;">Chốt đơn nhàn hơn</strong> — tỷ lệ chuyển đổi tăng nhờ quy trình tự động</p>
+            <div style="font-size: 1.45rem; margin-bottom: 5px;">💰</div>
+            <p style="margin:0; font-size: 1.12rem; color: #fff; line-height:1.6;"><strong style="color:#FFD966;">Chốt đơn nhàn hơn</strong> — tỷ lệ chuyển đổi tăng nhờ quy trình tự động</p>
           </div>
           <div style="padding: 14px 18px; background: rgba(201,168,76,0.07); border: 1px solid rgba(201,168,76,0.2); border-radius: 10px;">
-            <div style="font-size: 1.3rem; margin-bottom: 5px;">⏱️</div>
-            <p style="margin:0; font-size: 0.95rem; color: #fff; line-height:1.5;"><strong style="color:#FFD966;">Tiết kiệm thời gian</strong> — không còn trả lời câu hỏi lặp đi lặp lại</p>
+            <div style="font-size: 1.45rem; margin-bottom: 5px;">⏱️</div>
+            <p style="margin:0; font-size: 1.12rem; color: #fff; line-height:1.6;"><strong style="color:#FFD966;">Tiết kiệm thời gian</strong> — không còn trả lời câu hỏi lặp đi lặp lại</p>
           </div>
           <div style="padding: 14px 18px; background: rgba(201,168,76,0.07); border: 1px solid rgba(201,168,76,0.2); border-radius: 10px;">
-            <div style="font-size: 1.3rem; margin-bottom: 5px;">🏆</div>
-            <p style="margin:0; font-size: 0.95rem; color: #fff; line-height:1.5;"><strong style="color:#FFD966;">Vượt mặt đối thủ</strong> — xây dựng uy tín thương hiệu trong 3 giây đầu tiên</p>
+            <div style="font-size: 1.45rem; margin-bottom: 5px;">🏆</div>
+            <p style="margin:0; font-size: 1.12rem; color: #fff; line-height:1.6;"><strong style="color:#FFD966;">Vượt mặt đối thủ</strong> — xây dựng uy tín thương hiệu trong 3 giây đầu tiên</p>
           </div>
           <div style="padding: 14px 18px; background: rgba(201,168,76,0.07); border: 1px solid rgba(201,168,76,0.2); border-radius: 10px;">
-            <div style="font-size: 1.3rem; margin-bottom: 5px;">😴</div>
-            <p style="margin:0; font-size: 0.95rem; color: #fff; line-height:1.5;"><strong style="color:#FFD966;">Tiền về khi ngủ</strong> — hệ thống vận hành xuyên suốt 24/7</p>
+            <div style="font-size: 1.45rem; margin-bottom: 5px;">😴</div>
+            <p style="margin:0; font-size: 1.12rem; color: #fff; line-height:1.6;"><strong style="color:#FFD966;">Tiền về khi ngủ</strong> — hệ thống vận hành xuyên suốt 24/7</p>
           </div>
         </div>
 
         <!-- Bridge -->
         <div class="reveal" style="margin-top: 24px; text-align: center;">
-          <p style="font-family:'Cormorant SC', serif; font-size: clamp(1rem, 2.5vw, 1.3rem); color: rgba(232,224,208,0.55); margin-bottom: 10px;">
+          <p style="font-family:'Beautique Display', serif; font-size: clamp(1rem, 2.5vw, 1.3rem); color: #FFFFFF; margin-bottom: 10px;">
             Trước đây, một trang bán hàng chất lượng có giá từ <strong style="color: var(--gold-light);">7 – 20 triệu đồng</strong>.<br/>Nhưng đó là chuyện của quá khứ.
           </p>
-          <p style="font-family:'Cormorant SC', serif; font-size: clamp(1.4rem, 3.5vw, 2rem); font-weight: 700; color: var(--parchment);">
+          <p style="font-family:'Beautique Display', serif; font-size: clamp(1.4rem, 3.5vw, 2rem); font-weight: 700; color: var(--parchment);">
             Với sức mạnh của AI — cuộc chơi đã thay đổi hoàn toàn.
           </p>
         </div>
@@ -2727,7 +2762,7 @@
     <div class="container">
       <div class="benefits-header reveal" style="text-align: center; margin-top: 60px;">
         <span class="section-label">✦ BẠN NHẬN ĐƯỢC GÌ ✦</span>
-        <h2 style="font-family: 'Beautique Display', cursive; font-size: clamp(2.5rem, 6vw, 3.8rem); color: #fff; margin-top: 10px;">Sau 2 Ngày Bạn Sẽ Có</h2>
+        <h2 style="font-family: 'Beautique Display', serif; font-size: clamp(2.5rem, 6vw, 3.8rem); color: #fff; margin-top: 10px;">Sau 2 Ngày Bạn Sẽ Có</h2>
       </div>
 
       <div class="outcomes-scroll-wrap">
@@ -2735,20 +2770,20 @@
           <div class="session-card outcomes-card reveal" style="text-align: center; border-color: rgba(201,168,76,0.25);">
             <div class="outcomes-card-num">01</div>
             <div style="font-size: 2.6rem; margin-bottom: 14px;">🚀</div>
-            <h4 style="font-family: 'Cormorant SC', serif; font-size: 1rem; letter-spacing: 0.08em; color: var(--gold-light); margin-bottom: 10px; font-weight: 700;">Landing Page Thật</h4>
-            <p style="font-size: 0.92rem; opacity: 0.75; line-height: 1.6;">Chạy được thật, điền form được thật, thu hút khách hàng được thật.</p>
+            <h4 style="font-family: 'Beautique Display', serif; font-size: 1rem; letter-spacing: 0.08em; color: var(--gold-light); margin-bottom: 10px; font-weight: 700;">Landing Page Thật</h4>
+            <p style="font-size: 0.92rem; opacity: 1; line-height: 1.6;">Chạy được thật, điền form được thật, thu hút khách hàng được thật.</p>
           </div>
           <div class="session-card outcomes-card reveal" style="text-align: center; border-color: rgba(201,168,76,0.25);">
             <div class="outcomes-card-num">02</div>
             <div style="font-size: 2.6rem; margin-bottom: 14px;">🧠</div>
-            <h4 style="font-family: 'Cormorant SC', serif; font-size: 1rem; letter-spacing: 0.08em; color: var(--gold-light); margin-bottom: 10px; font-weight: 700;">Kỹ Năng Vibe Coding</h4>
-            <p style="font-size: 0.92rem; opacity: 0.75; line-height: 1.6;">Biết cách chỉ đạo AI làm kỹ thuật thay bạn, tập trung vào "Vibe" và nội dung.</p>
+            <h4 style="font-family: 'Beautique Display', serif; font-size: 1rem; letter-spacing: 0.08em; color: var(--gold-light); margin-bottom: 10px; font-weight: 700;">Kỹ Năng Vibe Coding</h4>
+            <p style="font-size: 0.92rem; opacity: 1; line-height: 1.6;">Biết cách chỉ đạo AI làm kỹ thuật thay bạn, tập trung vào "Vibe" và nội dung.</p>
           </div>
           <div class="session-card outcomes-card reveal" style="text-align: center; border-color: rgba(201,168,76,0.25);">
             <div class="outcomes-card-num">03</div>
             <div style="font-size: 2.6rem; margin-bottom: 14px;">💸</div>
-            <h4 style="font-family: 'Cormorant SC', serif; font-size: 1rem; letter-spacing: 0.08em; color: var(--gold-light); margin-bottom: 10px; font-weight: 700;">Tiết Kiệm Tương Lai</h4>
-            <p style="font-size: 0.92rem; opacity: 0.75; line-height: 1.6;">Tự làm thêm nhiều trang, không còn phụ thuộc nhân sự hay chờ đợi.</p>
+            <h4 style="font-family: 'Beautique Display', serif; font-size: 1rem; letter-spacing: 0.08em; color: var(--gold-light); margin-bottom: 10px; font-weight: 700;">Tiết Kiệm Tương Lai</h4>
+            <p style="font-size: 0.92rem; opacity: 1; line-height: 1.6;">Tự làm thêm nhiều trang, không còn phụ thuộc nhân sự hay chờ đợi.</p>
           </div>
         </div>
         <p class="outcomes-swipe-hint">← Vuốt để xem →</p>
@@ -2770,7 +2805,7 @@
         <!-- Card 1 -->
         <div class="showcase-card reveal">
           <div class="showcase-img">
-            <img src="Assets/website 1.png" alt="Chén Trà Nhỏ" loading="lazy">
+            <img src="Assets/website 1.png" alt="Chén Trà Nhỏ">
             <div class="showcase-overlay">
               <a href="https://lemonetartcafe.com/" class="btn-showcase" target="_blank">Xem Website</a>
             </div>
@@ -2783,7 +2818,7 @@
         <!-- Card 2 -->
         <div class="showcase-card reveal">
           <div class="showcase-img">
-            <img src="Assets/website 2.png" alt="Bài Test Tính Cách" loading="lazy">
+            <img src="Assets/website 2.png" alt="Bài Test Tính Cách">
             <div class="showcase-overlay">
               <a href="https://lemonetartcafe.com/pages/tach-tra-cua-ban" class="btn-showcase" target="_blank">Xem Website</a>
             </div>
@@ -2796,7 +2831,7 @@
         <!-- Card 3 -->
         <div class="showcase-card reveal">
           <div class="showcase-img">
-            <img src="Assets/website 3.png" alt="Founder's North" loading="lazy">
+            <img src="Assets/website 3.png" alt="Founder's North">
             <div class="showcase-overlay">
               <a href="https://foundersnorth.com.vn/" class="btn-showcase" target="_blank">Xem Website</a>
             </div>
@@ -2809,7 +2844,7 @@
         <!-- Card 4 -->
         <div class="showcase-card reveal">
           <div class="showcase-img">
-            <img src="Assets/website 4.png" alt="B-MAT" loading="lazy">
+            <img src="Assets/website 4.png" alt="B-MAT">
             <div class="showcase-overlay">
               <a href="https://foundersnorth.com.vn/6truongphai" class="btn-showcase" target="_blank">Xem Website</a>
             </div>
@@ -2822,7 +2857,7 @@
         <!-- Card 5 -->
         <div class="showcase-card reveal">
           <div class="showcase-img">
-            <img src="Assets/website 5.png" alt="Book Phòng Meeting" loading="lazy">
+            <img src="Assets/website 5.png" alt="Book Phòng Meeting">
             <div class="showcase-overlay">
               <a href="https://lemonetartcafe.com/pages/thue-phong" class="btn-showcase" target="_blank">Xem Website</a>
             </div>
@@ -2835,7 +2870,7 @@
         <!-- Card 6 -->
         <div class="showcase-card reveal">
           <div class="showcase-img">
-            <img src="Assets/website 6.png" alt="Giới Thiệu Sản Phẩm: UBE COLLECTION" loading="lazy">
+            <img src="Assets/website 6.png" alt="Giới Thiệu Sản Phẩm: UBE COLLECTION">
             <div class="showcase-overlay">
               <a href="https://lemonetartcafe.com/pages/ubecollection" class="btn-showcase" target="_blank">Xem Website</a>
             </div>
@@ -2921,7 +2956,7 @@
         <!-- Hồng Thiên Ý -->
         <div class="instructor-col reveal">
           <div class="instructor-img-wrap">
-            <img src="Assets/hongthieny.png" alt="Hồng Thiên Ý" loading="lazy" style="object-position: center 55%;" />
+            <img src="Assets/hongthieny.png" alt="Hồng Thiên Ý" style="object-position: center 55%;" />
           </div>
           <div class="instructor-body">
             <h3 class="instructor-name">Hồng Thiên Ý</h3>
@@ -2942,7 +2977,7 @@
         <!-- Violet Bùi -->
         <div class="instructor-col reveal">
           <div class="instructor-img-wrap">
-            <img src="Assets/violet.png" alt="Violet Bùi" loading="lazy" style="object-position: center 42%;" />
+            <img src="Assets/violet.png" alt="Violet Bùi" style="object-position: center 42%;" />
           </div>
           <div class="instructor-body">
             <h3 class="instructor-name">Violet Bùi</h3>
@@ -3018,26 +3053,26 @@
 
       <!-- Early Bird Countdown -->
       <div class="reveal" style="text-align:center; margin-bottom:32px;" id="early-bird-countdown-wrap">
-        <p style="font-family:'Cormorant SC',serif; font-size:0.78rem; letter-spacing:0.16em; color:rgba(201,168,76,0.6); text-transform:uppercase; margin-bottom:12px;">⏳ Ưu đãi Early Bird kết thúc sau</p>
+        <p style="font-family:'Beautique Display',serif; font-size:0.78rem; letter-spacing:0.16em; color:rgba(201,168,76,0.6); text-transform:uppercase; margin-bottom:12px;">⏳ Ưu đãi Early Bird kết thúc sau</p>
         <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
           <div style="text-align:center;">
-            <div id="cd-days" style="font-family:'Cormorant SC',serif; font-size:2.8rem; font-weight:700; color:var(--gold); line-height:1;">00</div>
-            <div style="font-size:0.7rem; letter-spacing:0.1em; color:rgba(232,224,208,0.45); margin-top:4px;">NGÀY</div>
+            <div id="cd-days" style="font-family:'Beautique Display',serif; font-size:2.8rem; font-weight:700; color:var(--gold); line-height:1;">00</div>
+            <div style="font-size:0.7rem; letter-spacing:0.1em; color: #FFFFFF; margin-top:4px;">NGÀY</div>
           </div>
-          <div style="font-family:'Cormorant SC',serif; font-size:2.8rem; color:rgba(201,168,76,0.3); line-height:1;">:</div>
+          <div style="font-family:'Beautique Display',serif; font-size:2.8rem; color:rgba(201,168,76,0.3); line-height:1;">:</div>
           <div style="text-align:center;">
-            <div id="cd-hours" style="font-family:'Cormorant SC',serif; font-size:2.8rem; font-weight:700; color:var(--gold); line-height:1;">00</div>
-            <div style="font-size:0.7rem; letter-spacing:0.1em; color:rgba(232,224,208,0.45); margin-top:4px;">GIỜ</div>
+            <div id="cd-hours" style="font-family:'Beautique Display',serif; font-size:2.8rem; font-weight:700; color:var(--gold); line-height:1;">00</div>
+            <div style="font-size:0.7rem; letter-spacing:0.1em; color: #FFFFFF; margin-top:4px;">GIỜ</div>
           </div>
-          <div style="font-family:'Cormorant SC',serif; font-size:2.8rem; color:rgba(201,168,76,0.3); line-height:1;">:</div>
+          <div style="font-family:'Beautique Display',serif; font-size:2.8rem; color:rgba(201,168,76,0.3); line-height:1;">:</div>
           <div style="text-align:center;">
-            <div id="cd-mins" style="font-family:'Cormorant SC',serif; font-size:2.8rem; font-weight:700; color:var(--gold); line-height:1;">00</div>
-            <div style="font-size:0.7rem; letter-spacing:0.1em; color:rgba(232,224,208,0.45); margin-top:4px;">PHÚT</div>
+            <div id="cd-mins" style="font-family:'Beautique Display',serif; font-size:2.8rem; font-weight:700; color:var(--gold); line-height:1;">00</div>
+            <div style="font-size:0.7rem; letter-spacing:0.1em; color: #FFFFFF; margin-top:4px;">PHÚT</div>
           </div>
-          <div style="font-family:'Cormorant SC',serif; font-size:2.8rem; color:rgba(201,168,76,0.3); line-height:1;">:</div>
+          <div style="font-family:'Beautique Display',serif; font-size:2.8rem; color:rgba(201,168,76,0.3); line-height:1;">:</div>
           <div style="text-align:center;">
-            <div id="cd-secs" style="font-family:'Cormorant SC',serif; font-size:2.8rem; font-weight:700; color:var(--gold); line-height:1;">00</div>
-            <div style="font-size:0.7rem; letter-spacing:0.1em; color:rgba(232,224,208,0.45); margin-top:4px;">GIÂY</div>
+            <div id="cd-secs" style="font-family:'Beautique Display',serif; font-size:2.8rem; font-weight:700; color:var(--gold); line-height:1;">00</div>
+            <div style="font-size:0.7rem; letter-spacing:0.1em; color: #FFFFFF; margin-top:4px;">GIÂY</div>
           </div>
         </div>
       </div>
@@ -3072,8 +3107,8 @@
           <!-- Waitlist form (hidden by default, shown when class full) -->
           <div id="waitlist-view" style="display:none; text-align:center; padding:16px 0;">
             <span style="font-size:2rem;">📋</span>
-            <h3 style="font-family:'Cormorant SC',serif; font-size:1.4rem; color:var(--gold-light); margin:12px 0 8px;">Lớp Đã Đủ 5 Học Viên</h3>
-            <p style="font-size:0.92rem; color:rgba(232,224,208,0.7); margin-bottom:24px; line-height:1.7;">
+            <h3 style="font-family:'Beautique Display',serif; font-size:1.4rem; color:var(--gold-light); margin:12px 0 8px;">Lớp Đã Đủ 5 Học Viên</h3>
+            <p style="font-size:0.92rem; color: #FFFFFF; margin-bottom:24px; line-height:1.7;">
               Đăng ký Waitlist để được ưu tiên thông báo<br/>khi <strong style="color:var(--parchment);">Workshop Kế Tiếp</strong> mở đăng ký.
             </p>
             <form id="waitlist-form" novalidate>
@@ -3094,8 +3129,8 @@
           </div>
           <div id="waitlist-success-view" style="display:none; text-align:center; padding:24px 0;">
             <span style="font-size:2.5rem;">🎯</span>
-            <h3 style="font-family:'Cormorant SC',serif; font-size:1.3rem; color:var(--gold-light); margin:12px 0 8px;">Đã Vào Danh Sách Chờ!</h3>
-            <p style="font-size:0.92rem; color:rgba(232,224,208,0.75); line-height:1.7;">Ý sẽ liên hệ bạn ngay khi Workshop kế tiếp mở đăng ký. Cảm ơn bạn đã quan tâm! 🙏</p>
+            <h3 style="font-family:'Beautique Display',serif; font-size:1.3rem; color:var(--gold-light); margin:12px 0 8px;">Đã Vào Danh Sách Chờ!</h3>
+            <p style="font-size:0.92rem; color: #FFFFFF; line-height:1.7;">Ý sẽ liên hệ bạn ngay khi Workshop kế tiếp mở đăng ký. Cảm ơn bạn đã quan tâm! 🙏</p>
           </div>
 
           <div id="reg-form-view">
@@ -3124,16 +3159,16 @@
             <span class="success-icon">🎉</span>
             <h3>Đăng Ký Thành Công!</h3>
             <p style="margin-bottom:8px;">Scan QR bên dưới để hoàn tất thanh toán.</p>
-            <p style="font-family:'Cormorant SC',serif; font-size:0.9rem; color:var(--gold-light); margin-bottom:4px;">Nội dung chuyển khoản:</p>
-            <p id="order-code-display" style="font-family:'Cormorant SC',serif; font-size:1.3rem; font-weight:700; color:var(--gold); letter-spacing:0.1em; margin-bottom:16px;"></p>
+            <p style="font-family:'Beautique Display',serif; font-size:0.9rem; color:var(--gold-light); margin-bottom:4px;">Nội dung chuyển khoản:</p>
+            <p id="order-code-display" style="font-family:'Beautique Display',serif; font-size:1.3rem; font-weight:700; color:var(--gold); letter-spacing:0.1em; margin-bottom:16px;"></p>
             <img id="payment-qr" src="" alt="QR thanh toán" style="width:210px; height:210px; border-radius:12px; border:2px solid rgba(201,168,76,0.4); display:block; margin:0 auto 12px;" />
-            <p style="font-family:'Cormorant SC',serif; font-size:0.82rem; color:rgba(232,224,208,0.5);">MBBank · 0362722725 · Hồng Thiên Ý</p>
+            <p style="font-family:'Beautique Display',serif; font-size:0.82rem; color: #FFFFFF;">MBBank · 0362722725 · Hồng Thiên Ý</p>
             <div style="margin:16px 0 0; padding:12px 16px; background:rgba(201,168,76,0.12); border:1px solid rgba(201,168,76,0.4); border-radius:10px;">
               <p style="font-size:0.88rem; color:var(--gold-light); font-weight:600; margin:0;">⚠️ Sau khi chuyển khoản xong, vui lòng <u>giữ nguyên trang này</u> để hệ thống tự xác nhận thanh toán cho bạn.</p>
             </div>
             <div id="payment-countdown-wrap" style="margin-top:16px;">
-              <p style="font-size:0.88rem; color:rgba(232,224,208,0.65); margin-bottom:4px;">Đang chờ xác nhận thanh toán…</p>
-              <p id="payment-countdown" style="font-family:'Cormorant SC',serif; font-size:1.6rem; font-weight:700; color:var(--gold); letter-spacing:0.05em;">15:00</p>
+              <p style="font-size:0.88rem; color: #FFFFFF; margin-bottom:4px;">Đang chờ xác nhận thanh toán…</p>
+              <p id="payment-countdown" style="font-family:'Beautique Display',serif; font-size:1.6rem; font-weight:700; color:var(--gold); letter-spacing:0.05em;">15:00</p>
               <p id="payment-timeout-msg" style="display:none; font-size:0.88rem; color:#e57373; margin-top:8px;">Hết thời gian chờ. Nếu đã chuyển khoản, vui lòng nhắn tin cho Ý để được hỗ trợ.</p>
             </div>
           </div>
@@ -3142,7 +3177,7 @@
             <span class="success-icon">✅</span>
             <h3 style="color:var(--gold);">Thanh Toán Thành Công!</h3>
             <p style="margin-top:12px; line-height:1.8;">Email xác nhận sẽ được gửi về hộp thư của bạn.<br/>Vui lòng kiểm tra cả <strong>hộp thư spam</strong> nếu chưa thấy.</p>
-            <p style="margin-top:16px; font-size:0.88rem; color:rgba(232,224,208,0.6);">Hẹn gặp bạn tại workshop! 🎓</p>
+            <p style="margin-top:16px; font-size:0.88rem; color: #FFFFFF;">Hẹn gặp bạn tại workshop! 🎓</p>
           </div>
         </div>
       </div>
