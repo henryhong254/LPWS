@@ -1648,6 +1648,69 @@
     }
 
     /* ═══════════════════════════════════════════
+       OUTCOMES CARDS
+    ═══════════════════════════════════════════ */
+    .outcomes-card {
+      position: relative;
+      padding: 32px 24px;
+    }
+    .outcomes-card-num {
+      font-family: 'Cormorant SC', serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: rgba(201,168,76,0.35);
+      margin-bottom: 18px;
+    }
+    .outcomes-swipe-hint { display: none; }
+
+    @media (max-width: 640px) {
+      /* Outcomes horizontal scroll */
+      #outcomes { padding: 28px 0 28px 16px; }
+      #outcomes .container { padding-right: 0; max-width: 100%; overflow: visible; }
+      .outcomes-scroll-wrap { position: relative; }
+      .outcomes-scroll-wrap::after {
+        content: '';
+        position: absolute;
+        top: 0; right: 0;
+        width: 48px; height: 100%;
+        background: linear-gradient(to right, transparent, rgba(13,15,26,0.9));
+        pointer-events: none;
+      }
+      .outcomes-cards {
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 14px !important;
+        margin-top: 24px !important;
+        padding-bottom: 8px;
+        padding-right: 32px;
+        scrollbar-width: none;
+        grid-template-columns: unset !important;
+      }
+      .outcomes-cards::-webkit-scrollbar { display: none; }
+      .outcomes-card {
+        flex: 0 0 70vw !important;
+        max-width: 240px;
+        scroll-snap-align: start;
+        padding: 24px 18px !important;
+      }
+      .outcomes-card-num { font-size: 0.6rem; margin-bottom: 12px; }
+      .outcomes-swipe-hint {
+        display: block;
+        text-align: center;
+        font-family: 'Cormorant SC', serif;
+        font-size: 0.68rem;
+        letter-spacing: 0.12em;
+        color: rgba(201,168,76,0.4);
+        margin-top: 12px;
+        padding-right: 16px;
+      }
+    }
+
+    /* ═══════════════════════════════════════════
        SCROLL ANIMATIONS
     ═══════════════════════════════════════════ */
     .reveal {
@@ -1863,8 +1926,12 @@
       .ai-way .comp-total-price { font-size: 2rem; }
       .comp-icon { font-size: 1.1rem; width: 26px; height: 26px; }
       #comparison { padding: 0 12px 24px; }
-      /* Ribbon fix on mobile */
-      .comp-card.ai-way::after { font-size: 0.52rem; top: 12px; right: -36px; padding: 5px 38px; }
+      /* Ribbon: hide on mobile (gold card already stands out) */
+      .comp-card.ai-way::after { display: none; }
+      /* TỔNG CHÍ PHÍ centering enforce */
+      .comp-footer { text-align: center !important; align-items: center !important; }
+      .comp-total-label { width: 100%; text-align: center !important; }
+      .comp-total-price { text-align: center; }
     }
 
     /* ── Pricing + Form Layout ── */
@@ -2646,7 +2713,6 @@
     <div class="container">
       <div class="mid-cta-box reveal">
         <div class="mid-cta-text">
-          <span class="mid-cta-overline">✦ Landing Page 3 Không</span>
           <p class="mid-cta-headline">Bạn đã từng mong khách hàng hiểu rõ sản phẩm hơn — vì nếu họ hiểu, họ nhất định sẽ mua.</p>
           <p class="mid-cta-sub">Landing Page Chính Là Điều Bạn Cần.</p>
         </div>
@@ -2747,31 +2813,31 @@
         <h2 style="font-family: 'Beautique Display', cursive; font-size: clamp(2.5rem, 6vw, 3.8rem); color: #fff; margin-top: 10px;">Sau 2 Ngày Bạn Sẽ Có</h2>
       </div>
 
-      <div class="session-container" style="grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px;">
-        <div class="session-card reveal" style="padding: 32px; text-align: center; border-color: rgba(201,168,76,0.25);">
-          <div style="font-size: 2.2rem; margin-bottom: 16px;">🚀</div>
-          <h4 style="font-family: 'Cormorant SC', serif; font-size: 0.9rem; letter-spacing: 0.08em; color: var(--gold-light); margin-bottom: 12px; font-weight: 700;">01 LANDING PAGE THẬT</h4>
-          <p style="font-size: 0.95rem; opacity: 0.8; line-height: 1.6;">Chạy được thật, điền form được thật, thu hút khách hàng được thật.</p>
+      <div class="outcomes-scroll-wrap">
+        <div class="session-container outcomes-cards" style="grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px;">
+          <div class="session-card outcomes-card reveal" style="text-align: center; border-color: rgba(201,168,76,0.25);">
+            <div class="outcomes-card-num">01</div>
+            <div style="font-size: 2.6rem; margin-bottom: 14px;">🚀</div>
+            <h4 style="font-family: 'Cormorant SC', serif; font-size: 1rem; letter-spacing: 0.08em; color: var(--gold-light); margin-bottom: 10px; font-weight: 700;">Landing Page Thật</h4>
+            <p style="font-size: 0.92rem; opacity: 0.75; line-height: 1.6;">Chạy được thật, điền form được thật, thu hút khách hàng được thật.</p>
+          </div>
+          <div class="session-card outcomes-card reveal" style="text-align: center; border-color: rgba(201,168,76,0.25);">
+            <div class="outcomes-card-num">02</div>
+            <div style="font-size: 2.6rem; margin-bottom: 14px;">🧠</div>
+            <h4 style="font-family: 'Cormorant SC', serif; font-size: 1rem; letter-spacing: 0.08em; color: var(--gold-light); margin-bottom: 10px; font-weight: 700;">Kỹ Năng Vibe Coding</h4>
+            <p style="font-size: 0.92rem; opacity: 0.75; line-height: 1.6;">Biết cách chỉ đạo AI làm kỹ thuật thay bạn, tập trung vào "Vibe" và nội dung.</p>
+          </div>
+          <div class="session-card outcomes-card reveal" style="text-align: center; border-color: rgba(201,168,76,0.25);">
+            <div class="outcomes-card-num">03</div>
+            <div style="font-size: 2.6rem; margin-bottom: 14px;">💸</div>
+            <h4 style="font-family: 'Cormorant SC', serif; font-size: 1rem; letter-spacing: 0.08em; color: var(--gold-light); margin-bottom: 10px; font-weight: 700;">Tiết Kiệm Tương Lai</h4>
+            <p style="font-size: 0.92rem; opacity: 0.75; line-height: 1.6;">Tự làm thêm nhiều trang, không còn phụ thuộc nhân sự hay chờ đợi.</p>
+          </div>
         </div>
-        <div class="session-card reveal" style="padding: 32px; text-align: center; border-color: rgba(201,168,76,0.25);">
-          <div style="font-size: 2.2rem; margin-bottom: 16px;">🧠</div>
-          <h4 style="font-family: 'Cormorant SC', serif; font-size: 0.9rem; letter-spacing: 0.08em; color: var(--gold-light); margin-bottom: 12px; font-weight: 700;">KỸ NĂNG VIBE CODING</h4>
-          <p style="font-size: 0.95rem; opacity: 0.8; line-height: 1.6;">Biết cách chỉ đạo AI làm kỹ thuật thay bạn, bạn chỉ cần tập trung vào "Vibe" và nội dung.</p>
-        </div>
-        <div class="session-card reveal" style="padding: 32px; text-align: center; border-color: rgba(201,168,76,0.25);">
-          <div style="font-size: 2.2rem; margin-bottom: 16px;">💸</div>
-          <h4 style="font-family: 'Cormorant SC', serif; font-size: 0.9rem; letter-spacing: 0.08em; color: var(--gold-light); margin-bottom: 12px; font-weight: 700;">TIẾT KIỆM TƯƠNG LAI</h4>
-          <p style="font-size: 0.95rem; opacity: 0.8; line-height: 1.6;">Tự làm thêm nhiều trang, tiết kiệm thời gian và không còn mệt mỏi vì nhân sự không hiểu ý.</p>
-        </div>
+        <p class="outcomes-swipe-hint">← Vuốt để xem →</p>
       </div>
     </div>
   </section>
-
-  <style>
-    @media (max-width: 768px) {
-      #outcomes .session-container { grid-template-columns: 1fr !important; }
-    }
-  </style>
 
   <!-- ───────────── BENEFITS REMOVED PER USER REQUEST ───────────── -->
 
