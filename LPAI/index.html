@@ -1648,6 +1648,47 @@
     }
 
     /* ═══════════════════════════════════════════
+       OFFLINE TOGGLE
+    ═══════════════════════════════════════════ */
+    .offline-toggle {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .offline-toggle-trigger {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 28px;
+      cursor: pointer;
+      list-style: none;
+      font-family: 'Cormorant SC', serif;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--gold-light);
+      letter-spacing: 0.04em;
+      transition: background 0.2s;
+      user-select: none;
+    }
+    .offline-toggle-trigger::-webkit-details-marker { display: none; }
+    .offline-toggle-trigger:hover { background: rgba(201,168,76,0.05); }
+    .offline-toggle-icon {
+      font-size: 1.4rem;
+      color: var(--gold);
+      transition: transform 0.3s;
+      flex-shrink: 0;
+    }
+    .offline-toggle[open] .offline-toggle-icon { transform: rotate(45deg); }
+    .offline-toggle[open] .offline-toggle-trigger { border-bottom: 1px solid rgba(201,168,76,0.12); }
+    .offline-toggle-body {
+      padding: 24px 28px;
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(1rem, 1.8vw, 1.1rem);
+      color: rgba(232,224,208,0.82);
+      line-height: 1.85;
+    }
+
+    /* ═══════════════════════════════════════════
        OUTCOMES CARDS
     ═══════════════════════════════════════════ */
     .outcomes-card {
@@ -2715,86 +2756,7 @@
   </section>
 
   <!-- ───────────── WHY AI + WHY OFFLINE ───────────── -->
-  <section id="magic" style="padding: 64px 24px;">
-    <div style="max-width: 700px; margin: 0 auto; font-family:'EB Garamond',serif; font-size:clamp(1.05rem,2vw,1.2rem); line-height:1.95; color:rgba(232,224,208,0.8);">
-
-      <!-- Hook -->
-      <div class="reveal" style="text-align:center; margin-bottom:56px;">
-        <span style="font-family:'Cormorant SC',serif; font-size:0.78rem; letter-spacing:0.18em; color:rgba(201,168,76,0.55); text-transform:uppercase;">✦ Câu Hỏi Thật ✦</span>
-        <h2 style="font-family:'Cormorant SC',serif; font-size:clamp(1.8rem,4vw,2.6rem); line-height:1.2; margin-top:16px;">
-          Landing Page bằng AI —<br/><span class="gold-text">liệu có tệ hơn không?</span>
-        </h2>
-      </div>
-
-      <!-- AI vs Traditional — Split Layout -->
-      <div class="reveal magic-split-grid">
-
-        <!-- Stat card: Trước -->
-        <div class="magic-stat-card">
-          <div class="magic-stat-score" style="color:rgba(232,224,208,0.5);">8<span style="font-size:1.8rem;">/10</span></div>
-          <div class="magic-stat-label">Trước — Với Designer & Dev</div>
-          <p class="magic-stat-desc">Đẹp, nhưng ý tưởng trong đầu và thứ hiện ra trên màn hình vẫn còn khoảng cách — vì designer có giới hạn của họ, dev có timeline của họ, và cả hai đều có ý kiến riêng.</p>
-        </div>
-
-        <!-- Arrow -->
-        <div class="magic-split-arrow">→</div>
-
-        <!-- Stat card: Bây giờ -->
-        <div class="magic-stat-card magic-stat-card--highlight">
-          <div class="magic-stat-score gold-text">8.5<span style="font-size:1.8rem;">/10</span></div>
-          <div class="magic-stat-label" style="color:var(--gold-light);">Bây Giờ — Với AI</div>
-          <p class="magic-stat-desc">Không phải vì AI giỏi hơn người. Mà vì <em>AI không cằn nhằn.</em> Nó làm đúng những gì Ý muốn, thử kỹ thuật phức tạp mà dev cần cả tuần, và không bao giờ nói "cái này khó làm lắm."</p>
-        </div>
-
-      </div>
-
-      <!-- Divider -->
-      <div class="reveal" style="display:flex; align-items:center; gap:16px; margin:44px 0;">
-        <div style="flex:1; height:1px; background:rgba(201,168,76,0.2);"></div>
-        <span style="color:var(--gold); font-size:1rem;">✦</span>
-        <div style="flex:1; height:1px; background:rgba(201,168,76,0.2);"></div>
-      </div>
-
-      <!-- Why different from 99K workshops -->
-      <div class="reveal" style="text-align:center; margin: 56px 0 28px;">
-        <h2 style="font-family:'Cormorant SC',serif; font-size:clamp(1.6rem,3.5vw,2.3rem); line-height:1.25; color:var(--parchment);">
-          Workshop Của Ý Khác Gì<br/><span class="gold-text">Chương Trình Tạo Landing Page AI Chỉ 99K?</span>
-        </h2>
-      </div>
-
-      <p class="reveal">
-        Các chương trình 99K dạy bạn dùng công cụ. Nhập prompt, bấm generate, xong.
-        Bạn ra về với một trang — nhưng trang đó trông giống 1.000 trang khác trên internet.
-        Không ai dừng lại. Không ai cảm thấy gì.
-      </p>
-
-      <p class="reveal" style="margin-top:20px;">
-        Điều Ý dạy khác ở chỗ: <em>làm sao để trang của bạn trông như của bạn.</em>
-        Ai nhìn vào cũng nhận ra đây là brand của bạn — không phải template AI đại trà.
-      </p>
-
-      <!-- Why offline -->
-      <div class="reveal" style="margin-top:44px; padding:32px 36px; border-left:3px solid var(--gold); background:rgba(201,168,76,0.06); border-radius:0 12px 12px 0;">
-        <p style="font-family:'Cormorant SC',serif; font-size:clamp(1.2rem,2.5vw,1.5rem); color:var(--gold-light); margin:0 0 16px; font-weight:600;">Vì sao có buổi Offline?</p>
-        <p style="margin:0 0 16px; color:rgba(232,224,208,0.85);">
-          Vì cái cảm hứng đó không thể truyền qua màn hình Zoom.
-          Nó chỉ đến khi bạn ngồi xuống, bày hết ý tưởng trong đầu ra —
-          và bắt đầu <strong style="color:#FFD966;">hiện thực hóa</strong> từng cái một.
-        </p>
-        <p style="margin:0 0 16px; color:rgba(232,224,208,0.85);">
-          Kỳ lạ là: càng làm, bạn càng thấy có thể làm được nhiều hơn.
-          Một ý tưởng xong, ý tưởng tiếp theo nảy ra. Bạn <strong style="color:#FFD966;">thỏa sức thử nghiệm</strong> —
-          như có phép thuật trong tay — và cảm hứng cứ thế tăng dần theo từng thứ bạn tạo ra.
-        </p>
-        <p style="margin:0; color:rgba(232,224,208,0.85);">
-          Ngày Offline là <strong style="color:#FFD966;">Creative Studio</strong> của bạn.
-          Và chỉ khi <em>bạn</em> tràn đầy cảm hứng với trang mình làm —
-          thì <em>khách hàng</em> mới có cảm hứng với sản phẩm của bạn.
-        </p>
-      </div>
-
-    </div>
-  </section>
+  <!-- magic section removed -->
 
   <!-- ───────────── OUTCOMES SECTION ───────────── -->
   <section id="outcomes">
@@ -3062,6 +3024,23 @@
           <p class="schedule-location">29 Đường R, KĐT Lakeview City, Bình Trưng (Q2)</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ───────────── OFFLINE TOGGLE ───────────── -->
+  <section style="padding: 0 24px 48px; position:relative; z-index:1;">
+    <div class="container" style="max-width:700px;">
+      <details class="offline-toggle reveal">
+        <summary class="offline-toggle-trigger">
+          <span>🤔 Vì sao có buổi Offline?</span>
+          <span class="offline-toggle-icon">＋</span>
+        </summary>
+        <div class="offline-toggle-body">
+          <p>Vì cái cảm hứng đó không thể truyền qua màn hình Zoom. Nó chỉ đến khi bạn ngồi xuống, bày hết ý tưởng trong đầu ra — và bắt đầu <strong style="color:#FFD966;">hiện thực hóa</strong> từng cái một.</p>
+          <p style="margin-top:14px;">Kỳ lạ là: càng làm, bạn càng thấy có thể làm được nhiều hơn. Một ý tưởng xong, ý tưởng tiếp theo nảy ra. Bạn <strong style="color:#FFD966;">thỏa sức thử nghiệm</strong> — như có phép thuật trong tay — và cảm hứng cứ thế tăng dần.</p>
+          <p style="margin-top:14px;">Ngày Offline là <strong style="color:#FFD966;">Creative Studio</strong> của bạn. Và chỉ khi <em>bạn</em> tràn đầy cảm hứng với trang mình làm — thì <em>khách hàng</em> mới có cảm hứng với sản phẩm của bạn.</p>
+        </div>
+      </details>
     </div>
   </section>
 
