@@ -1032,18 +1032,19 @@
       font-size: clamp(1.6rem, 4vw, 2.4rem);
       margin-top: 12px;
     }
+    #schedule .container {
+      max-width: 1100px;
+    }
     .schedule-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 32px;
-      max-width: 900px;
-      margin: 0 auto;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
     }
     .schedule-card {
       background: linear-gradient(135deg, rgba(22,25,51,0.9), rgba(26,61,47,0.4));
       border: 1px solid rgba(201,168,76,0.2);
       border-radius: var(--radius-lg);
-      padding: 40px 32px;
+      padding: 48px 40px;
       text-align: center;
       transition: transform 0.3s, border-color 0.3s;
       position: relative;
@@ -1194,9 +1195,9 @@
       display: flex;
       align-items: flex-start;
       gap: 10px;
-      font-size: 0.875rem;
+      font-size: 1rem;
       color: #FFFFFF;
-      padding: 8px 0;
+      padding: 9px 0;
       border-bottom: 1px solid rgba(201,168,76,0.06);
       line-height: 1.5;
     }
@@ -2065,7 +2066,7 @@
       .check-item { font-size: 0.88rem; margin-bottom: 8px; gap: 8px; line-height: 1.45; }
 
       /* ── Schedule cards compact ── */
-      .schedule-grid { gap: 14px; }
+      .schedule-grid { gap: 14px; grid-template-columns: 1fr; }
       .schedule-card { padding: 22px 18px; }
       .schedule-day { font-size: 1.1rem; margin-bottom: 6px; }
       .schedule-date { font-size: 0.95rem; margin-bottom: 12px; }
@@ -2089,6 +2090,105 @@
       color: var(--silver);
       border: 1px solid rgba(192,200,216,0.3);
     }
+    .pkg-selector { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:24px; }
+    .pkg-card {
+      position: relative;
+      cursor: pointer;
+      border: 2px solid rgba(201,168,76,0.2);
+      border-radius: 12px;
+      padding: 16px;
+      background: rgba(255,255,255,0.03);
+      transition: all 0.25s ease;
+    }
+    .pkg-card:hover { border-color: rgba(201,168,76,0.5); background: rgba(201,168,76,0.07); }
+    .pkg-card.active { border-color: var(--gold); background: rgba(201,168,76,0.12); box-shadow: 0 0 20px rgba(201,168,76,0.15); }
+    .pkg-card input[type=radio] { position:absolute; opacity:0; width:0; height:0; }
+    .pkg-card .pkg-name { font-family:'Beautique Display',serif; font-size:1rem; color:#fff; margin-bottom:4px; }
+    .pkg-card .pkg-price { font-size:1rem; color:var(--gold-light); font-weight:400; }
+    .pkg-card .pkg-price-reg { display:none; }
+    .pkg-card .pkg-check {
+      position:absolute; top:10px; right:10px;
+      width:18px; height:18px; border-radius:50%;
+      border:2px solid rgba(201,168,76,0.4);
+      background:transparent;
+      transition: all 0.2s;
+    }
+    .pkg-card.active .pkg-check { background:var(--gold); border-color:var(--gold); }
+    .pkg-card.active .pkg-check::after {
+      content:'✓'; position:absolute; top:50%; left:50%;
+      transform:translate(-50%,-50%);
+      font-size:10px; color:#1a1a2e; font-weight:900;
+    }
+    .reg-visual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 8px;
+      height: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .reg-visual-grid img { width:100%; height:180px; object-fit:cover; border-radius:8px; transition: transform 0.3s; }
+    .reg-visual-grid img:hover { transform: scale(1.03); }
+    .reg-visual-main { grid-column: span 2; }
+    .reg-visual-main img { height:372px; }
+    .reg-visual-side { display:flex; flex-direction:column; gap:8px; }
+    .reg-visual-side img { height:182px; }
+
+    /* ── Registration Hero Section ── */
+    .reg-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 80px 24px;
+      margin-top: 48px;
+      min-height: 640px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      width: 100vw;
+    }
+    .reg-hero-bg {
+      position: absolute; inset: 0;
+      background: url('Assets/sectiondangky.png') center/cover no-repeat;
+      z-index: 0;
+    }
+    .reg-hero-overlay {
+      position: absolute; inset: 0;
+      background: rgba(5,5,20,0.35);
+      z-index: 1;
+    }
+    .reg-hero-inner {
+      position: relative; z-index: 2;
+      width: 580px;
+      max-width: 100%;
+    }
+    .reg-glass-card {
+      background: rgba(10,10,30,0.55);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.13);
+      border-radius: 20px;
+      padding: 28px 28px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+    .reg-glass-card .form-group { margin-bottom: 14px; }
+    .reg-glass-card .pkg-selector { gap: 8px; margin-bottom: 16px; }
+    .reg-glass-card .pkg-card { padding: 12px; }
+    .reg-glass-card .form-group label { color: rgba(255,255,255,0.65); }
+    .reg-glass-card input[type=text],
+    .reg-glass-card input[type=tel],
+    .reg-glass-card input[type=email] {
+      background: rgba(255,255,255,0.07) !important;
+      border: 1px solid rgba(255,255,255,0.18) !important;
+      color: #fff !important;
+    }
+    .reg-glass-card input::placeholder { color: rgba(255,255,255,0.3) !important; }
+    .reg-glass-card input:focus { border-color: rgba(201,168,76,0.7) !important; background: rgba(255,255,255,0.1) !important; outline: none; }
+    .reg-glass-card .pkg-card { border-color: rgba(255,255,255,0.18); background: rgba(255,255,255,0.04); }
+    .reg-glass-card .pkg-card:hover { border-color: rgba(201,168,76,0.6); background: rgba(201,168,76,0.08); }
+    .reg-glass-card .pkg-card.active { border-color: var(--gold); background: rgba(201,168,76,0.14); }
     .form-group { margin-bottom: 20px; }
     .form-group label {
       display: block;
@@ -3020,6 +3120,7 @@
       
       <div class="schedule-grid">
         <div class="schedule-card reveal">
+          <div style="display:inline-block; background:rgba(150,150,180,0.1); border:1px solid rgba(150,150,180,0.35); border-radius:20px; padding:3px 12px; font-size:0.7rem; letter-spacing:0.12em; color:#AAA; margin-bottom:12px;">✦ GÓI CƠ BẢN</div>
           <div class="schedule-day">Ngày 1</div>
           <div class="schedule-date">28/05/2026</div>
           <div class="schedule-time">19h30 - 21h00</div>
@@ -3028,8 +3129,18 @@
         </div>
         
         <div class="schedule-card reveal">
+          <div style="display:inline-block; background:rgba(150,150,180,0.1); border:1px solid rgba(150,150,180,0.35); border-radius:20px; padding:3px 12px; font-size:0.7rem; letter-spacing:0.12em; color:#AAA; margin-bottom:12px;">✦ GÓI CƠ BẢN</div>
           <div class="schedule-day">Ngày 2</div>
           <div class="schedule-date">29/05/2026</div>
+          <div class="schedule-time">09h00 - 12h30</div>
+          <span class="schedule-type offline">• OFFLINE - TP.HCM</span>
+          <p class="schedule-location">29 Đường R, KĐT Lakeview City, Bình Trưng (Q2)</p>
+        </div>
+
+        <div class="schedule-card reveal" style="border-color: rgba(201,168,76,0.5);">
+          <div style="display:inline-block; background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.5); border-radius:20px; padding:3px 12px; font-size:0.7rem; letter-spacing:0.12em; color:var(--gold); margin-bottom:12px;">⭐ GÓI NÂNG CAO</div>
+          <div class="schedule-day">Ngày 3</div>
+          <div class="schedule-date">05/06/2026</div>
           <div class="schedule-time">09h00 - 12h30</div>
           <span class="schedule-type offline">• OFFLINE - TP.HCM</span>
           <p class="schedule-location">29 Đường R, KĐT Lakeview City, Bình Trưng (Q2)</p>
@@ -3089,108 +3200,169 @@
         </div>
       </div>
 
-      <div class="pricing-reg-grid reveal">
-        <!-- LEFT: Pricing info -->
-        <div class="pricing-card featured" style="transform:none;">
-          <div class="featured-badge">✨ ƯU ĐÃI EARLY BIRD — HẾT HẠN 25/05</div>
+      <div class="pricing-reg-grid reveal" style="display:grid; grid-template-columns: 1fr 1fr; gap:20px; margin-bottom:32px;">
+        <!-- PACKAGE 1: CƠ BẢN -->
+        <div class="pricing-card" style="transform:none;">
+          <div style="margin-bottom:24px;">
+            <h3 style="font-family:'Beautique Display',serif; font-size:1.6rem; color:var(--gold-light); margin:0 0 12px;">Gói Cơ Bản</h3>
+          </div>
           <div style="margin-bottom:8px;">
-            <div class="pricing-type" style="margin-bottom:4px;">Trước 25/05 · Early Bird</div>
+            <div class="pricing-type" style="margin-bottom:4px;">Early Bird (Trước 25/05)</div>
             <div class="pricing-amount">886.000đ</div>
           </div>
           <div style="margin-bottom:24px; padding-bottom:24px; border-bottom:1px solid rgba(201,168,76,0.15);">
-            <div class="pricing-type" style="margin-bottom:4px; margin-top:16px;">Sau 25/05 · Giá thường</div>
+            <div class="pricing-type" style="margin-bottom:4px; margin-top:16px;">Sau 25/05</div>
             <div class="pricing-amount" style="color:var(--silver); font-size:1.8rem;">1.086.000đ</div>
-            <div class="pricing-period" style="margin-top:4px;">Đăng ký sớm tiết kiệm 200.000đ</div>
           </div>
           <ul class="pricing-features">
-            <li><span class="feat-check">✦</span> Buổi 1: Online 28/5 (19h30–21h00)</li>
-            <li><span class="feat-check">✦</span> Buổi 2: Offline 29/5 (9h–12h30) tại TP.HCM</li>
-            <li><span class="feat-check">✦</span> Cam kết có Landing Page launching sau 2 ngày</li>
-            <li><span class="feat-check">✦</span> Hỗ trợ trực tiếp 1:1 trong lớp (tối đa 5 người)</li>
-            <li><span class="feat-check">✦</span> Template prompt AI & tài liệu workshop</li>
+            <li><span class="feat-check">✓</span> Buổi 1: Online 28/5 (19h30–21h00)</li>
+            <li><span class="feat-check">✓</span> Buổi 2: Offline 29/5 (9h–12h30) tại TP.HCM</li>
+            <li style="padding-top:12px; margin-top:4px; list-style:none; font-family:'Beautique Display',serif; font-size:0.72rem; letter-spacing:0.12em; color:var(--gold); border-top:1px solid rgba(201,168,76,0.2);">KẾT QUẢ NHẬN ĐƯỢC</li>
+            <li><span class="feat-check">✓</span> Landing Page hoàn chỉnh</li>
+            <li><span class="feat-check">✓</span> Form đăng ký trên Landing Page</li>
+            <li><span class="feat-check">✓</span> Kết nối Google Sheet trả kết quả đăng ký</li>
+            <li><span class="feat-check">✓</span> Hiển thị QR Code & thông tin chuyển khoản</li>
           </ul>
-          <p class="deadline-note" style="margin-top:20px; margin-bottom:0;">
-            ⚡ Lớp tối đa <strong>5 học viên</strong> · Khi đủ người sẽ đóng đăng ký
-          </p>
         </div>
 
-        <!-- RIGHT: Registration form -->
-        <div class="reg-section-box" id="dang-ky">
-          <!-- Waitlist form (hidden by default, shown when class full) -->
-          <div id="waitlist-view" style="display:none; text-align:center; padding:16px 0;">
-            <span style="font-size:2rem;">📋</span>
-            <h3 style="font-family:'Beautique Display',serif; font-size:1.4rem; color:var(--gold-light); margin:12px 0 8px;">Lớp Đã Đủ 5 Học Viên</h3>
-            <p style="font-size:0.92rem; color: #FFFFFF; margin-bottom:24px; line-height:1.7;">
-              Đăng ký Waitlist để được ưu tiên thông báo<br/>khi <strong style="color:var(--parchment);">Workshop Kế Tiếp</strong> mở đăng ký.
-            </p>
-            <form id="waitlist-form" novalidate>
-              <div class="form-group">
-                <label for="wl-name">HỌ VÀ TÊN</label>
-                <input type="text" id="wl-name" placeholder="Nguyễn Văn A" required />
-              </div>
-              <div class="form-group">
-                <label for="wl-phone">SỐ ĐIỆN THOẠI</label>
-                <input type="tel" id="wl-phone" placeholder="0901 234 567" required />
-              </div>
-              <div class="form-group">
-                <label for="wl-email">EMAIL</label>
-                <input type="email" id="wl-email" placeholder="ban@example.com" required />
-              </div>
-              <button type="submit" class="btn-submit" id="wl-submit-btn">✦ Đăng Ký Waitlist →</button>
-            </form>
+        <!-- PACKAGE 2: NÂNG CAO -->
+        <div class="pricing-card" style="transform:none; border:2px solid rgba(201,168,76,0.4);">
+          <div style="margin-bottom:24px;">
+            <h3 style="font-family:'Beautique Display',serif; font-size:1.6rem; color:var(--gold-light); margin:0 0 12px;">Gói Nâng Cao</h3>
           </div>
-          <div id="waitlist-success-view" style="display:none; text-align:center; padding:24px 0;">
-            <span style="font-size:2.5rem;">🎯</span>
-            <h3 style="font-family:'Beautique Display',serif; font-size:1.3rem; color:var(--gold-light); margin:12px 0 8px;">Đã Vào Danh Sách Chờ!</h3>
-            <p style="font-size:0.92rem; color: #FFFFFF; line-height:1.7;">Ý sẽ liên hệ bạn ngay khi Workshop kế tiếp mở đăng ký. Cảm ơn bạn đã quan tâm! 🙏</p>
+          <div style="margin-bottom:8px;">
+            <div class="pricing-type" style="margin-bottom:4px;">Early Bird (Trước 25/05)</div>
+            <div class="pricing-amount">1.386.000đ</div>
+          </div>
+          <div style="margin-bottom:24px; padding-bottom:24px; border-bottom:1px solid rgba(201,168,76,0.15);">
+            <div class="pricing-type" style="margin-bottom:4px; margin-top:16px;">Sau 25/05</div>
+            <div class="pricing-amount" style="color:var(--silver); font-size:1.8rem;">1.586.000đ</div>
+          </div>
+          <ul class="pricing-features">
+            <li><span class="feat-check">✓</span> 2 Buổi trong Gói Cơ Bản</li>
+            <li><span class="feat-check">✓</span> Buổi 3: Offline 05/06 - Workshop Nâng Cao - Chủ Đề Tự Động Hóa</li>
+            <li style="padding-top:12px; margin-top:4px; list-style:none; font-family:'Beautique Display',serif; font-size:0.72rem; letter-spacing:0.12em; color:var(--gold); border-top:1px solid rgba(201,168,76,0.2);">KẾT QUẢ NHẬN ĐƯỢC</li>
+            <li><span class="feat-check">✓</span> Xác nhận thanh toán: <span style="color:var(--gold-light);">Tự động</span></li>
+            <li><span class="feat-check">✓</span> Email xác nhận: <span style="color:var(--gold-light);">Tự động</span></li>
+            <li><span class="feat-check">✓</span> Telegram bot: <span style="color:var(--gold-light);">Thông báo đăng ký mới - Tự Động</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin-bottom:40px;">
+        <p style="color:#999; font-size:0.9rem;">⚡ Lớp tối đa <strong style="color:var(--gold);">5 học viên</strong> · Khi đủ người sẽ đóng đăng ký</p>
+      </div>
+
+      <!-- REGISTRATION HERO SECTION -->
+      <div class="reg-hero reveal" id="dang-ky">
+        <div class="reg-hero-bg"></div>
+        <div class="reg-hero-overlay"></div>
+        <div class="reg-hero-inner">
+          <!-- GLASS FORM CARD -->
+          <div class="reg-glass-card" id="form-container">
+            <!-- Waitlist view -->
+            <div id="waitlist-view" style="display:none; text-align:center; padding:8px 0;">
+              <span style="font-size:2rem;">📋</span>
+              <h3 style="font-family:'Beautique Display',serif; font-size:1.4rem; color:var(--gold-light); margin:12px 0 8px;">Lớp Đã Đủ 5 Học Viên</h3>
+              <p style="font-size:0.92rem; color:rgba(255,255,255,0.8); margin-bottom:24px; line-height:1.7;">
+                Đăng ký Waitlist để được ưu tiên thông báo<br/>khi <strong style="color:var(--gold-light);">Workshop Kế Tiếp</strong> mở đăng ký.
+              </p>
+              <form id="waitlist-form" novalidate>
+                <div class="form-group">
+                  <label for="wl-name">HỌ VÀ TÊN</label>
+                  <input type="text" id="wl-name" placeholder="Nguyễn Văn A" required />
+                </div>
+                <div class="form-group">
+                  <label for="wl-phone">SỐ ĐIỆN THOẠI</label>
+                  <input type="tel" id="wl-phone" placeholder="0901 234 567" required />
+                </div>
+                <div class="form-group">
+                  <label for="wl-email">EMAIL</label>
+                  <input type="email" id="wl-email" placeholder="ban@example.com" required />
+                </div>
+                <button type="submit" class="btn-submit" id="wl-submit-btn">✦ Đăng Ký Waitlist →</button>
+              </form>
+            </div>
+            <div id="waitlist-success-view" style="display:none; text-align:center; padding:24px 0;">
+              <span style="font-size:2.5rem;">🎯</span>
+              <h3 style="font-family:'Beautique Display',serif; font-size:1.3rem; color:var(--gold-light); margin:12px 0 8px;">Đã Vào Danh Sách Chờ!</h3>
+              <p style="font-size:0.92rem; color:rgba(255,255,255,0.8); line-height:1.7;">Ý sẽ liên hệ bạn ngay khi Workshop kế tiếp mở đăng ký. Cảm ơn bạn đã quan tâm! 🙏</p>
+            </div>
+
+            <!-- Main form view -->
+            <div id="reg-form-view">
+              <h3 style="font-family:'Beautique Display',serif; font-size:1.5rem; color:#fff; margin:0 0 16px;">Đăng Ký Ngay — Tối Đa 5 Học Viên</h3>
+              <div class="modal-package-badge" id="modal-package-badge" style="display:none;"></div>
+
+              <p style="font-family:'Beautique Display',serif; font-size:0.68rem; letter-spacing:0.14em; color:rgba(255,255,255,0.5); margin-bottom:8px;">CHỌN GÓI HỌC</p>
+              <div class="pkg-selector">
+                <label class="pkg-card active" id="pkg-card-basic" for="pkg-basic">
+                  <input type="radio" name="package" value="basic" id="pkg-basic" checked />
+                  <div class="pkg-check"></div>
+                  <div class="pkg-name">Gói Cơ Bản</div>
+                  <div class="pkg-price" id="price-basic">886.000đ</div>
+                  <div class="pkg-price-reg">Early Bird</div>
+                </label>
+                <label class="pkg-card" id="pkg-card-advanced" for="pkg-advanced">
+                  <input type="radio" name="package" value="advanced" id="pkg-advanced" />
+                  <div class="pkg-check"></div>
+                  <div class="pkg-name">Gói Nâng Cao</div>
+                  <div class="pkg-price" id="price-advanced">1.386.000đ</div>
+                  <div class="pkg-price-reg">Early Bird</div>
+                </label>
+              </div>
+              <input type="hidden" id="selected-package" name="package" value="basic" />
+              <input type="hidden" id="selected-price" name="price" value="886000" />
+
+              <form id="reg-form" novalidate>
+                <div class="form-group">
+                  <label for="reg-name">HỌ VÀ TÊN</label>
+                  <input type="text" id="reg-name" name="name" placeholder="Nguyễn Văn A" required />
+                  <p class="field-error" id="err-name">Vui lòng nhập họ tên (tối thiểu 2 ký tự)</p>
+                </div>
+                <div class="form-group">
+                  <label for="reg-phone">SỐ ĐIỆN THOẠI</label>
+                  <input type="tel" id="reg-phone" name="phone" placeholder="0901 234 567" required />
+                  <p class="field-error" id="err-phone">Số điện thoại không hợp lệ (VD: 0901 234 567)</p>
+                </div>
+                <div class="form-group">
+                  <label for="reg-email">EMAIL</label>
+                  <input type="email" id="reg-email" name="email" placeholder="ban@example.com" required />
+                  <p class="field-error" id="err-email">Email không đúng định dạng (VD: ban@gmail.com)</p>
+                </div>
+                <button type="submit" class="btn-submit" id="reg-submit-btn">✦ Xác Nhận Đăng Ký →</button>
+                <p class="form-error-msg" id="form-error">Có lỗi xảy ra. Vui lòng thử lại.</p>
+              </form>
+            </div>
+
+            <!-- Success: QR Payment -->
+            <div id="reg-success-view" class="form-success" style="display:none;">
+              <span class="success-icon">🎉</span>
+              <h3>Đăng Ký Thành Công!</h3>
+              <p style="margin-bottom:8px;">Scan QR bên dưới để hoàn tất thanh toán.</p>
+              <p style="font-family:'Beautique Display',serif; font-size:0.9rem; color:var(--gold-light); margin-bottom:4px;">Nội dung chuyển khoản:</p>
+              <p id="order-code-display" style="font-family:'Beautique Display',serif; font-size:1.3rem; font-weight:700; color:var(--gold); letter-spacing:0.1em; margin-bottom:16px;"></p>
+              <img id="payment-qr" src="" alt="QR thanh toán" style="width:210px; height:210px; border-radius:12px; border:2px solid rgba(201,168,76,0.4); display:block; margin:0 auto 12px;" />
+              <p style="font-family:'Beautique Display',serif; font-size:0.82rem; color:rgba(255,255,255,0.8);">MBBank · 0362722725 · Hồng Thiên Ý</p>
+              <div style="margin:16px 0 0; padding:12px 16px; background:rgba(201,168,76,0.12); border:1px solid rgba(201,168,76,0.4); border-radius:10px;">
+                <p style="font-size:0.88rem; color:var(--gold-light); font-weight:600; margin:0;">⚠️ Sau khi chuyển khoản xong, vui lòng <u>giữ nguyên trang này</u> để hệ thống tự xác nhận thanh toán cho bạn.</p>
+              </div>
+              <div id="payment-countdown-wrap" style="margin-top:16px;">
+                <p style="font-size:0.88rem; color:rgba(255,255,255,0.7); margin-bottom:4px;">Đang chờ xác nhận thanh toán…</p>
+                <p id="payment-countdown" style="font-family:'Beautique Display',serif; font-size:1.6rem; font-weight:700; color:var(--gold); letter-spacing:0.05em;">15:00</p>
+                <p id="payment-timeout-msg" style="display:none; font-size:0.88rem; color:#e57373; margin-top:8px;">Hết thời gian chờ. Nếu đã chuyển khoản, vui lòng nhắn tin cho Ý để được hỗ trợ.</p>
+              </div>
+            </div>
+
+            <!-- Success: Checkout done -->
+            <div id="checkout-success-view" class="form-success" style="display:none;">
+              <span class="success-icon">✅</span>
+              <h3 style="color:var(--gold);">Thanh Toán Thành Công!</h3>
+              <p style="margin-top:12px; line-height:1.8;">Email xác nhận sẽ được gửi về hộp thư của bạn.<br/>Vui lòng kiểm tra cả <strong>hộp thư spam</strong> nếu chưa thấy.</p>
+              <p style="margin-top:16px; font-size:0.88rem; color:rgba(255,255,255,0.7);">Hẹn gặp bạn tại workshop! 🎓</p>
+            </div>
           </div>
 
-          <div id="reg-form-view">
-            <div class="modal-package-badge" id="modal-package-badge" style="margin-bottom:24px;"></div>
-            <form id="reg-form" novalidate>
-              <div class="form-group">
-                <label for="reg-name">HỌ VÀ TÊN</label>
-                <input type="text" id="reg-name" name="name" placeholder="Nguyễn Văn A" required />
-                <p class="field-error" id="err-name">Vui lòng nhập họ tên (tối thiểu 2 ký tự)</p>
-              </div>
-              <div class="form-group">
-                <label for="reg-phone">SỐ ĐIỆN THOẠI</label>
-                <input type="tel" id="reg-phone" name="phone" placeholder="0901 234 567" required />
-                <p class="field-error" id="err-phone">Số điện thoại không hợp lệ (VD: 0901 234 567)</p>
-              </div>
-              <div class="form-group">
-                <label for="reg-email">EMAIL</label>
-                <input type="email" id="reg-email" name="email" placeholder="ban@example.com" required />
-                <p class="field-error" id="err-email">Email không đúng định dạng (VD: ban@gmail.com)</p>
-              </div>
-              <button type="submit" class="btn-submit" id="reg-submit-btn">✦ Xác Nhận Đăng Ký →</button>
-              <p class="form-error-msg" id="form-error">Có lỗi xảy ra. Vui lòng thử lại.</p>
-            </form>
-          </div>
-          <div id="reg-success-view" class="form-success" style="display:none;">
-            <span class="success-icon">🎉</span>
-            <h3>Đăng Ký Thành Công!</h3>
-            <p style="margin-bottom:8px;">Scan QR bên dưới để hoàn tất thanh toán.</p>
-            <p style="font-family:'Beautique Display',serif; font-size:0.9rem; color:var(--gold-light); margin-bottom:4px;">Nội dung chuyển khoản:</p>
-            <p id="order-code-display" style="font-family:'Beautique Display',serif; font-size:1.3rem; font-weight:700; color:var(--gold); letter-spacing:0.1em; margin-bottom:16px;"></p>
-            <img id="payment-qr" src="" alt="QR thanh toán" style="width:210px; height:210px; border-radius:12px; border:2px solid rgba(201,168,76,0.4); display:block; margin:0 auto 12px;" />
-            <p style="font-family:'Beautique Display',serif; font-size:0.82rem; color: #FFFFFF;">MBBank · 0362722725 · Hồng Thiên Ý</p>
-            <div style="margin:16px 0 0; padding:12px 16px; background:rgba(201,168,76,0.12); border:1px solid rgba(201,168,76,0.4); border-radius:10px;">
-              <p style="font-size:0.88rem; color:var(--gold-light); font-weight:600; margin:0;">⚠️ Sau khi chuyển khoản xong, vui lòng <u>giữ nguyên trang này</u> để hệ thống tự xác nhận thanh toán cho bạn.</p>
-            </div>
-            <div id="payment-countdown-wrap" style="margin-top:16px;">
-              <p style="font-size:0.88rem; color: #FFFFFF; margin-bottom:4px;">Đang chờ xác nhận thanh toán…</p>
-              <p id="payment-countdown" style="font-family:'Beautique Display',serif; font-size:1.6rem; font-weight:700; color:var(--gold); letter-spacing:0.05em;">15:00</p>
-              <p id="payment-timeout-msg" style="display:none; font-size:0.88rem; color:#e57373; margin-top:8px;">Hết thời gian chờ. Nếu đã chuyển khoản, vui lòng nhắn tin cho Ý để được hỗ trợ.</p>
-            </div>
-          </div>
-
-          <div id="checkout-success-view" class="form-success" style="display:none;">
-            <span class="success-icon">✅</span>
-            <h3 style="color:var(--gold);">Thanh Toán Thành Công!</h3>
-            <p style="margin-top:12px; line-height:1.8;">Email xác nhận sẽ được gửi về hộp thư của bạn.<br/>Vui lòng kiểm tra cả <strong>hộp thư spam</strong> nếu chưa thấy.</p>
-            <p style="margin-top:16px; font-size:0.88rem; color: #FFFFFF;">Hẹn gặp bạn tại workshop! 🎓</p>
-          </div>
         </div>
       </div>
     </div>
@@ -3371,17 +3543,56 @@
     /* ── Registration Form ── */
     (function () {
       const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbym1l_YvHTBLX9tH5Q2N7Sx4o8KxT4hcwJwRXaRg5HELxEjMWLJ7QjAo1_1K-YN78JV/exec';
-      const EARLY_BIRD_DEADLINE = new Date('2026-05-11T23:59:59+07:00');
+      const EARLY_BIRD_DEADLINE = new Date('2026-05-25T23:59:59+07:00');
       function isEarlyBird() { return new Date() <= EARLY_BIRD_DEADLINE; }
 
       const badge = document.getElementById('modal-package-badge');
-      if (isEarlyBird()) {
-        badge.textContent = '✨ Early Bird · Đăng ký trước 25/05 chỉ 886.000đ';
-        badge.className = 'modal-package-badge early-bird';
-      } else {
-        badge.textContent = 'Giá hiện tại · 1.086.000đ';
-        badge.className = 'modal-package-badge regular';
+
+      // Package selection logic
+      function updatePriceDisplay() {
+        const isEB = isEarlyBird();
+        const basicPrice = isEB ? '886.000đ (Early Bird)' : '1.086.000đ';
+        const advPrice = isEB ? '1.386.000đ (Early Bird)' : '1.586.000đ';
+        document.getElementById('price-basic').textContent = basicPrice;
+        document.getElementById('price-advanced').textContent = advPrice;
       }
+      updatePriceDisplay();
+
+      function handlePackageChange() {
+        const selectedPkg = document.querySelector('input[name="package"]:checked').value;
+        const isEB = isEarlyBird();
+        let amount = 0;
+        let priceText = '';
+
+        if (selectedPkg === 'basic') {
+          amount = isEB ? 886000 : 1086000;
+          priceText = isEB ? 'Early Bird - 886.000đ' : 'Giá Gốc - 1.086.000đ';
+          badge.textContent = '✨ Early Bird · Đăng ký trước 25/05 chỉ 886.000đ';
+          badge.className = 'modal-package-badge early-bird';
+        } else {
+          amount = isEB ? 1386000 : 1586000;
+          priceText = isEB ? 'Early Bird - 1.386.000đ' : 'Giá Gốc - 1.586.000đ';
+          badge.textContent = '⭐ Gói Nâng Cao · ' + priceText.split(' - ')[1];
+          badge.className = 'modal-package-badge featured';
+        }
+
+        document.getElementById('selected-package').value = selectedPkg;
+        document.getElementById('selected-price').value = amount;
+        document.getElementById('reg-form-view').setAttribute('data-package', selectedPkg);
+        document.getElementById('reg-form-view').setAttribute('data-amount', amount);
+      }
+
+      document.getElementById('pkg-basic').addEventListener('change', function() {
+        document.getElementById('pkg-card-basic').classList.add('active');
+        document.getElementById('pkg-card-advanced').classList.remove('active');
+        handlePackageChange();
+      });
+      document.getElementById('pkg-advanced').addEventListener('change', function() {
+        document.getElementById('pkg-card-advanced').classList.add('active');
+        document.getElementById('pkg-card-basic').classList.remove('active');
+        handlePackageChange();
+      });
+      handlePackageChange(); // Initialize
 
       function validateField(id, errId, isValid) {
         const input = document.getElementById(id);
@@ -3408,13 +3619,23 @@
         const btn = document.getElementById('reg-submit-btn');
         btn.disabled = true;
         btn.textContent = 'Đang gửi...';
-        const pkg = isEarlyBird() ? 'Early Bird - 886.000đ' : 'Giá Gốc - 1.086.000đ';
-        const params = new URLSearchParams({ name, phone, email, package: pkg });
+
+        // Get selected package and amount
+        const selectedPkg = document.querySelector('input[name="package"]:checked').value;
+        const amount = parseInt(document.getElementById('selected-price').value);
+
+        let pkgLabel = '';
+        if (selectedPkg === 'basic') {
+          pkgLabel = isEarlyBird() ? 'Gói Cơ Bản - Early Bird 886.000đ' : 'Gói Cơ Bản - 1.086.000đ';
+        } else {
+          pkgLabel = isEarlyBird() ? 'Gói Nâng Cao - Early Bird 1.386.000đ' : 'Gói Nâng Cao - 1.586.000đ';
+        }
+
+        const params = new URLSearchParams({ name, phone, email, package: pkgLabel });
         fetch(SCRIPT_URL + '?' + params.toString())
           .then(function (res) { return res.json(); })
           .then(function (data) {
             const code = data.code || ('LPWS' + Math.random().toString(36).substring(2,6).toUpperCase());
-            const amount = isEarlyBird() ? 886000 : 1086000;
             document.getElementById('order-code-display').textContent = code;
             document.getElementById('payment-qr').src =
               'https://qr.sepay.vn/img?acc=0362722725&bank=MBBank&amount=' + amount + '&des=' + encodeURIComponent(code);
