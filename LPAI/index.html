@@ -2609,6 +2609,49 @@
       80%  { opacity: 0.4; transform: translateY(-60px) scale(0.6); }
       100% { opacity: 0; transform: translateY(-80px) scale(0); }
     }
+    /* ═══════════════════════════════════════════
+       AUDIO CONTROLS
+    ═══════════════════════════════════════════ */
+    .bg-music-widget {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-music-toggle {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: #fff;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+    .btn-music-toggle:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(201,168,76,0.4);
+    }
+    .btn-music-toggle.playing {
+      animation: magic-pulse 2s infinite ease-in-out;
+      border-color: rgba(201,168,76,0.5);
+    }
+    @keyframes magic-pulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(201,168,76,0.4); }
+      50% { transform: scale(1.08); box-shadow: 0 0 30px rgba(201,168,76,0.8); }
+    }
   </style>
 </head>
 <body>
@@ -4103,6 +4146,54 @@
       history.scrollRestoration = 'manual';
     }
     window.scrollTo(0, 0);
+  </script>
+  <!-- BG Music Widget -->
+  <div class="bg-music-widget">
+    <button id="toggle-music" class="btn-music-toggle" title="Bật/Tắt Nhạc">
+      🪄
+    </button>
+  </div>
+  <div id="yt-player-container" style="position: absolute; top: -9999px; left: -9999px; width: 1px; height: 1px; overflow: hidden;">
+    <div id="yt-player"></div>
+  </div>
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    var ytPlayer;
+    function onYouTubeIframeAPIReady() {
+      ytPlayer = new YT.Player('yt-player', {
+        height: '10',
+        width: '10',
+        videoId: 'LCfEqudu4pc',
+        playerVars: {
+          'autoplay': 0,
+          'controls': 0,
+          'showinfo': 0,
+          'rel': 0,
+          'loop': 1,
+          'playlist': 'LCfEqudu4pc'
+        },
+        events: {
+          'onReady': onPlayerReady
+        }
+      });
+    }
+
+    var isMusicPlaying = false;
+    function onPlayerReady(event) {
+      ytPlayer.setVolume(50);
+      var toggleBtn = document.getElementById('toggle-music');
+      toggleBtn.addEventListener('click', function() {
+        if (isMusicPlaying) {
+          ytPlayer.pauseVideo();
+          toggleBtn.classList.remove('playing');
+          isMusicPlaying = false;
+        } else {
+          ytPlayer.playVideo();
+          toggleBtn.classList.add('playing');
+          isMusicPlaying = true;
+        }
+      });
+    }
   </script>
 </body>
 </html>
