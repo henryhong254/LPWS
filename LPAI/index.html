@@ -1242,6 +1242,30 @@
     /* ═══════════════════════════════════════════
        FAQ
     ═══════════════════════════════════════════ */
+    #hinh-lop { padding: 64px 24px; }
+    .hinh-lop-header { text-align:center; margin-bottom:40px; }
+    .hinh-lop-header h2 { font-size: clamp(1.6rem,4vw,2.4rem); margin-top:12px; }
+    .hinh-lop-header p { color:rgba(255,255,255,0.6); margin-top:10px; font-size:1rem; }
+    .hinh-lop-grid {
+      columns: 3;
+      column-gap: 16px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .hinh-lop-grid img {
+      width: 100%;
+      display: block;
+      margin-bottom: 16px;
+      border-radius: 12px;
+      object-fit: cover;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hinh-lop-grid img:hover { transform: scale(1.02); opacity:0.9; }
+    @media (max-width: 640px) {
+      #hinh-lop { padding: 32px 16px; }
+      .hinh-lop-grid { columns: 2; column-gap: 10px; }
+      .hinh-lop-grid img { margin-bottom: 10px; }
+    }
     #faq {
       padding: 80px 24px;
       position: relative;
@@ -2489,6 +2513,7 @@
     <a href="#instructor">Người dạy</a>
     <a href="#schedule">Lịch học</a>
     <a href="#pricing">Đăng ký</a>
+    <a href="#hinh-lop">Hình lớp</a>
     <a href="#faq">FAQ</a>
   </div>
 
@@ -3372,6 +3397,31 @@
           </div>
 
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── HÌNH LỚP ───────────── -->
+  <section id="hinh-lop">
+    <div class="container">
+      <div class="hinh-lop-header reveal">
+        <span class="section-label">✦ Hình Ảnh Lớp Học ✦</span>
+        <h2>Những Buổi Học <span class="gold-text">Trước Đây</span></h2>
+        <p>Một vài khoảnh khắc từ các buổi học đã diễn ra.</p>
+      </div>
+      <div class="hinh-lop-grid reveal">
+        <img src="Assets/students/1.jpg" alt="Hình lớp học 1" loading="lazy">
+        <img src="Assets/students/2.JPG" alt="Hình lớp học 2" loading="lazy">
+        <img src="Assets/students/3.JPG" alt="Hình lớp học 3" loading="lazy">
+        <img src="Assets/students/4.jpg" alt="Hình lớp học 4" loading="lazy">
+        <img src="Assets/students/5.jpg" alt="Hình lớp học 5" loading="lazy">
+        <img src="Assets/students/6.jpg" alt="Hình lớp học 6" loading="lazy">
+        <img src="Assets/students/7.jpg" alt="Hình lớp học 7" loading="lazy">
+        <img src="Assets/students/8.jpg" alt="Hình lớp học 8" loading="lazy">
+        <img src="Assets/students/9.jpg" alt="Hình lớp học 9" loading="lazy">
+        <img src="Assets/students/10.jpg" alt="Hình lớp học 10" loading="lazy">
+        <img src="Assets/students/11.jpg" alt="Hình lớp học 11" loading="lazy">
+        <img src="Assets/students/12.jpg" alt="Hình lớp học 12" loading="lazy">
       </div>
     </div>
   </section>
