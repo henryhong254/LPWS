@@ -1240,147 +1240,6 @@
     .deadline-note strong { color: var(--gold); font-style: normal; }
 
     /* ═══════════════════════════════════════════
-       CLASS GALLERY
-    ═══════════════════════════════════════════ */
-    #class-gallery {
-      padding: 80px 24px;
-      position: relative;
-      z-index: 1;
-    }
-    .class-gallery-header {
-      text-align: center;
-      margin-bottom: 42px;
-    }
-    .class-gallery-header h2 {
-      font-size: clamp(1.5rem, 4vw, 2.2rem);
-      margin-top: 12px;
-    }
-    .class-gallery-header p {
-      max-width: 620px;
-      margin: 14px auto 0;
-      color: #FFFFFF;
-      font-size: clamp(1.05rem, 2.2vw, 1.18rem);
-      line-height: 1.75;
-    }
-    .class-gallery-frame {
-      max-width: 920px;
-      margin: 0 auto;
-      position: relative;
-    }
-    .class-gallery-frame:not(.is-open)::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 260px;
-      pointer-events: none;
-      z-index: 1;
-      background: linear-gradient(
-        180deg,
-        rgba(14,8,24,0) 0%,
-        rgba(14,8,24,0.55) 38%,
-        rgba(13,15,26,0.96) 100%
-      );
-    }
-    .learning-gallery {
-      max-width: 920px;
-      margin: 0 auto;
-      column-count: 3;
-      column-gap: 18px;
-      transition: max-height 0.5s ease;
-    }
-    .class-gallery-frame:not(.is-open) .learning-gallery {
-      max-height: 660px;
-      overflow: hidden;
-    }
-    .learning-gallery-item {
-      display: inline-block;
-      width: 100%;
-      margin: 0 0 18px;
-      break-inside: avoid;
-      border: 1px solid rgba(201,168,76,0.18);
-      border-radius: var(--radius);
-      background: var(--navy-card);
-      overflow: hidden;
-      position: relative;
-      box-shadow: 0 18px 42px rgba(0,0,0,0.24);
-      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-    }
-    .learning-gallery-item:hover {
-      transform: translateY(-4px);
-      border-color: rgba(201,168,76,0.55);
-      box-shadow: 0 24px 56px rgba(0,0,0,0.36), 0 0 0 1px rgba(201,168,76,0.08);
-    }
-    .learning-gallery-item img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .class-gallery-action {
-      text-align: center;
-      margin-top: 22px;
-      position: relative;
-      z-index: 2;
-    }
-    .class-gallery-frame:not(.is-open) .class-gallery-action {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 28px;
-      margin-top: 0;
-    }
-    .btn-gallery-toggle {
-      border: 0;
-      background: transparent;
-      color: var(--gold-light);
-      cursor: pointer;
-      font-family: 'Beautique Display', serif;
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 8px 4px;
-      text-shadow: 0 0 18px rgba(201,168,76,0.35);
-      transition: color 0.2s, transform 0.2s;
-    }
-    .btn-gallery-toggle:hover {
-      transform: translateY(-2px);
-      color: #FFFFFF;
-    }
-    .btn-gallery-toggle:focus { outline: none; }
-    .btn-gallery-toggle:focus-visible {
-      color: #FFFFFF;
-      text-decoration: underline;
-      text-underline-offset: 6px;
-      text-decoration-color: rgba(201,168,76,0.7);
-    }
-    @media (max-width: 820px) {
-      .learning-gallery { column-count: 2; }
-      .class-gallery-frame:not(.is-open) .learning-gallery {
-        max-height: 620px;
-      }
-    }
-    @media (max-width: 520px) {
-      #class-gallery { padding: 28px 16px; }
-      .class-gallery-header { margin-bottom: 28px; }
-      .learning-gallery {
-        column-gap: 12px;
-      }
-      .learning-gallery-item { margin-bottom: 12px; }
-      .class-gallery-frame:not(.is-open) .learning-gallery {
-        max-height: 520px;
-      }
-      .class-gallery-frame:not(.is-open)::after {
-        height: 190px;
-      }
-      .btn-gallery-toggle {
-        width: auto;
-        padding: 12px 18px;
-      }
-    }
-
-    /* ═══════════════════════════════════════════
        FAQ
     ═══════════════════════════════════════════ */
     #faq {
@@ -1838,18 +1697,6 @@
     .outcomes-card {
       position: relative;
       padding: 32px 24px;
-      background: rgba(255, 255, 255, 0.05); /* Nền kính mờ */
-      border: 1px solid rgba(255, 255, 255, 0.2) !important; /* Viền trắng mảnh */
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* Đổ bóng nhẹ */
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: var(--radius-lg);
-    }
-    .outcomes-card:hover {
-      border-color: rgba(255, 255, 255, 0.35) !important;
-      box-shadow: 0 12px 48px 0 rgba(0, 0, 0, 0.45);
-      background: rgba(255, 255, 255, 0.08);
-      transform: translateY(-4px);
     }
     .outcomes-card-num {
       font-family: 'Beautique Display', serif;
@@ -2175,6 +2022,8 @@
       #schedule { padding: 28px 16px; }
       #faq { padding: 28px 16px; }
       #pricing { padding: 28px 16px; }
+      .pricing-reg-grid { max-width: 360px; margin-left: auto; margin-right: auto; }
+      .pricing-card { padding: 24px 20px; }
       #showcase { padding: 32px 24px; }
       #showcase .showcase-grid { margin: 0 -24px; padding-left: 24px; width: calc(100% + 24px); }
       #comparison { padding: 0 12px 20px; margin-top: -8px; }
@@ -2609,49 +2458,6 @@
       80%  { opacity: 0.4; transform: translateY(-60px) scale(0.6); }
       100% { opacity: 0; transform: translateY(-80px) scale(0); }
     }
-    /* ═══════════════════════════════════════════
-       AUDIO CONTROLS
-    ═══════════════════════════════════════════ */
-    .bg-music-widget {
-      position: fixed;
-      bottom: 24px;
-      left: 24px;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .btn-music-toggle {
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      color: #fff;
-      font-size: 1.4rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      outline: none;
-    }
-    .btn-music-toggle:hover {
-      background: rgba(255, 255, 255, 0.1);
-      transform: scale(1.05);
-      box-shadow: 0 0 15px rgba(201,168,76,0.4);
-    }
-    .btn-music-toggle.playing {
-      animation: magic-pulse 2s infinite ease-in-out;
-      border-color: rgba(201,168,76,0.5);
-    }
-    @keyframes magic-pulse {
-      0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(201,168,76,0.4); }
-      50% { transform: scale(1.08); box-shadow: 0 0 30px rgba(201,168,76,0.8); }
-    }
   </style>
 </head>
 <body>
@@ -2677,7 +2483,6 @@
     <a href="#instructor">Người dạy</a>
     <a href="#schedule">Lịch học</a>
     <a href="#pricing">Đăng ký</a>
-    <a href="#class-gallery">Hình lớp</a>
     <a href="#faq">FAQ</a>
   </div>
 
@@ -3565,64 +3370,6 @@
     </div>
   </section>
 
-  <!-- ───────────── CLASS GALLERY ───────────── -->
-  <section id="class-gallery">
-    <div class="container">
-      <div class="class-gallery-header reveal">
-        <span class="section-label">✦ Hình Ảnh Lớp Học ✦</span>
-        <h2>Những Buổi Học <span class="gold-text">Trước Đây</span></h2>
-        <p>Một vài khoảnh khắc từ các buổi học đã diễn ra.</p>
-      </div>
-
-      <div class="class-gallery-frame reveal" id="class-gallery-frame">
-        <div class="learning-gallery" id="learning-gallery">
-          <figure class="learning-gallery-item">
-            <img src="Assets/students/1.jpg" alt="Hình buổi học Landing Page AI 01" loading="lazy" />
-          </figure>
-          <figure class="learning-gallery-item">
-            <img src="Assets/students/2.JPG" alt="Hình buổi học Landing Page AI 02" loading="lazy" />
-          </figure>
-          <figure class="learning-gallery-item">
-            <img src="Assets/students/3.JPG" alt="Hình buổi học Landing Page AI 03" loading="lazy" />
-          </figure>
-          <figure class="learning-gallery-item">
-            <img src="Assets/students/4.jpg" alt="Hình buổi học Landing Page AI 04" loading="lazy" />
-          </figure>
-          <figure class="learning-gallery-item">
-            <img src="Assets/students/5.jpg" alt="Hình buổi học Landing Page AI 05" loading="lazy" />
-          </figure>
-          <figure class="learning-gallery-item">
-            <img src="Assets/students/6.jpg" alt="Hình buổi học Landing Page AI 06" loading="lazy" />
-          </figure>
-          <figure class="learning-gallery-item">
-            <img src="Assets/students/7.jpg" alt="Hình buổi học Landing Page AI 07" loading="lazy" />
-          </figure>
-          <figure class="learning-gallery-item">
-            <img src="Assets/students/8.jpg" alt="Hình buổi học Landing Page AI 08" loading="lazy" />
-          </figure>
-          <figure class="learning-gallery-item">
-            <img src="Assets/students/9.jpg" alt="Hình buổi học Landing Page AI 09" loading="lazy" />
-          </figure>
-          <figure class="learning-gallery-item">
-            <img src="Assets/students/10.jpg" alt="Hình buổi học Landing Page AI 10" loading="lazy" />
-          </figure>
-          <figure class="learning-gallery-item">
-            <img src="Assets/students/11.jpg" alt="Hình buổi học Landing Page AI 11" loading="lazy" />
-          </figure>
-          <figure class="learning-gallery-item">
-            <img src="Assets/students/12.jpg" alt="Hình buổi học Landing Page AI 12" loading="lazy" />
-          </figure>
-        </div>
-
-        <div class="class-gallery-action">
-          <button class="btn-gallery-toggle" type="button" id="gallery-toggle-btn" onclick="toggleClassGallery()" aria-expanded="false" aria-controls="learning-gallery">
-            Xem thêm hình ảnh ↓
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ───────────── FAQ ───────────── -->
   <section id="faq">
     <div class="container">
@@ -3766,18 +3513,6 @@
       const isOpen = item.classList.contains('open');
       document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
       if (!isOpen) item.classList.add('open');
-    }
-
-    /* ── Class Gallery ── */
-    function toggleClassGallery() {
-      const frame = document.getElementById('class-gallery-frame');
-      const gallery = document.getElementById('learning-gallery');
-      const btn = document.getElementById('gallery-toggle-btn');
-      if (!frame || !gallery || !btn) return;
-
-      const isOpen = frame.classList.toggle('is-open');
-      btn.setAttribute('aria-expanded', String(isOpen));
-      btn.textContent = isOpen ? 'Thu gọn hình ảnh ↑' : 'Xem thêm hình ảnh ↓';
     }
 
     /* ── Countdown ── */
@@ -3971,7 +3706,7 @@
 
     /* ── Sub-Nav Active State ── */
     (function () {
-      const sections = ['pain', 'comparison', 'outcomes', 'for-who', 'instructor', 'schedule', 'pricing', 'class-gallery', 'faq'];
+      const sections = ['pain', 'comparison', 'outcomes', 'for-who', 'instructor', 'schedule', 'pricing', 'faq'];
       const navLinks = document.querySelectorAll('.sub-nav a');
       function updateActiveNav() {
         let current = '';
@@ -4146,54 +3881,6 @@
       history.scrollRestoration = 'manual';
     }
     window.scrollTo(0, 0);
-  </script>
-  <!-- BG Music Widget -->
-  <div class="bg-music-widget">
-    <button id="toggle-music" class="btn-music-toggle" title="Bật/Tắt Nhạc">
-      🪄
-    </button>
-  </div>
-  <div id="yt-player-container" style="position: absolute; top: -9999px; left: -9999px; width: 1px; height: 1px; overflow: hidden;">
-    <div id="yt-player"></div>
-  </div>
-  <script src="https://www.youtube.com/iframe_api"></script>
-  <script>
-    var ytPlayer;
-    function onYouTubeIframeAPIReady() {
-      ytPlayer = new YT.Player('yt-player', {
-        height: '10',
-        width: '10',
-        videoId: 'LCfEqudu4pc',
-        playerVars: {
-          'autoplay': 0,
-          'controls': 0,
-          'showinfo': 0,
-          'rel': 0,
-          'loop': 1,
-          'playlist': 'LCfEqudu4pc'
-        },
-        events: {
-          'onReady': onPlayerReady
-        }
-      });
-    }
-
-    var isMusicPlaying = false;
-    function onPlayerReady(event) {
-      ytPlayer.setVolume(50);
-      var toggleBtn = document.getElementById('toggle-music');
-      toggleBtn.addEventListener('click', function() {
-        if (isMusicPlaying) {
-          ytPlayer.pauseVideo();
-          toggleBtn.classList.remove('playing');
-          isMusicPlaying = false;
-        } else {
-          ytPlayer.playVideo();
-          toggleBtn.classList.add('playing');
-          isMusicPlaying = true;
-        }
-      });
-    }
   </script>
 </body>
 </html>
