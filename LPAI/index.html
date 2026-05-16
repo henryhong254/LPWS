@@ -1242,18 +1242,18 @@
     /* ═══════════════════════════════════════════
        FAQ
     ═══════════════════════════════════════════ */
-    #hinh-lop { padding: 64px 24px; }
-    .hinh-lop-header { text-align:center; margin-bottom:40px; }
-    .hinh-lop-header h2 { font-size: clamp(1.6rem,4vw,2.4rem); margin-top:12px; }
-    .hinh-lop-header p { color:rgba(255,255,255,0.6); margin-top:10px; font-size:1rem; }
-    .hinh-lop-grid {
+    #class-gallery { padding: 64px 24px; }
+    .class-gallery-header { text-align:center; margin-bottom:40px; }
+    .class-gallery-header h2 { font-size: clamp(1.6rem,4vw,2.4rem); margin-top:12px; }
+    .class-gallery-header p { color:rgba(255,255,255,0.6); margin-top:10px; font-size:1rem; }
+    .class-gallery-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 14px;
       max-width: 1000px;
       margin: 0 auto;
     }
-    .hinh-lop-grid img {
+    .class-gallery-grid img {
       width: 100%;
       aspect-ratio: 4/3;
       display: block;
@@ -1262,10 +1262,10 @@
       object-position: center top;
       transition: transform 0.3s, opacity 0.3s;
     }
-    .hinh-lop-grid img:hover { transform: scale(1.02); opacity:0.9; }
+    .class-gallery-grid img:hover { transform: scale(1.02); opacity:0.9; }
     @media (max-width: 640px) {
-      #hinh-lop { padding: 32px 16px; }
-      .hinh-lop-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      #class-gallery { padding: 32px 16px; }
+      .class-gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
     }
     #faq {
       padding: 80px 24px;
@@ -2514,7 +2514,7 @@
     <a href="#instructor">Người dạy</a>
     <a href="#schedule">Lịch học</a>
     <a href="#pricing">Đăng ký</a>
-    <a href="#hinh-lop">Kỷ Yếu</a>
+    <a href="#class-gallery">Kỷ Yếu</a>
     <a href="#faq">FAQ</a>
   </div>
 
@@ -3403,36 +3403,36 @@
   </section>
 
   <!-- ───────────── HÌNH LỚP ───────────── -->
-  <section id="hinh-lop">
+  <section id="class-gallery">
     <div class="container">
-      <div class="hinh-lop-header reveal">
+      <div class="class-gallery-header reveal">
         <span class="section-label">✦ Kỷ Yếu ✦</span>
         <h2>Những Buổi Học <span class="gold-text">Trước Đây</span></h2>
         <p>Một vài khoảnh khắc từ các buổi học đã diễn ra.</p>
       </div>
-      <div class="hinh-lop-grid reveal">
+      <div class="class-gallery-grid reveal">
         <img src="Assets/students/1.jpg" alt="Kỷ yếu 1" loading="lazy" style="object-position:center center;">
         <img src="Assets/students/2.JPG" alt="Kỷ yếu 2" loading="lazy" style="object-position:center top;">
         <img src="Assets/students/3.JPG" alt="Kỷ yếu 3" loading="lazy" style="object-position:center 25%;">
         <img src="Assets/students/4.jpg" alt="Kỷ yếu 4" loading="lazy" style="object-position:center center;">
         <img src="Assets/students/5.jpg" alt="Kỷ yếu 5" loading="lazy" style="object-position:center center;">
         <img src="Assets/students/7.jpg" alt="Kỷ yếu 7" loading="lazy" style="object-position:center 25%;">
-        <img src="Assets/students/6.jpg" alt="Kỷ yếu 6" loading="lazy" class="hinh-lop-extra" style="display:none; object-position:center center;">
-        <img src="Assets/students/8.jpg" alt="Kỷ yếu 8" loading="lazy" class="hinh-lop-extra" style="display:none; object-position:center center;">
-        <img src="Assets/students/9.jpg" alt="Kỷ yếu 9" loading="lazy" class="hinh-lop-extra" style="display:none; object-position:center center;">
-        <img src="Assets/students/10.jpg" alt="Kỷ yếu 10" loading="lazy" class="hinh-lop-extra" style="display:none; object-position:center center;">
-        <img src="Assets/students/11.jpg" alt="Kỷ yếu 11" loading="lazy" class="hinh-lop-extra" style="display:none; object-position:center center;">
-        <img src="Assets/students/12.jpg" alt="Kỷ yếu 12" loading="lazy" class="hinh-lop-extra" style="display:none; object-position:center center;">
+        <img src="Assets/students/6.jpg" alt="Kỷ yếu 6" loading="lazy" class="class-gallery-extra" style="display:none; object-position:center center;">
+        <img src="Assets/students/8.jpg" alt="Kỷ yếu 8" loading="lazy" class="class-gallery-extra" style="display:none; object-position:center center;">
+        <img src="Assets/students/9.jpg" alt="Kỷ yếu 9" loading="lazy" class="class-gallery-extra" style="display:none; object-position:center center;">
+        <img src="Assets/students/10.jpg" alt="Kỷ yếu 10" loading="lazy" class="class-gallery-extra" style="display:none; object-position:center center;">
+        <img src="Assets/students/11.jpg" alt="Kỷ yếu 11" loading="lazy" class="class-gallery-extra" style="display:none; object-position:center center;">
+        <img src="Assets/students/12.jpg" alt="Kỷ yếu 12" loading="lazy" class="class-gallery-extra" style="display:none; object-position:center center;">
       </div>
       <div style="text-align:center; margin-top:32px;">
-        <button id="hinh-lop-toggle" onclick="toggleHinhLop()" style="background:transparent; border:1px solid rgba(201,168,76,0.6); color:var(--gold); font-family:'Beautique Display',serif; font-size:0.9rem; letter-spacing:0.12em; padding:12px 32px; border-radius:30px; cursor:pointer; transition:all 0.3s;">✦ Xem Thêm</button>
+        <button id="class-gallery-toggle" onclick="toggleHinhLop()" style="background:transparent; border:1px solid rgba(201,168,76,0.6); color:var(--gold); font-family:'Beautique Display',serif; font-size:0.9rem; letter-spacing:0.12em; padding:12px 32px; border-radius:30px; cursor:pointer; transition:all 0.3s;">✦ Xem Thêm</button>
       </div>
     </div>
   </section>
   <script>
     function toggleHinhLop() {
-      var extras = document.querySelectorAll('.hinh-lop-extra');
-      var btn = document.getElementById('hinh-lop-toggle');
+      var extras = document.querySelectorAll('.class-gallery-extra');
+      var btn = document.getElementById('class-gallery-toggle');
       var isHidden = extras[0].style.display === 'none';
       extras.forEach(function(img) { img.style.display = isHidden ? 'block' : 'none'; });
       btn.textContent = isHidden ? '✦ Thu Gọn' : '✦ Xem Thêm';
@@ -3775,7 +3775,7 @@
 
     /* ── Sub-Nav Active State ── */
     (function () {
-      const sections = ['pain', 'comparison', 'outcomes', 'for-who', 'instructor', 'schedule', 'pricing', 'hinh-lop', 'faq'];
+      const sections = ['pain', 'comparison', 'outcomes', 'for-who', 'instructor', 'schedule', 'pricing', 'class-gallery', 'faq'];
       const navLinks = document.querySelectorAll('.sub-nav a');
       function updateActiveNav() {
         let current = '';
