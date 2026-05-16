@@ -1247,15 +1247,16 @@
     .hinh-lop-header h2 { font-size: clamp(1.6rem,4vw,2.4rem); margin-top:12px; }
     .hinh-lop-header p { color:rgba(255,255,255,0.6); margin-top:10px; font-size:1rem; }
     .hinh-lop-grid {
-      columns: 3;
-      column-gap: 16px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
       max-width: 1000px;
       margin: 0 auto;
     }
     .hinh-lop-grid img {
       width: 100%;
+      height: 260px;
       display: block;
-      margin-bottom: 16px;
       border-radius: 12px;
       object-fit: cover;
       transition: transform 0.3s, opacity 0.3s;
@@ -1263,8 +1264,8 @@
     .hinh-lop-grid img:hover { transform: scale(1.02); opacity:0.9; }
     @media (max-width: 640px) {
       #hinh-lop { padding: 32px 16px; }
-      .hinh-lop-grid { columns: 2; column-gap: 10px; }
-      .hinh-lop-grid img { margin-bottom: 10px; }
+      .hinh-lop-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .hinh-lop-grid img { height: 160px; }
     }
     #faq {
       padding: 80px 24px;
@@ -3774,7 +3775,7 @@
 
     /* ── Sub-Nav Active State ── */
     (function () {
-      const sections = ['pain', 'comparison', 'outcomes', 'for-who', 'instructor', 'schedule', 'pricing', 'faq'];
+      const sections = ['pain', 'comparison', 'outcomes', 'for-who', 'instructor', 'schedule', 'pricing', 'hinh-lop', 'faq'];
       const navLinks = document.querySelectorAll('.sub-nav a');
       function updateActiveNav() {
         let current = '';
