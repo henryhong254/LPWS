@@ -3414,17 +3414,29 @@
         <img src="Assets/students/2.JPG" alt="Hình lớp học 2" loading="lazy">
         <img src="Assets/students/3.JPG" alt="Hình lớp học 3" loading="lazy">
         <img src="Assets/students/4.jpg" alt="Hình lớp học 4" loading="lazy">
-        <img src="Assets/students/5.jpg" alt="Hình lớp học 5" loading="lazy">
-        <img src="Assets/students/6.jpg" alt="Hình lớp học 6" loading="lazy">
-        <img src="Assets/students/7.jpg" alt="Hình lớp học 7" loading="lazy">
-        <img src="Assets/students/8.jpg" alt="Hình lớp học 8" loading="lazy">
-        <img src="Assets/students/9.jpg" alt="Hình lớp học 9" loading="lazy">
-        <img src="Assets/students/10.jpg" alt="Hình lớp học 10" loading="lazy">
-        <img src="Assets/students/11.jpg" alt="Hình lớp học 11" loading="lazy">
-        <img src="Assets/students/12.jpg" alt="Hình lớp học 12" loading="lazy">
+        <img src="Assets/students/5.jpg" alt="Hình lớp học 5" loading="lazy" class="hinh-lop-extra" style="display:none;">
+        <img src="Assets/students/6.jpg" alt="Hình lớp học 6" loading="lazy" class="hinh-lop-extra" style="display:none;">
+        <img src="Assets/students/7.jpg" alt="Hình lớp học 7" loading="lazy" class="hinh-lop-extra" style="display:none;">
+        <img src="Assets/students/8.jpg" alt="Hình lớp học 8" loading="lazy" class="hinh-lop-extra" style="display:none;">
+        <img src="Assets/students/9.jpg" alt="Hình lớp học 9" loading="lazy" class="hinh-lop-extra" style="display:none;">
+        <img src="Assets/students/10.jpg" alt="Hình lớp học 10" loading="lazy" class="hinh-lop-extra" style="display:none;">
+        <img src="Assets/students/11.jpg" alt="Hình lớp học 11" loading="lazy" class="hinh-lop-extra" style="display:none;">
+        <img src="Assets/students/12.jpg" alt="Hình lớp học 12" loading="lazy" class="hinh-lop-extra" style="display:none;">
+      </div>
+      <div style="text-align:center; margin-top:32px;">
+        <button id="hinh-lop-toggle" onclick="toggleHinhLop()" style="background:transparent; border:1px solid rgba(201,168,76,0.6); color:var(--gold); font-family:'Beautique Display',serif; font-size:0.9rem; letter-spacing:0.12em; padding:12px 32px; border-radius:30px; cursor:pointer; transition:all 0.3s;">✦ Xem Thêm</button>
       </div>
     </div>
   </section>
+  <script>
+    function toggleHinhLop() {
+      var extras = document.querySelectorAll('.hinh-lop-extra');
+      var btn = document.getElementById('hinh-lop-toggle');
+      var isHidden = extras[0].style.display === 'none';
+      extras.forEach(function(img) { img.style.display = isHidden ? 'block' : 'none'; });
+      btn.textContent = isHidden ? '✦ Thu Gọn' : '✦ Xem Thêm';
+    }
+  </script>
 
   <!-- ───────────── FAQ ───────────── -->
   <section id="faq">
