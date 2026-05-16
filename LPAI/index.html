@@ -1255,17 +1255,17 @@
     }
     .hinh-lop-grid img {
       width: 100%;
-      height: 260px;
+      aspect-ratio: 4/3;
       display: block;
       border-radius: 12px;
       object-fit: cover;
+      object-position: center top;
       transition: transform 0.3s, opacity 0.3s;
     }
     .hinh-lop-grid img:hover { transform: scale(1.02); opacity:0.9; }
     @media (max-width: 640px) {
       #hinh-lop { padding: 32px 16px; }
       .hinh-lop-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-      .hinh-lop-grid img { height: 160px; }
     }
     #faq {
       padding: 80px 24px;
@@ -2514,7 +2514,7 @@
     <a href="#instructor">Người dạy</a>
     <a href="#schedule">Lịch học</a>
     <a href="#pricing">Đăng ký</a>
-    <a href="#hinh-lop">Hình lớp</a>
+    <a href="#hinh-lop">Kỷ Yếu</a>
     <a href="#faq">FAQ</a>
   </div>
 
@@ -3406,23 +3406,23 @@
   <section id="hinh-lop">
     <div class="container">
       <div class="hinh-lop-header reveal">
-        <span class="section-label">✦ Hình Ảnh Lớp Học ✦</span>
+        <span class="section-label">✦ Kỷ Yếu ✦</span>
         <h2>Những Buổi Học <span class="gold-text">Trước Đây</span></h2>
         <p>Một vài khoảnh khắc từ các buổi học đã diễn ra.</p>
       </div>
       <div class="hinh-lop-grid reveal">
-        <img src="Assets/students/1.jpg" alt="Hình lớp học 1" loading="lazy">
-        <img src="Assets/students/2.JPG" alt="Hình lớp học 2" loading="lazy">
-        <img src="Assets/students/3.JPG" alt="Hình lớp học 3" loading="lazy">
-        <img src="Assets/students/4.jpg" alt="Hình lớp học 4" loading="lazy">
-        <img src="Assets/students/5.jpg" alt="Hình lớp học 5" loading="lazy" class="hinh-lop-extra" style="display:none;">
-        <img src="Assets/students/6.jpg" alt="Hình lớp học 6" loading="lazy" class="hinh-lop-extra" style="display:none;">
-        <img src="Assets/students/7.jpg" alt="Hình lớp học 7" loading="lazy" class="hinh-lop-extra" style="display:none;">
-        <img src="Assets/students/8.jpg" alt="Hình lớp học 8" loading="lazy" class="hinh-lop-extra" style="display:none;">
-        <img src="Assets/students/9.jpg" alt="Hình lớp học 9" loading="lazy" class="hinh-lop-extra" style="display:none;">
-        <img src="Assets/students/10.jpg" alt="Hình lớp học 10" loading="lazy" class="hinh-lop-extra" style="display:none;">
-        <img src="Assets/students/11.jpg" alt="Hình lớp học 11" loading="lazy" class="hinh-lop-extra" style="display:none;">
-        <img src="Assets/students/12.jpg" alt="Hình lớp học 12" loading="lazy" class="hinh-lop-extra" style="display:none;">
+        <img src="Assets/students/1.jpg" alt="Kỷ yếu 1" loading="lazy" style="object-position:center center;">
+        <img src="Assets/students/2.JPG" alt="Kỷ yếu 2" loading="lazy" style="object-position:center top;">
+        <img src="Assets/students/3.JPG" alt="Kỷ yếu 3" loading="lazy" style="object-position:center center;">
+        <img src="Assets/students/4.jpg" alt="Kỷ yếu 4" loading="lazy" style="object-position:center center;">
+        <img src="Assets/students/5.jpg" alt="Kỷ yếu 5" loading="lazy" style="object-position:center center;">
+        <img src="Assets/students/6.jpg" alt="Kỷ yếu 6" loading="lazy" style="object-position:center center;">
+        <img src="Assets/students/7.jpg" alt="Kỷ yếu 7" loading="lazy" class="hinh-lop-extra" style="display:none; object-position:center center;">
+        <img src="Assets/students/8.jpg" alt="Kỷ yếu 8" loading="lazy" class="hinh-lop-extra" style="display:none; object-position:center center;">
+        <img src="Assets/students/9.jpg" alt="Kỷ yếu 9" loading="lazy" class="hinh-lop-extra" style="display:none; object-position:center center;">
+        <img src="Assets/students/10.jpg" alt="Kỷ yếu 10" loading="lazy" class="hinh-lop-extra" style="display:none; object-position:center center;">
+        <img src="Assets/students/11.jpg" alt="Kỷ yếu 11" loading="lazy" class="hinh-lop-extra" style="display:none; object-position:center center;">
+        <img src="Assets/students/12.jpg" alt="Kỷ yếu 12" loading="lazy" class="hinh-lop-extra" style="display:none; object-position:center center;">
       </div>
       <div style="text-align:center; margin-top:32px;">
         <button id="hinh-lop-toggle" onclick="toggleHinhLop()" style="background:transparent; border:1px solid rgba(201,168,76,0.6); color:var(--gold); font-family:'Beautique Display',serif; font-size:0.9rem; letter-spacing:0.12em; padding:12px 32px; border-radius:30px; cursor:pointer; transition:all 0.3s;">✦ Xem Thêm</button>
