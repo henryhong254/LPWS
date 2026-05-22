@@ -3241,11 +3241,11 @@
             <h3 style="font-family:'Beautique Display',serif; font-size:1.6rem; color:var(--gold-light); margin:0 0 12px;">Gói Cơ Bản</h3>
           </div>
           <div style="margin-bottom:8px;">
-            <div class="pricing-type" style="margin-bottom:4px;">Early Bird (Trước 25/05)</div>
+            <div class="pricing-type" style="margin-bottom:4px;">Early Bird (Trước 3/06)</div>
             <div class="pricing-amount">886.000đ</div>
           </div>
           <div style="margin-bottom:24px; padding-bottom:24px; border-bottom:1px solid rgba(201,168,76,0.15);">
-            <div class="pricing-type" style="margin-bottom:4px; margin-top:16px;">Sau 25/05</div>
+            <div class="pricing-type" style="margin-bottom:4px; margin-top:16px;">Sau 3/06</div>
             <div class="pricing-amount" style="color:var(--silver); font-size:1.8rem;">1.086.000đ</div>
           </div>
           <ul class="pricing-features">
@@ -3265,11 +3265,11 @@
             <h3 style="font-family:'Beautique Display',serif; font-size:1.6rem; color:var(--gold-light); margin:0 0 12px;">Gói Nâng Cao</h3>
           </div>
           <div style="margin-bottom:8px;">
-            <div class="pricing-type" style="margin-bottom:4px;">Early Bird (Trước 25/05)</div>
+            <div class="pricing-type" style="margin-bottom:4px;">Early Bird (Trước 3/06)</div>
             <div class="pricing-amount">1.386.000đ</div>
           </div>
           <div style="margin-bottom:24px; padding-bottom:24px; border-bottom:1px solid rgba(201,168,76,0.15);">
-            <div class="pricing-type" style="margin-bottom:4px; margin-top:16px;">Sau 25/05</div>
+            <div class="pricing-type" style="margin-bottom:4px; margin-top:16px;">Sau 3/06</div>
             <div class="pricing-amount" style="color:var(--silver); font-size:1.8rem;">1.586.000đ</div>
           </div>
           <ul class="pricing-features">
@@ -3615,7 +3615,7 @@
     /* ── Registration Form ── */
     (function () {
       const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbym1l_YvHTBLX9tH5Q2N7Sx4o8KxT4hcwJwRXaRg5HELxEjMWLJ7QjAo1_1K-YN78JV/exec';
-      const EARLY_BIRD_DEADLINE = new Date('2026-05-25T23:59:59+07:00');
+      const EARLY_BIRD_DEADLINE = new Date('2026-06-03T23:59:59+07:00');
       function isEarlyBird() { return new Date() <= EARLY_BIRD_DEADLINE; }
 
       const badge = document.getElementById('modal-package-badge');
@@ -3639,7 +3639,7 @@
         if (selectedPkg === 'basic') {
           amount = isEB ? 886000 : 1086000;
           priceText = isEB ? 'Early Bird - 886.000đ' : 'Giá Gốc - 1.086.000đ';
-          badge.textContent = '✨ Early Bird · Đăng ký trước 25/05 chỉ 886.000đ';
+          badge.textContent = '✨ Early Bird · Đăng ký trước 3/06 chỉ 886.000đ';
           badge.className = 'modal-package-badge early-bird';
         } else {
           amount = isEB ? 1386000 : 1586000;
