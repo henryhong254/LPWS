@@ -1598,24 +1598,82 @@
       .showcase-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 640px) {
-      /* Showcase: horizontal scroll on mobile */
+      /* Showcase: 2-column grid on mobile (no horizontal scroll) */
       .showcase-grid {
-        display: flex;
-        flex-direction: row;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
+        grid-template-columns: 1fr 1fr;
         gap: 14px;
-        padding-bottom: 12px;
-        scrollbar-width: none;
         margin-top: 28px;
+        overflow-x: unset;
       }
-      .showcase-grid::-webkit-scrollbar { display: none; }
       .showcase-card {
-        flex: 0 0 72vw;
-        max-width: 260px;
-        scroll-snap-align: start;
+        flex: unset;
+        max-width: unset;
+        scroll-snap-align: unset;
       }
+      /* Show overlay on tap (mobile has no hover) */
+      .showcase-card.tapped .showcase-overlay { opacity: 1; }
+      .showcase-card.tapped .btn-showcase { transform: translateY(0); }
+    }
+
+    /* ─── Showcase extra cards (desktop/mobile hidden states) ─── */
+    .showcase-card.showcase-extra {
+      display: none !important;
+    }
+    .showcase-grid.expanded .showcase-card.showcase-extra {
+      display: block !important;
+      animation: fadeInUp 0.45s ease both;
+    }
+
+    @media (max-width: 640px) {
+      .showcase-card.showcase-extra-mobile {
+        display: none !important;
+      }
+      .showcase-grid.expanded .showcase-card.showcase-extra-mobile {
+        display: block !important;
+        animation: fadeInUp 0.45s ease both;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    /* ─── Show-more button ─── */
+    .showcase-toggle-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+    }
+    .btn-showcase-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      border: 1.5px solid rgba(201,168,76,0.55);
+      color: var(--gold-light);
+      font-family: 'Beautique Display', serif;
+      font-size: 0.92rem;
+      letter-spacing: 0.07em;
+      padding: 12px 32px;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: background 0.3s, border-color 0.3s, color 0.3s, transform 0.2s;
+    }
+    .btn-showcase-more:hover {
+      background: rgba(201,168,76,0.12);
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+    .btn-showcase-more .toggle-icon {
+      display: inline-block;
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+      font-size: 1rem;
+    }
+    .btn-showcase-more.expanded .toggle-icon { transform: rotate(180deg); }
+    @media (max-width: 640px) {
+      .btn-showcase-more { font-size: 0.85rem; padding: 11px 24px; }
+      .showcase-toggle-wrap { margin-top: 28px; }
     }
 
     /* ═══════════════════════════════════════════
@@ -2489,6 +2547,176 @@
       80%  { opacity: 0.4; transform: translateY(-60px) scale(0.6); }
       100% { opacity: 0; transform: translateY(-80px) scale(0); }
     }
+
+    /* ═══════════════════════════════════════════
+       HÀNH TRÌNH SECTION & LIGHTBOX
+    ═══════════════════════════════════════════ */
+    #hanh-trinh {
+      padding: 56px 24px;
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(180deg, transparent 0%, rgba(15,25,60,0.4) 50%, transparent 100%);
+    }
+    .hanh-trinh-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hanh-trinh-image-wrapper {
+      position: relative;
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      cursor: pointer;
+      background: #FFFFFF; /* image background matches white background of graphic */
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5), inset 0 0 100px rgba(201,168,76,0.05);
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    .hanh-trinh-image-wrapper:hover {
+      transform: translateY(-4px) scale(1.01);
+      border-color: rgba(201,168,76,0.6);
+      box-shadow: 0 20px 50px rgba(201,168,76,0.15), 0 12px 40px rgba(0,0,0,0.6);
+    }
+    .hanh-trinh-image-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: opacity 0.3s;
+    }
+    .hanh-trinh-image-wrapper:hover img {
+      opacity: 0.95;
+    }
+    
+    /* Click to zoom badge style */
+    .hanh-trinh-zoom-badge {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(18, 22, 38, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold-light);
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-family: 'Beautique Display', serif;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      transition: all 0.3s ease;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .hanh-trinh-image-wrapper:hover .hanh-trinh-zoom-badge {
+      background: var(--gold);
+      color: #121626;
+      border-color: var(--gold);
+      transform: scale(1.05);
+    }
+
+    /* Lightbox Modal */
+    .hanh-trinh-lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 12, 22, 0.96);
+      backdrop-filter: blur(12px);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+      padding: 24px;
+    }
+    .hanh-trinh-lightbox.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .hanh-trinh-lightbox-content {
+      max-width: 95vw;
+      max-height: 90vh;
+      position: relative;
+      transform: scale(0.92);
+      transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      border: 2px solid rgba(201,168,76,0.3);
+      border-radius: 12px;
+      overflow: auto;
+      background: #FFFFFF;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+      -webkit-overflow-scrolling: touch; /* smooth scrolling for iOS */
+    }
+    .hanh-trinh-lightbox.active .hanh-trinh-lightbox-content {
+      transform: scale(1);
+    }
+    .hanh-trinh-lightbox-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-width: 1200px;
+      min-width: 600px; /* forces horizontal scrolling on small mobile screens to keep text extremely readable and large! */
+    }
+    .hanh-trinh-lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(18, 22, 38, 0.8);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: #fff;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      z-index: 100000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .hanh-trinh-lightbox-close:hover {
+      background: var(--gold);
+      color: #121626;
+      border-color: var(--gold);
+      transform: scale(1.1);
+    }
+    .hanh-trinh-lightbox-hint {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(18, 22, 38, 0.85);
+      border: 1px solid rgba(201,168,76,0.25);
+      color: rgba(255,255,255,0.9);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      pointer-events: none;
+      display: none;
+      z-index: 100000;
+      white-space: nowrap;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    
+    @media (max-width: 768px) {
+      #hanh-trinh {
+        padding: 40px 16px;
+      }
+      .hanh-trinh-zoom-badge {
+        bottom: 12px;
+        right: 12px;
+        padding: 6px 12px;
+        font-size: 0.75rem;
+      }
+      .hanh-trinh-lightbox-hint {
+        display: block;
+      }
+    }
   </style>
 </head>
 <body>
@@ -2619,6 +2847,36 @@
         <img src="Assets/website 6.webp" alt="UBE Collection" loading="lazy">
         <div class="marquee-card-label">UBE Collection</div>
       </a>
+      <a class="marquee-card" href="https://xembai.clowcat.com.vn/" target="_blank">
+        <div class="marquee-browser-bar">
+          <span class="marquee-dot" style="background:#ff5f57;"></span>
+          <span class="marquee-dot" style="background:#febc2e;"></span>
+          <span class="marquee-dot" style="background:#28c840;"></span>
+          <span class="marquee-url">xembai.clowcat.com.vn</span>
+        </div>
+        <img src="Assets/clowcat.webp" alt="Clow Cat Patronus" loading="lazy">
+        <div class="marquee-card-label">Clow Cat Patronus</div>
+      </a>
+      <a class="marquee-card" href="https://bandohanhphuc.netlify.app/" target="_blank">
+        <div class="marquee-browser-bar">
+          <span class="marquee-dot" style="background:#ff5f57;"></span>
+          <span class="marquee-dot" style="background:#febc2e;"></span>
+          <span class="marquee-dot" style="background:#28c840;"></span>
+          <span class="marquee-url">bandohanhphuc.netlify.app</span>
+        </div>
+        <img src="Assets/bdhp.webp" alt="Bản Đồ Hạnh Phúc" loading="lazy">
+        <div class="marquee-card-label">Bản Đồ Hạnh Phúc</div>
+      </a>
+      <a class="marquee-card" href="https://leaderunbound1.netlify.app/" target="_blank">
+        <div class="marquee-browser-bar">
+          <span class="marquee-dot" style="background:#ff5f57;"></span>
+          <span class="marquee-dot" style="background:#febc2e;"></span>
+          <span class="marquee-dot" style="background:#28c840;"></span>
+          <span class="marquee-url">leaderunbound1.netlify.app</span>
+        </div>
+        <img src="Assets/leader.webp" alt="Lãnh Đạo Tự Tại" loading="lazy">
+        <div class="marquee-card-label">Lãnh Đạo Tự Tại</div>
+      </a>
       <!-- Set 2 (duplicate for seamless loop) -->
       <a class="marquee-card" href="https://lemonetartcafe.com/" target="_blank">
         <div class="marquee-browser-bar">
@@ -2679,6 +2937,36 @@
         </div>
         <img src="Assets/website 6.webp" alt="UBE Collection" loading="lazy">
         <div class="marquee-card-label">UBE Collection</div>
+      </a>
+      <a class="marquee-card" href="https://xembai.clowcat.com.vn/" target="_blank">
+        <div class="marquee-browser-bar">
+          <span class="marquee-dot" style="background:#ff5f57;"></span>
+          <span class="marquee-dot" style="background:#febc2e;"></span>
+          <span class="marquee-dot" style="background:#28c840;"></span>
+          <span class="marquee-url">xembai.clowcat.com.vn</span>
+        </div>
+        <img src="Assets/clowcat.webp" alt="Clow Cat Patronus" loading="lazy">
+        <div class="marquee-card-label">Clow Cat Patronus</div>
+      </a>
+      <a class="marquee-card" href="https://bandohanhphuc.netlify.app/" target="_blank">
+        <div class="marquee-browser-bar">
+          <span class="marquee-dot" style="background:#ff5f57;"></span>
+          <span class="marquee-dot" style="background:#febc2e;"></span>
+          <span class="marquee-dot" style="background:#28c840;"></span>
+          <span class="marquee-url">bandohanhphuc.netlify.app</span>
+        </div>
+        <img src="Assets/bdhp.webp" alt="Bản Đồ Hạnh Phúc" loading="lazy">
+        <div class="marquee-card-label">Bản Đồ Hạnh Phúc</div>
+      </a>
+      <a class="marquee-card" href="https://leaderunbound1.netlify.app/" target="_blank">
+        <div class="marquee-browser-bar">
+          <span class="marquee-dot" style="background:#ff5f57;"></span>
+          <span class="marquee-dot" style="background:#febc2e;"></span>
+          <span class="marquee-dot" style="background:#28c840;"></span>
+          <span class="marquee-url">leaderunbound1.netlify.app</span>
+        </div>
+        <img src="Assets/leader.webp" alt="Lãnh Đạo Tự Tại" loading="lazy">
+        <div class="marquee-card-label">Lãnh Đạo Tự Tại</div>
       </a>
     </div>
   </div>
@@ -2975,7 +3263,7 @@
         </div>
         
         <!-- Card 3 -->
-        <div class="showcase-card reveal">
+        <div class="showcase-card reveal showcase-extra-mobile">
           <div class="showcase-img">
             <img src="Assets/website 3.webp" alt="Founder's North" loading="lazy">
             <div class="showcase-overlay">
@@ -2988,7 +3276,7 @@
         </div>
         
         <!-- Card 4 -->
-        <div class="showcase-card reveal">
+        <div class="showcase-card reveal showcase-extra-mobile">
           <div class="showcase-img">
             <img src="Assets/website 4.webp" alt="B-MAT" loading="lazy">
             <div class="showcase-overlay">
@@ -3001,7 +3289,7 @@
         </div>
         
         <!-- Card 5 -->
-        <div class="showcase-card reveal">
+        <div class="showcase-card reveal showcase-extra-mobile">
           <div class="showcase-img">
             <img src="Assets/website 5.webp" alt="Book Phòng Meeting" loading="lazy">
             <div class="showcase-overlay">
@@ -3014,7 +3302,7 @@
         </div>
 
         <!-- Card 6 -->
-        <div class="showcase-card reveal">
+        <div class="showcase-card reveal showcase-extra-mobile">
           <div class="showcase-img">
             <img src="Assets/website 6.webp" alt="Giới Thiệu Sản Phẩm: UBE COLLECTION" loading="lazy">
             <div class="showcase-overlay">
@@ -3025,6 +3313,53 @@
             <span class="showcase-domain">Giới Thiệu Sản Phẩm: UBE COLLECTION</span>
           </div>
         </div>
+
+        <!-- Card 7 -->
+        <div class="showcase-card reveal showcase-extra">
+          <div class="showcase-img">
+            <img src="Assets/clowcat.webp" alt="Clow Cat Patronus" loading="lazy">
+            <div class="showcase-overlay">
+              <a href="https://xembai.clowcat.com.vn/" class="btn-showcase" target="_blank">Xem Website</a>
+            </div>
+          </div>
+          <div class="showcase-info">
+            <span class="showcase-domain">Clow Cat Patronus</span>
+          </div>
+        </div>
+
+        <!-- Card 8 -->
+        <div class="showcase-card reveal showcase-extra">
+          <div class="showcase-img">
+            <img src="Assets/bdhp.webp" alt="Bản Đồ Hạnh Phúc" loading="lazy">
+            <div class="showcase-overlay">
+              <a href="https://bandohanhphuc.netlify.app/" class="btn-showcase" target="_blank">Xem Website</a>
+            </div>
+          </div>
+          <div class="showcase-info">
+            <span class="showcase-domain">Bản Đồ Hạnh Phúc</span>
+          </div>
+        </div>
+
+        <!-- Card 9 -->
+        <div class="showcase-card reveal showcase-extra">
+          <div class="showcase-img">
+            <img src="Assets/leader.webp" alt="Lãnh Đạo Tự Tại" loading="lazy">
+            <div class="showcase-overlay">
+              <a href="https://leaderunbound1.netlify.app/" class="btn-showcase" target="_blank">Xem Website</a>
+            </div>
+          </div>
+          <div class="showcase-info">
+            <span class="showcase-domain">Lãnh Đạo Tự Tại</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Show more / collapse button -->
+      <div class="showcase-toggle-wrap reveal">
+        <button class="btn-showcase-more" id="btn-showcase-more" aria-expanded="false">
+          <span class="toggle-label">Xem thêm (3 trang)</span>
+          <span class="toggle-icon">▾</span>
+        </button>
       </div>
     </div>
   </section>
@@ -3074,6 +3409,32 @@
       </div>
     </div>
   </section>
+
+  <!-- ───────────── HANH TRINH SECTION ───────────── -->
+  <section id="hanh-trinh">
+    <div class="hanh-trinh-container">
+      <div style="text-align:center; margin-bottom:40px;" class="reveal">
+        <span class="section-label">✦ Lộ Trình Chi Tiết ✦</span>
+        <h2 style="margin-top:12px; font-size: clamp(1.6rem, 4vw, 2.2rem);">Hành Trình Học Tập <span class="gold-text">Đồng Hành</span></h2>
+      </div>
+      
+      <div class="hanh-trinh-image-wrapper reveal" id="hanh-trinh-img-trigger">
+        <img src="Assets/hanhtrinh.jpg" alt="Lộ trình học tập" loading="lazy" />
+        <div class="hanh-trinh-zoom-badge">
+          🔍 Click để phóng to
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hanh Trinh Lightbox Modal -->
+  <div class="hanh-trinh-lightbox" id="hanh-trinh-lightbox">
+    <span class="hanh-trinh-lightbox-close" id="hanh-trinh-lightbox-close">&times;</span>
+    <div class="hanh-trinh-lightbox-content">
+      <img src="Assets/hanhtrinh.jpg" class="hanh-trinh-lightbox-img" alt="Lộ trình học tập chi tiết" />
+      <div class="hanh-trinh-lightbox-hint">💡 Vuốt để di chuyển & đọc sơ đồ rõ hơn</div>
+    </div>
+  </div>
 
   <!-- ───────────── MID CTA 2 ───────────── -->
   <section class="mid-cta-section">
@@ -3944,6 +4305,104 @@
         ].join(';');
         hero.appendChild(s);
       }
+    })();
+
+    /* ── Lightbox for Hanh Trinh image ── */
+    (function () {
+      var trigger = document.getElementById('hanh-trinh-img-trigger');
+      var lightbox = document.getElementById('hanh-trinh-lightbox');
+      var closeBtn = document.getElementById('hanh-trinh-lightbox-close');
+      if (!trigger || !lightbox || !closeBtn) return;
+
+      trigger.addEventListener('click', function () {
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden'; // prevent background scrolling
+      });
+
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = ''; // restore scrolling
+      }
+
+      closeBtn.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', function (e) {
+        if (e.target === lightbox) {
+          closeLightbox();
+        }
+      });
+      
+      // Close on Escape key press
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+          closeLightbox();
+        }
+      });
+    })();
+  </script>
+  <script>
+    // ─── Showcase "Xem thêm" toggle ───
+    (function () {
+      var btn = document.getElementById('btn-showcase-more');
+      var grid = document.querySelector('.showcase-grid');
+      if (!btn || !grid) return;
+
+      function updateButtonText() {
+        var expanded = grid.classList.contains('expanded');
+        var isMobile = window.innerWidth <= 640;
+        if (expanded) {
+          btn.querySelector('.toggle-label').textContent = 'Thu gọn';
+        } else {
+          if (isMobile) {
+            btn.querySelector('.toggle-label').textContent = 'Xem thêm (7 trang)';
+          } else {
+            btn.querySelector('.toggle-label').textContent = 'Xem thêm (3 trang)';
+          }
+        }
+      }
+
+      // Initialize button text on load and handle resize
+      updateButtonText();
+      window.addEventListener('resize', updateButtonText);
+
+      btn.addEventListener('click', function () {
+        var expanded = grid.classList.contains('expanded');
+        if (!expanded) {
+          grid.classList.add('expanded');
+          btn.setAttribute('aria-expanded', 'true');
+          btn.classList.add('expanded');
+        } else {
+          grid.classList.remove('expanded');
+          btn.setAttribute('aria-expanded', 'false');
+          btn.classList.remove('expanded');
+          // Smooth scroll back to showcase section start so user is not lost
+          setTimeout(function () {
+            btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 50);
+        }
+        updateButtonText();
+      });
+    })();
+
+    // ─── Showcase card: tap to reveal overlay on touch devices ───
+    (function () {
+      if (!('ontouchstart' in window)) return; // desktop: hover handles it
+      var cards = document.querySelectorAll('.showcase-card');
+      cards.forEach(function (card) {
+        card.addEventListener('click', function (e) {
+          // If the click target is the link inside overlay, let it navigate
+          if (e.target.closest('.btn-showcase')) return;
+          var wasActive = card.classList.contains('tapped');
+          // Clear all
+          cards.forEach(function (c) { c.classList.remove('tapped'); });
+          if (!wasActive) card.classList.add('tapped');
+        });
+      });
+      // Tap outside cards clears overlay
+      document.addEventListener('click', function (e) {
+        if (!e.target.closest('.showcase-card')) {
+          cards.forEach(function (c) { c.classList.remove('tapped'); });
+        }
+      });
     })();
   </script>
   <script>
