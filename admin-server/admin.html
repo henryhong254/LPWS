@@ -20,53 +20,29 @@
       background: #161933;
       border: 1px solid rgba(201,168,76,0.25);
       border-radius: 16px;
-      padding: 40px 36px;
+      padding: 36px 32px;
       width: 100%;
-      max-width: 480px;
+      max-width: 400px;
     }
-    h1 {
-      font-size: 1.3rem;
-      color: #c9a84c;
-      margin-bottom: 6px;
-      letter-spacing: 0.05em;
-    }
-    .subtitle {
-      font-size: 0.85rem;
-      color: #888;
-      margin-bottom: 32px;
-    }
-    .section-title {
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #c9a84c;
-      margin: 24px 0 12px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid rgba(201,168,76,0.15);
-    }
-    .field { margin-bottom: 16px; }
-    label {
-      display: block;
-      font-size: 0.8rem;
-      color: #aaa;
-      margin-bottom: 6px;
-    }
-    input[type="text"], input[type="password"] {
+    h1 { font-size: 1.2rem; color: #c9a84c; margin-bottom: 4px; }
+    .subtitle { font-size: 0.82rem; color: #666; margin-bottom: 28px; }
+    .field { margin-bottom: 18px; }
+    label { display: block; font-size: 0.8rem; color: #aaa; margin-bottom: 6px; }
+    input {
       width: 100%;
       background: #0d0f1a;
-      border: 1px solid rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.1);
       border-radius: 8px;
       padding: 10px 14px;
       color: #fff;
-      font-size: 0.95rem;
+      font-size: 1rem;
       outline: none;
       transition: border-color 0.2s;
     }
-    input:focus { border-color: rgba(201,168,76,0.6); }
-    .hint { font-size: 0.72rem; color: #666; margin-top: 4px; }
+    input:focus { border-color: rgba(201,168,76,0.5); }
+    .divider { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin: 22px 0; }
     .btn {
       width: 100%;
-      margin-top: 28px;
       padding: 13px;
       background: linear-gradient(135deg, #c9a84c, #a07830);
       border: none;
@@ -75,84 +51,58 @@
       font-size: 1rem;
       font-weight: 700;
       cursor: pointer;
-      letter-spacing: 0.05em;
       transition: opacity 0.2s;
     }
     .btn:hover { opacity: 0.85; }
     .btn:disabled { opacity: 0.4; cursor: not-allowed; }
     #msg {
-      margin-top: 16px;
-      padding: 12px 16px;
+      margin-top: 14px;
+      padding: 11px 14px;
       border-radius: 8px;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       display: none;
       text-align: center;
     }
-    #msg.ok  { background: rgba(46,204,113,0.15); border: 1px solid rgba(46,204,113,0.4); color: #2ecc71; }
-    #msg.err { background: rgba(231,76,60,0.15);  border: 1px solid rgba(231,76,60,0.4);  color: #e74c3c; }
+    #msg.ok  { background: rgba(46,204,113,0.12); border: 1px solid rgba(46,204,113,0.35); color: #2ecc71; }
+    #msg.err { background: rgba(231,76,60,0.12);  border: 1px solid rgba(231,76,60,0.35);  color: #e74c3c; }
   </style>
 </head>
 <body>
 <div class="card">
-  <h1>⚙️ Admin – Lịch Học</h1>
-  <p class="subtitle">Cập nhật lịch workshop. Thay đổi có hiệu lực ngay lập tức.</p>
+  <h1>⚙️ Cập nhật lịch học</h1>
+  <p class="subtitle">Thay đổi có hiệu lực ngay sau khi lưu.</p>
 
   <form id="form">
-    <div class="section-title">Thông tin khóa</div>
-
     <div class="field">
       <label>Tên khóa</label>
-      <input type="text" name="batch" placeholder="K03" />
-    </div>
-
-    <div class="section-title">Early Bird</div>
-
-    <div class="field">
-      <label>Hạn Early Bird</label>
-      <input type="text" name="earlyBirdDate" placeholder="22/06" />
-      <div class="hint">Hiển thị trên trang (VD: 22/06)</div>
-    </div>
-    <div class="field">
-      <label>Deadline countdown (ISO)</label>
-      <input type="text" name="earlyBirdDeadline" placeholder="2026-06-22T23:59:59+07:00" />
-      <div class="hint">Dùng cho đồng hồ đếm ngược. Format: YYYY-MM-DDTHH:MM:SS+07:00</div>
-    </div>
-
-    <div class="section-title">Lịch học</div>
-
-    <div class="field">
-      <label>Ngày 1 – Online (đầy đủ)</label>
-      <input type="text" name="day1Date" placeholder="27/06/2026" />
-    </div>
-    <div class="field">
-      <label>Ngày 1 – Online (rút gọn)</label>
-      <input type="text" name="day1DateShort" placeholder="27/6" />
-      <div class="hint">Hiển thị ở tagline hero</div>
+      <input type="text" id="batch" placeholder="K03" />
     </div>
 
     <div class="field">
-      <label>Ngày 2 – Offline (đầy đủ)</label>
-      <input type="text" name="day2Date" placeholder="28/06/2026" />
-    </div>
-    <div class="field">
-      <label>Ngày 2 – Offline (rút gọn)</label>
-      <input type="text" name="day2DateShort" placeholder="28/6" />
+      <label>Buổi 1 – Online</label>
+      <input type="date" id="day1" />
     </div>
 
     <div class="field">
-      <label>Ngày 3 – Nâng Cao (đầy đủ)</label>
-      <input type="text" name="day3Date" placeholder="05/07/2026" />
-    </div>
-    <div class="field">
-      <label>Ngày 3 – Nâng Cao (rút gọn)</label>
-      <input type="text" name="day3DateShort" placeholder="05/7" />
+      <label>Buổi 2 – Offline TP.HCM</label>
+      <input type="date" id="day2" />
     </div>
 
-    <div class="section-title">Xác thực</div>
+    <div class="field">
+      <label>Buổi 3 – Nâng Cao (Offline)</label>
+      <input type="date" id="day3" />
+    </div>
+
+    <div class="field">
+      <label>Early Bird kết thúc</label>
+      <input type="date" id="eb" />
+    </div>
+
+    <hr class="divider" />
 
     <div class="field">
       <label>Mật khẩu admin</label>
-      <input type="password" name="password" required />
+      <input type="password" id="password" required />
     </div>
 
     <button type="submit" class="btn" id="btn">Lưu thay đổi</button>
@@ -161,15 +111,42 @@
 </div>
 
 <script>
-  // Load current schedule
+  // Helper: "2026-06-27" → "27/06/2026"
+  function toFull(val) {
+    if (!val) return '';
+    const [y, m, d] = val.split('-');
+    return d + '/' + m + '/' + y;
+  }
+  // Helper: "2026-06-27" → "27/6"
+  function toShort(val) {
+    if (!val) return '';
+    const [, m, d] = val.split('-');
+    return parseInt(d) + '/' + parseInt(m);
+  }
+  // Helper: "2026-06-22" → "2026-06-22T23:59:59+07:00"
+  function toDeadline(val) {
+    return val + 'T23:59:59+07:00';
+  }
+  // Helper: "27/06/2026" → "2026-06-27" (for pre-filling date input)
+  function toInputDate(full) {
+    if (!full) return '';
+    const [d, m, y] = full.split('/');
+    return y + '-' + m + '-' + d;
+  }
+  // Helper: "2026-06-22T23:59:59+07:00" → "2026-06-22"
+  function fromDeadline(iso) {
+    return iso ? iso.slice(0, 10) : '';
+  }
+
+  // Load current schedule to pre-fill
   fetch('/api/schedule')
     .then(r => r.json())
-    .then(data => {
-      const form = document.getElementById('form');
-      Object.keys(data).forEach(k => {
-        const el = form.elements[k];
-        if (el) el.value = data[k];
-      });
+    .then(s => {
+      document.getElementById('batch').value = s.batch || '';
+      document.getElementById('day1').value  = toInputDate(s.day1Date);
+      document.getElementById('day2').value  = toInputDate(s.day2Date);
+      document.getElementById('day3').value  = toInputDate(s.day3Date);
+      document.getElementById('eb').value    = fromDeadline(s.earlyBirdDeadline);
     });
 
   document.getElementById('form').addEventListener('submit', async function(e) {
@@ -180,11 +157,26 @@
     btn.textContent = 'Đang lưu...';
     msg.style.display = 'none';
 
-    const body = {};
-    new FormData(this).forEach((v, k) => { body[k] = v.trim(); });
+    const d1 = document.getElementById('day1').value;
+    const d2 = document.getElementById('day2').value;
+    const d3 = document.getElementById('day3').value;
+    const eb = document.getElementById('eb').value;
+
+    const body = {
+      password: document.getElementById('password').value,
+      batch: document.getElementById('batch').value.trim(),
+      earlyBirdDeadline: toDeadline(eb),
+      earlyBirdDate: eb ? (parseInt(eb.split('-')[2]) + '/' + parseInt(eb.split('-')[1])) : '',
+      day1Date: toFull(d1),
+      day1DateShort: toShort(d1),
+      day2Date: toFull(d2),
+      day2DateShort: toShort(d2),
+      day3Date: toFull(d3),
+      day3DateShort: toShort(d3),
+    };
 
     try {
-      const res = await fetch('/api/schedule', {
+      const res  = await fetch('/api/schedule', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body)
@@ -192,12 +184,12 @@
       const json = await res.json();
       if (json.ok) {
         msg.className = 'ok';
-        msg.textContent = '✓ Đã lưu! Trang web đã cập nhật ngay.';
+        msg.textContent = '✓ Đã lưu! Trang web cập nhật ngay.';
       } else {
         msg.className = 'err';
         msg.textContent = '✗ ' + (json.error || 'Lỗi không xác định');
       }
-    } catch (err) {
+    } catch {
       msg.className = 'err';
       msg.textContent = '✗ Không kết nối được server';
     }
