@@ -2784,7 +2784,7 @@
         </div>
       </div>
 
-      <p class="hero-tagline">Online 27/6 · Offline 28/6 · TP.HCM</p>
+      <p class="hero-tagline" id="hero-dates">Online 27/6 · Offline 28/6 · TP.HCM</p>
     </div>
   </section>
 
@@ -3549,14 +3549,14 @@
     <div class="container">
       <div class="schedule-header reveal">
         <span class="section-label">✦ Lịch Học Sắp Tới ✦</span>
-        <h2>Lịch Học Landing Page 3 Không <span class="gold-text">K03</span></h2>
+        <h2>Lịch Học Landing Page 3 Không <span class="gold-text" id="schedule-batch">K03</span></h2>
       </div>
       
       <div class="schedule-grid">
         <div class="schedule-card reveal">
           <div style="display:inline-block; background:rgba(150,150,180,0.1); border:1px solid rgba(150,150,180,0.35); border-radius:20px; padding:3px 12px; font-size:0.7rem; letter-spacing:0.12em; color:#AAA; margin-bottom:12px;">✦ GÓI CƠ BẢN</div>
           <div class="schedule-day">Ngày 1</div>
-          <div class="schedule-date">27/06/2026</div>
+          <div class="schedule-date" id="sched-date-1">27/06/2026</div>
           <div class="schedule-time">19h30 - 21h00</div>
           <span class="schedule-type online">• ONLINE LIVE</span>
           <p class="schedule-location">Qua Google Meet</p>
@@ -3565,7 +3565,7 @@
         <div class="schedule-card reveal">
           <div style="display:inline-block; background:rgba(150,150,180,0.1); border:1px solid rgba(150,150,180,0.35); border-radius:20px; padding:3px 12px; font-size:0.7rem; letter-spacing:0.12em; color:#AAA; margin-bottom:12px;">✦ GÓI CƠ BẢN</div>
           <div class="schedule-day">Ngày 2</div>
-          <div class="schedule-date">28/06/2026</div>
+          <div class="schedule-date" id="sched-date-2">28/06/2026</div>
           <div class="schedule-time">09h00 - 12h30</div>
           <span class="schedule-type offline">• OFFLINE - TP.HCM</span>
           <p class="schedule-location">29 Đường R, KĐT Lakeview City, Bình Trưng (Q2)</p>
@@ -3574,7 +3574,7 @@
         <div class="schedule-card reveal" style="border-color: rgba(201,168,76,0.5);">
           <div style="display:inline-block; background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.5); border-radius:20px; padding:3px 12px; font-size:0.7rem; letter-spacing:0.12em; color:var(--gold); margin-bottom:12px;">⭐ GÓI NÂNG CAO</div>
           <div class="schedule-day">Ngày 3</div>
-          <div class="schedule-date">05/07/2026</div>
+          <div class="schedule-date" id="sched-date-3">05/07/2026</div>
           <div class="schedule-time">09h00 - 12h30</div>
           <span class="schedule-type offline">• OFFLINE - TP.HCM</span>
           <p class="schedule-location">29 Đường R, KĐT Lakeview City, Bình Trưng (Q2)</p>
@@ -3641,16 +3641,16 @@
             <h3 style="font-family:'Beautique Display',serif; font-size:1.6rem; color:var(--gold-light); margin:0 0 12px;">Gói Cơ Bản</h3>
           </div>
           <div style="margin-bottom:8px;">
-            <div class="pricing-type" style="margin-bottom:4px;">Early Bird (Trước 22/06)</div>
+            <div class="pricing-type" id="eb-label-basic" style="margin-bottom:4px;">Early Bird (Trước 22/06)</div>
             <div class="pricing-amount">886.000đ</div>
           </div>
           <div style="margin-bottom:24px; padding-bottom:24px; border-bottom:1px solid rgba(201,168,76,0.15);">
-            <div class="pricing-type" style="margin-bottom:4px; margin-top:16px;">Sau 22/06</div>
+            <div class="pricing-type" id="eb-after-basic" style="margin-bottom:4px; margin-top:16px;">Sau 22/06</div>
             <div class="pricing-amount" style="color:var(--silver); font-size:1.8rem;">1.086.000đ</div>
           </div>
           <ul class="pricing-features">
-            <li><span class="feat-check">✓</span> Buổi 1: Online 27/6 (19h30–21h00)</li>
-            <li><span class="feat-check">✓</span> Buổi 2: Offline 28/6 (9h–12h30) tại TP.HCM</li>
+            <li id="feat-day1"><span class="feat-check">✓</span> Buổi 1: Online 27/6 (19h30–21h00)</li>
+            <li id="feat-day2"><span class="feat-check">✓</span> Buổi 2: Offline 28/6 (9h–12h30) tại TP.HCM</li>
             <li style="padding-top:12px; margin-top:4px; list-style:none; font-family:'Beautique Display',serif; font-size:0.72rem; letter-spacing:0.12em; color:var(--gold); border-top:1px solid rgba(201,168,76,0.2);">KẾT QUẢ NHẬN ĐƯỢC</li>
             <li><span class="feat-check">✓</span> Landing Page hoàn chỉnh</li>
             <li><span class="feat-check">✓</span> Form đăng ký trên Landing Page</li>
@@ -3665,16 +3665,16 @@
             <h3 style="font-family:'Beautique Display',serif; font-size:1.6rem; color:var(--gold-light); margin:0 0 12px;">Gói Nâng Cao</h3>
           </div>
           <div style="margin-bottom:8px;">
-            <div class="pricing-type" style="margin-bottom:4px;">Early Bird (Trước 22/06)</div>
+            <div class="pricing-type" id="eb-label-adv" style="margin-bottom:4px;">Early Bird (Trước 22/06)</div>
             <div class="pricing-amount">1.386.000đ</div>
           </div>
           <div style="margin-bottom:24px; padding-bottom:24px; border-bottom:1px solid rgba(201,168,76,0.15);">
-            <div class="pricing-type" style="margin-bottom:4px; margin-top:16px;">Sau 22/06</div>
+            <div class="pricing-type" id="eb-after-adv" style="margin-bottom:4px; margin-top:16px;">Sau 22/06</div>
             <div class="pricing-amount" style="color:var(--silver); font-size:1.8rem;">1.586.000đ</div>
           </div>
           <ul class="pricing-features">
             <li><span class="feat-check">✓</span> 2 Buổi trong Gói Cơ Bản</li>
-            <li><span class="feat-check">✓</span> Buổi 3: Offline 05/07 - Workshop Nâng Cao - Chủ Đề Tự Động Hóa</li>
+            <li id="feat-day3"><span class="feat-check">✓</span> Buổi 3: Offline 05/07 - Workshop Nâng Cao - Chủ Đề Tự Động Hóa</li>
             <li style="padding-top:12px; margin-top:4px; list-style:none; font-family:'Beautique Display',serif; font-size:0.72rem; letter-spacing:0.12em; color:var(--gold); border-top:1px solid rgba(201,168,76,0.2);">KẾT QUẢ NHẬN ĐƯỢC</li>
             <li><span class="feat-check">✓</span> Xác nhận thanh toán: <span style="color:var(--gold-light);">Tự động</span></li>
             <li><span class="feat-check">✓</span> Email xác nhận: <span style="color:var(--gold-light);">Tự động</span></li>
@@ -4039,7 +4039,7 @@
         if (selectedPkg === 'basic') {
           amount = isEB ? 886000 : 1086000;
           priceText = isEB ? 'Early Bird - 886.000đ' : 'Giá Gốc - 1.086.000đ';
-          badge.textContent = '✨ Early Bird · Đăng ký trước 22/06 chỉ 886.000đ';
+          badge.textContent = '✨ Early Bird · Đăng ký trước ' + (window.__ebDate || '22/06') + ' chỉ 886.000đ';
           badge.className = 'modal-package-badge early-bird';
         } else {
           amount = isEB ? 1386000 : 1586000;
@@ -4203,10 +4203,11 @@
     })();
 
     /* ── Early Bird Countdown ── */
-    (function () {
-      var deadline = new Date('2026-06-22T23:59:59+07:00');
+    var __cdInterval;
+    function startEBCountdown(deadlineStr) {
+      clearInterval(__cdInterval);
+      var deadline = new Date(deadlineStr || '2026-06-22T23:59:59+07:00');
       var wrap = document.getElementById('early-bird-countdown-wrap');
-
       function pad(n) { return String(n).padStart(2, '0'); }
       function tick() {
         var now  = new Date();
@@ -4225,7 +4226,32 @@
         document.getElementById('cd-secs').textContent  = pad(secs);
       }
       tick();
-      setInterval(tick, 1000);
+      __cdInterval = setInterval(tick, 1000);
+    }
+    startEBCountdown('2026-06-22T23:59:59+07:00');
+
+    /* ── Load schedule from JSON ── */
+    (function () {
+      fetch('/schedule.json?v=' + Date.now())
+        .then(function (r) { return r.json(); })
+        .then(function (s) {
+          function set(id, text) { var el = document.getElementById(id); if (el) el.textContent = text; }
+          set('hero-dates',     'Online ' + s.day1DateShort + ' · Offline ' + s.day2DateShort + ' · TP.HCM');
+          set('schedule-batch', s.batch);
+          set('sched-date-1',   s.day1Date);
+          set('sched-date-2',   s.day2Date);
+          set('sched-date-3',   s.day3Date);
+          set('eb-label-basic', 'Early Bird (Trước ' + s.earlyBirdDate + ')');
+          set('eb-after-basic', 'Sau ' + s.earlyBirdDate);
+          set('eb-label-adv',   'Early Bird (Trước ' + s.earlyBirdDate + ')');
+          set('eb-after-adv',   'Sau ' + s.earlyBirdDate);
+          document.getElementById('feat-day1').innerHTML = '<span class="feat-check">✓</span> Buổi 1: Online ' + s.day1DateShort + ' (19h30–21h00)';
+          document.getElementById('feat-day2').innerHTML = '<span class="feat-check">✓</span> Buổi 2: Offline ' + s.day2DateShort + ' (9h–12h30) tại TP.HCM';
+          document.getElementById('feat-day3').innerHTML = '<span class="feat-check">✓</span> Buổi 3: Offline ' + s.day3DateShort + ' - Workshop Nâng Cao - Chủ Đề Tự Động Hóa';
+          window.__ebDate = s.earlyBirdDate;
+          if (s.earlyBirdDeadline) startEBCountdown(s.earlyBirdDeadline);
+        })
+        .catch(function () {});
     })();
 
     /* ── Waitlist mode (đổi thành true khi lớp đủ người) ── */
