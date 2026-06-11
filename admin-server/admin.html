@@ -6,198 +6,229 @@
   <title>Admin – Lịch Học</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #0d0f1a;
-      color: #e0e0e0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-    .card {
-      background: #161933;
-      border: 1px solid rgba(201,168,76,0.25);
-      border-radius: 16px;
-      padding: 36px 32px;
-      width: 100%;
-      max-width: 400px;
-    }
-    h1 { font-size: 1.2rem; color: #c9a84c; margin-bottom: 4px; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0d0f1a; color: #e0e0e0; min-height: 100vh; padding: 32px 16px; }
+    .wrap { max-width: 860px; margin: 0 auto; }
+    h1 { font-size: 1.3rem; color: #c9a84c; margin-bottom: 4px; }
     .subtitle { font-size: 0.82rem; color: #666; margin-bottom: 28px; }
-    .field { margin-bottom: 18px; }
-    label { display: block; font-size: 0.8rem; color: #aaa; margin-bottom: 6px; }
-    input {
-      width: 100%;
-      background: #0d0f1a;
+
+    /* Table */
+    .table-wrap { overflow-x: auto; margin-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    th { text-align: left; padding: 10px 12px; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: #c9a84c; border-bottom: 1px solid rgba(201,168,76,0.2); white-space: nowrap; }
+    td { padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.05); vertical-align: middle; }
+    tr.active-row td { background: rgba(201,168,76,0.06); }
+    .badge { display: inline-block; font-size: 0.68rem; padding: 2px 8px; border-radius: 20px; background: rgba(46,204,113,0.15); border: 1px solid rgba(46,204,113,0.4); color: #2ecc71; }
+    .badge.past { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); color: #666; }
+
+    /* Inline inputs */
+    td input[type="text"], td input[type="date"] {
+      background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 8px;
-      padding: 10px 14px;
+      border-radius: 6px;
+      padding: 6px 10px;
       color: #fff;
-      font-size: 1rem;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    input:focus { border-color: rgba(201,168,76,0.5); }
-    .divider { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin: 22px 0; }
-    .btn {
-      width: 100%;
-      padding: 13px;
-      background: linear-gradient(135deg, #c9a84c, #a07830);
-      border: none;
-      border-radius: 8px;
-      color: #000;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: opacity 0.2s;
-    }
-    .btn:hover { opacity: 0.85; }
-    .btn:disabled { opacity: 0.4; cursor: not-allowed; }
-    #msg {
-      margin-top: 14px;
-      padding: 11px 14px;
-      border-radius: 8px;
       font-size: 0.88rem;
-      display: none;
-      text-align: center;
+      width: 100%;
+      outline: none;
     }
+    td input:focus { border-color: rgba(201,168,76,0.5); }
+    td input[type="text"].batch-input { width: 70px; }
+
+    /* Buttons */
+    .btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border: none; border-radius: 7px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
+    .btn:hover { opacity: 0.8; }
+    .btn-gold { background: linear-gradient(135deg, #c9a84c, #a07830); color: #000; }
+    .btn-add  { background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.3); color: #c9a84c; }
+    .btn-del  { background: rgba(231,76,60,0.1); border: 1px solid rgba(231,76,60,0.3); color: #e74c3c; padding: 6px 10px; font-size: 0.8rem; }
+    .btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+    .actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 24px; }
+
+    /* Password row */
+    .pw-row { display: flex; gap: 12px; align-items: center; margin-top: 8px; }
+    .pw-row input { background: #0d0f1a; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 10px 14px; color: #fff; font-size: 0.95rem; outline: none; flex: 1; }
+    .pw-row input:focus { border-color: rgba(201,168,76,0.5); }
+
+    #msg { margin-top: 14px; padding: 11px 14px; border-radius: 8px; font-size: 0.88rem; display: none; }
     #msg.ok  { background: rgba(46,204,113,0.12); border: 1px solid rgba(46,204,113,0.35); color: #2ecc71; }
     #msg.err { background: rgba(231,76,60,0.12);  border: 1px solid rgba(231,76,60,0.35);  color: #e74c3c; }
+
+    .hint { font-size: 0.75rem; color: #555; margin-top: 6px; }
   </style>
 </head>
 <body>
-<div class="card">
-  <h1>⚙️ Cập nhật lịch học</h1>
-  <p class="subtitle">Thay đổi có hiệu lực ngay sau khi lưu.</p>
+<div class="wrap">
+  <h1>⚙️ Quản lý lịch học</h1>
+  <p class="subtitle">Hệ thống tự chọn khóa đang active dựa theo ngày hôm nay. Thêm trước K04, K05… để tự động chuyển.</p>
 
-  <form id="form">
-    <div class="field">
-      <label>Tên khóa</label>
-      <input type="text" id="batch" placeholder="K03" />
-    </div>
+  <div class="table-wrap">
+    <table id="tbl">
+      <thead>
+        <tr>
+          <th>Khóa</th>
+          <th>Buổi 1 – Online</th>
+          <th>Buổi 2 – Offline</th>
+          <th>Buổi 3 – Nâng Cao</th>
+          <th>Early Bird kết thúc</th>
+          <th>Trạng thái</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
 
-    <div class="field">
-      <label>Buổi 1 – Online</label>
-      <input type="date" id="day1" />
-    </div>
+  <div class="actions">
+    <button class="btn btn-add" onclick="addRow()">＋ Thêm khóa mới</button>
+  </div>
 
-    <div class="field">
-      <label>Buổi 2 – Offline TP.HCM</label>
-      <input type="date" id="day2" />
-    </div>
-
-    <div class="field">
-      <label>Buổi 3 – Nâng Cao (Offline)</label>
-      <input type="date" id="day3" />
-    </div>
-
-    <div class="field">
-      <label>Early Bird kết thúc</label>
-      <input type="date" id="eb" />
-    </div>
-
-    <hr class="divider" />
-
-    <div class="field">
-      <label>Mật khẩu admin</label>
-      <input type="password" id="password" required />
-    </div>
-
-    <button type="submit" class="btn" id="btn">Lưu thay đổi</button>
-    <div id="msg"></div>
-  </form>
+  <div class="pw-row">
+    <input type="password" id="password" placeholder="Mật khẩu admin" />
+    <button class="btn btn-gold" id="saveBtn" onclick="save()">Lưu tất cả</button>
+  </div>
+  <p class="hint">* Hệ thống tự chọn khóa có Buổi 3 chưa qua. Nếu nhiều khóa chưa qua, sẽ chọn khóa gần nhất.</p>
+  <div id="msg"></div>
 </div>
 
 <script>
-  // Helper: "2026-06-27" → "27/06/2026"
-  function toFull(val) {
-    if (!val) return '';
-    const [y, m, d] = val.split('-');
-    return d + '/' + m + '/' + y;
+  // "2026-06-27" → "27/06/2026"
+  function toFull(v) {
+    if (!v) return '';
+    const [y,m,d] = v.split('-');
+    return d+'/'+m+'/'+y;
   }
-  // Helper: "2026-06-27" → "27/6"
-  function toShort(val) {
-    if (!val) return '';
-    const [, m, d] = val.split('-');
-    return parseInt(d) + '/' + parseInt(m);
+  // "2026-06-27" → "27/6"
+  function toShort(v) {
+    if (!v) return '';
+    const [,m,d] = v.split('-');
+    return parseInt(d)+'/'+parseInt(m);
   }
-  // Helper: "2026-06-22" → "2026-06-22T23:59:59+07:00"
-  function toDeadline(val) {
-    return val + 'T23:59:59+07:00';
-  }
-  // Helper: "27/06/2026" → "2026-06-27" (for pre-filling date input)
-  function toInputDate(full) {
+  // "27/06/2026" → "2026-06-27"
+  function toInput(full) {
     if (!full) return '';
-    const [d, m, y] = full.split('/');
-    return y + '-' + m + '-' + d;
+    const [d,m,y] = full.split('/');
+    return y+'-'+m+'-'+d;
   }
-  // Helper: "2026-06-22T23:59:59+07:00" → "2026-06-22"
-  function fromDeadline(iso) {
-    return iso ? iso.slice(0, 10) : '';
+  // "2026-06-22T23:59:59+07:00" → "2026-06-22"
+  function ebToInput(iso) { return iso ? iso.slice(0,10) : ''; }
+
+  // Determine active batch: earliest batch where day3 >= today
+  function getStatus(day3DateStr) {
+    if (!day3DateStr) return 'upcoming';
+    const [d,m,y] = day3DateStr.split('/');
+    const day3 = new Date(y, m-1, d);
+    const today = new Date(); today.setHours(0,0,0,0);
+    return day3 >= today ? 'active' : 'past';
   }
 
-  // Load current schedule to pre-fill
-  fetch('/api/schedule')
-    .then(r => r.json())
-    .then(s => {
-      document.getElementById('batch').value = s.batch || '';
-      document.getElementById('day1').value  = toInputDate(s.day1Date);
-      document.getElementById('day2').value  = toInputDate(s.day2Date);
-      document.getElementById('day3').value  = toInputDate(s.day3Date);
-      document.getElementById('eb').value    = fromDeadline(s.earlyBirdDeadline);
+  let batches = [];
+
+  function renderTable() {
+    const tbody = document.getElementById('tbody');
+    tbody.innerHTML = '';
+
+    // Find active batch index
+    const today = new Date(); today.setHours(0,0,0,0);
+    let activeIdx = -1;
+    let earliest = null;
+    batches.forEach((b, i) => {
+      if (!b.day3Date) return;
+      const [d,m,y] = b.day3Date.split('/');
+      const day3 = new Date(y, m-1, d);
+      if (day3 >= today && (earliest === null || day3 < earliest)) {
+        earliest = day3; activeIdx = i;
+      }
     });
 
-  document.getElementById('form').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const btn = document.getElementById('btn');
+    batches.forEach((b, i) => {
+      const isActive = i === activeIdx;
+      const isPast = !isActive && getStatus(b.day3Date) === 'past';
+      const tr = document.createElement('tr');
+      if (isActive) tr.className = 'active-row';
+      tr.innerHTML = `
+        <td><input type="text" class="batch-input" value="${b.batch||''}" placeholder="K04" data-i="${i}" data-f="batch" /></td>
+        <td><input type="date" value="${toInput(b.day1Date)}" data-i="${i}" data-f="day1" /></td>
+        <td><input type="date" value="${toInput(b.day2Date)}" data-i="${i}" data-f="day2" /></td>
+        <td><input type="date" value="${toInput(b.day3Date)}" data-i="${i}" data-f="day3" /></td>
+        <td><input type="date" value="${ebToInput(b.earlyBirdDeadline)}" data-i="${i}" data-f="eb" /></td>
+        <td><span class="badge${isPast?' past':''}">${isActive?'🟢 Active':isPast?'Đã qua':'Sắp tới'}</span></td>
+        <td><button class="btn btn-del" onclick="delRow(${i})">✕</button></td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    // Attach change listeners
+    tbody.querySelectorAll('input').forEach(inp => {
+      inp.addEventListener('change', function() {
+        const i = +this.dataset.i, f = this.dataset.f;
+        batches[i][f+'_raw'] = this.value;
+      });
+    });
+  }
+
+  function addRow() {
+    batches.push({ batch:'', day1Date:'', day2Date:'', day3Date:'', earlyBirdDeadline:'', earlyBirdDate:'' });
+    renderTable();
+    // Focus last row batch input
+    const inputs = document.querySelectorAll('.batch-input');
+    if (inputs.length) inputs[inputs.length-1].focus();
+  }
+
+  function delRow(i) {
+    batches.splice(i, 1);
+    renderTable();
+  }
+
+  function collectFromDOM() {
+    const rows = document.querySelectorAll('#tbody tr');
+    const result = [];
+    rows.forEach((tr, i) => {
+      const get = f => tr.querySelector(`[data-f="${f}"]`).value;
+      const d1 = get('day1'), d2 = get('day2'), d3 = get('day3'), eb = get('eb');
+      result.push({
+        batch: get('batch').trim(),
+        earlyBirdDeadline: eb ? eb+'T23:59:59+07:00' : '',
+        earlyBirdDate: eb ? (parseInt(eb.split('-')[2])+'/'+parseInt(eb.split('-')[1])) : '',
+        day1Date: toFull(d1), day1DateShort: toShort(d1),
+        day2Date: toFull(d2), day2DateShort: toShort(d2),
+        day3Date: toFull(d3), day3DateShort: toShort(d3),
+      });
+    });
+    return result;
+  }
+
+  async function save() {
+    const btn = document.getElementById('saveBtn');
     const msg = document.getElementById('msg');
-    btn.disabled = true;
-    btn.textContent = 'Đang lưu...';
-    msg.style.display = 'none';
+    const pw  = document.getElementById('password').value;
+    if (!pw) { msg.className='err'; msg.textContent='✗ Nhập mật khẩu trước'; msg.style.display='block'; return; }
 
-    const d1 = document.getElementById('day1').value;
-    const d2 = document.getElementById('day2').value;
-    const d3 = document.getElementById('day3').value;
-    const eb = document.getElementById('eb').value;
-
-    const body = {
-      password: document.getElementById('password').value,
-      batch: document.getElementById('batch').value.trim(),
-      earlyBirdDeadline: toDeadline(eb),
-      earlyBirdDate: eb ? (parseInt(eb.split('-')[2]) + '/' + parseInt(eb.split('-')[1])) : '',
-      day1Date: toFull(d1),
-      day1DateShort: toShort(d1),
-      day2Date: toFull(d2),
-      day2DateShort: toShort(d2),
-      day3Date: toFull(d3),
-      day3DateShort: toShort(d3),
-    };
+    btn.disabled = true; btn.textContent = 'Đang lưu...'; msg.style.display = 'none';
 
     try {
-      const res  = await fetch('/api/schedule', {
+      const res  = await fetch('/api/batches', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body)
+        body: JSON.stringify({ password: pw, batches: collectFromDOM() })
       });
       const json = await res.json();
       if (json.ok) {
         msg.className = 'ok';
-        msg.textContent = '✓ Đã lưu! Trang web cập nhật ngay.';
+        msg.textContent = '✓ Đã lưu! Trang web tự cập nhật ngay.';
+        fetch('/api/batches').then(r=>r.json()).then(d=>{ batches=d; renderTable(); });
       } else {
         msg.className = 'err';
-        msg.textContent = '✗ ' + (json.error || 'Lỗi không xác định');
+        msg.textContent = '✗ ' + (json.error || 'Lỗi');
       }
     } catch {
-      msg.className = 'err';
-      msg.textContent = '✗ Không kết nối được server';
+      msg.className = 'err'; msg.textContent = '✗ Không kết nối được server';
     }
-
     msg.style.display = 'block';
-    btn.disabled = false;
-    btn.textContent = 'Lưu thay đổi';
-  });
+    btn.disabled = false; btn.textContent = 'Lưu tất cả';
+  }
+
+  // Init
+  fetch('/api/batches').then(r=>r.json()).then(d=>{ batches=d; renderTable(); });
 </script>
 </body>
 </html>

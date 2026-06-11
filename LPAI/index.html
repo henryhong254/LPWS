@@ -4230,11 +4230,25 @@
     }
     startEBCountdown('2026-06-22T23:59:59+07:00');
 
-    /* ── Load schedule from JSON ── */
+    /* ── Load active batch from batches.json ── */
     (function () {
-      fetch('/schedule.json?v=' + Date.now())
+      fetch('/batches.json?v=' + Date.now())
         .then(function (r) { return r.json(); })
-        .then(function (s) {
+        .then(function (list) {
+          // Pick active batch: earliest batch where day3 >= today
+          var today = new Date(); today.setHours(0,0,0,0);
+          var active = null, earliest = null;
+          list.forEach(function(b) {
+            if (!b.day3Date) return;
+            var parts = b.day3Date.split('/');
+            var day3 = new Date(parts[2], parts[1]-1, parts[0]);
+            if (day3 >= today && (earliest === null || day3 < earliest)) {
+              earliest = day3; active = b;
+            }
+          });
+          if (!active && list.length) active = list[list.length - 1]; // fallback: last batch
+          if (!active) return;
+          var s = active;
           function set(id, text) { var el = document.getElementById(id); if (el) el.textContent = text; }
           set('hero-dates',     'Online ' + s.day1DateShort + ' · Offline ' + s.day2DateShort + ' · TP.HCM');
           set('schedule-batch', s.batch);
