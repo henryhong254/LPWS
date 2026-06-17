@@ -4015,8 +4015,8 @@
     /* ── Registration Form ── */
     (function () {
       const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbym1l_YvHTBLX9tH5Q2N7Sx4o8KxT4hcwJwRXaRg5HELxEjMWLJ7QjAo1_1K-YN78JV/exec';
-      const EARLY_BIRD_DEADLINE = new Date('2026-06-03T23:59:59+07:00');
-      function isEarlyBird() { return new Date() <= EARLY_BIRD_DEADLINE; }
+      window.__ebDeadline = new Date('2026-06-22T23:59:59+07:00');
+      function isEarlyBird() { return new Date() <= window.__ebDeadline; }
 
       const badge = document.getElementById('modal-package-badge');
 
@@ -4263,7 +4263,10 @@
           document.getElementById('feat-day2').innerHTML = '<span class="feat-check">✓</span> Buổi 2: Offline ' + s.day2DateShort + ' (9h–12h30) tại TP.HCM';
           document.getElementById('feat-day3').innerHTML = '<span class="feat-check">✓</span> Buổi 3: Offline ' + s.day3DateShort + ' - Workshop Nâng Cao - Chủ Đề Tự Động Hóa';
           window.__ebDate = s.earlyBirdDate;
-          if (s.earlyBirdDeadline) startEBCountdown(s.earlyBirdDeadline);
+          if (s.earlyBirdDeadline) {
+            window.__ebDeadline = new Date(s.earlyBirdDeadline);
+            startEBCountdown(s.earlyBirdDeadline);
+          }
         })
         .catch(function () {});
     })();
