@@ -2195,8 +2195,10 @@
     .pkg-card.active { border-color: var(--gold); background: rgba(201,168,76,0.12); box-shadow: 0 0 20px rgba(201,168,76,0.15); }
     .pkg-card input[type=radio] { position:absolute; opacity:0; width:0; height:0; }
     .pkg-card .pkg-name { font-family:'Beautique Display',serif; font-size:1rem; color:#fff; margin-bottom:4px; }
+    .pkg-card .pkg-price-wrap { display:flex; align-items:baseline; gap:6px; flex-wrap:wrap; }
     .pkg-card .pkg-price { font-size:1rem; color:var(--gold-light); font-weight:400; }
-    .pkg-card .pkg-price-reg { display:none; }
+    .pkg-card .pkg-price-original { font-size:0.82rem; color:rgba(255,255,255,0.4); text-decoration:line-through; }
+    .pkg-card .pkg-price-badge { display:inline-block; margin-top:4px; font-size:0.68rem; letter-spacing:0.04em; color:#1a1a2e; background:var(--gold-light); border-radius:20px; padding:2px 8px; font-weight:600; }
     .pkg-card .pkg-check {
       position:absolute; top:10px; right:10px;
       width:18px; height:18px; border-radius:50%;
@@ -3734,15 +3736,21 @@
                   <input type="radio" name="package" value="basic" id="pkg-basic" checked />
                   <div class="pkg-check"></div>
                   <div class="pkg-name">Gói Cơ Bản</div>
-                  <div class="pkg-price" id="price-basic">886.000đ</div>
-                  <div class="pkg-price-reg">Early Bird</div>
+                  <div class="pkg-price-wrap">
+                    <span class="pkg-price-original" id="price-basic-original" style="display:none;"></span>
+                    <span class="pkg-price" id="price-basic">886.000đ</span>
+                  </div>
+                  <div class="pkg-price-badge" id="price-basic-badge" style="display:none;">✦ Early Bird</div>
                 </label>
                 <label class="pkg-card" id="pkg-card-advanced" for="pkg-advanced">
                   <input type="radio" name="package" value="advanced" id="pkg-advanced" />
                   <div class="pkg-check"></div>
                   <div class="pkg-name">Gói Nâng Cao</div>
-                  <div class="pkg-price" id="price-advanced">1.386.000đ</div>
-                  <div class="pkg-price-reg">Early Bird</div>
+                  <div class="pkg-price-wrap">
+                    <span class="pkg-price-original" id="price-advanced-original" style="display:none;"></span>
+                    <span class="pkg-price" id="price-advanced">1.386.000đ</span>
+                  </div>
+                  <div class="pkg-price-badge" id="price-advanced-badge" style="display:none;">✦ Early Bird</div>
                 </label>
               </div>
               <input type="hidden" id="selected-package" name="package" value="basic" />
@@ -4021,12 +4029,16 @@
       const badge = document.getElementById('modal-package-badge');
 
       // Package selection logic
+      function setPkgPriceCard(pkg, ebPrice, regPrice, isEB) {
+        document.getElementById('price-' + pkg).textContent = isEB ? ebPrice : regPrice;
+        document.getElementById('price-' + pkg + '-original').textContent = regPrice;
+        document.getElementById('price-' + pkg + '-original').style.display = isEB ? '' : 'none';
+        document.getElementById('price-' + pkg + '-badge').style.display = isEB ? '' : 'none';
+      }
       function updatePriceDisplay() {
         const isEB = isEarlyBird();
-        const basicPrice = isEB ? '886.000đ (Early Bird)' : '1.086.000đ';
-        const advPrice = isEB ? '1.386.000đ (Early Bird)' : '1.586.000đ';
-        document.getElementById('price-basic').textContent = basicPrice;
-        document.getElementById('price-advanced').textContent = advPrice;
+        setPkgPriceCard('basic', '886.000đ', '1.086.000đ', isEB);
+        setPkgPriceCard('advanced', '1.386.000đ', '1.586.000đ', isEB);
       }
       updatePriceDisplay();
 
@@ -4066,6 +4078,13 @@
       });
       handlePackageChange(); // Initialize
 
+      // Re-run once batches.json's real early-bird deadline has loaded (see "Load active batch" block below),
+      // so the displayed price/badge for the already-selected package isn't stuck on the stale default deadline.
+      window.__refreshEBPricing = function () {
+        updatePriceDisplay();
+        handlePackageChange();
+      };
+
       function validateField(id, errId, isValid) {
         const input = document.getElementById(id);
         const err   = document.getElementById(errId);
@@ -4092,15 +4111,19 @@
         btn.disabled = true;
         btn.textContent = 'Đang gửi...';
 
-        // Get selected package and amount
+        // Get selected package and amount (computed fresh, not from cached hidden input,
+        // since batches.json's early-bird deadline may load after page init)
         const selectedPkg = document.querySelector('input[name="package"]:checked').value;
-        const amount = parseInt(document.getElementById('selected-price').value);
+        const isEB = isEarlyBird();
 
+        let amount = 0;
         let pkgLabel = '';
         if (selectedPkg === 'basic') {
-          pkgLabel = isEarlyBird() ? 'Gói Cơ Bản - Early Bird 886.000đ' : 'Gói Cơ Bản - 1.086.000đ';
+          amount = isEB ? 886000 : 1086000;
+          pkgLabel = isEB ? 'Gói Cơ Bản - Early Bird 886.000đ' : 'Gói Cơ Bản - 1.086.000đ';
         } else {
-          pkgLabel = isEarlyBird() ? 'Gói Nâng Cao - Early Bird 1.386.000đ' : 'Gói Nâng Cao - 1.586.000đ';
+          amount = isEB ? 1386000 : 1586000;
+          pkgLabel = isEB ? 'Gói Nâng Cao - Early Bird 1.386.000đ' : 'Gói Nâng Cao - 1.586.000đ';
         }
 
         const params = new URLSearchParams({ name, phone, email, package: pkgLabel });
@@ -4267,6 +4290,7 @@
             window.__ebDeadline = new Date(s.earlyBirdDeadline);
             startEBCountdown(s.earlyBirdDeadline);
           }
+          if (typeof window.__refreshEBPricing === 'function') window.__refreshEBPricing();
         })
         .catch(function () {});
     })();
