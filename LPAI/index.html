@@ -3559,7 +3559,7 @@
           <div style="display:inline-block; background:rgba(150,150,180,0.1); border:1px solid rgba(150,150,180,0.35); border-radius:20px; padding:3px 12px; font-size:0.7rem; letter-spacing:0.12em; color:#AAA; margin-bottom:12px;">✦ GÓI CƠ BẢN</div>
           <div class="schedule-day">Ngày 1</div>
           <div class="schedule-date" id="sched-date-1">27/06/2026</div>
-          <div class="schedule-time">19h30 - 21h00</div>
+          <div class="schedule-time" id="sched-time-1">19h30 - 21h00</div>
           <span class="schedule-type online">• ONLINE LIVE</span>
           <p class="schedule-location">Qua Google Meet</p>
         </div>
@@ -3568,7 +3568,7 @@
           <div style="display:inline-block; background:rgba(150,150,180,0.1); border:1px solid rgba(150,150,180,0.35); border-radius:20px; padding:3px 12px; font-size:0.7rem; letter-spacing:0.12em; color:#AAA; margin-bottom:12px;">✦ GÓI CƠ BẢN</div>
           <div class="schedule-day">Ngày 2</div>
           <div class="schedule-date" id="sched-date-2">28/06/2026</div>
-          <div class="schedule-time">09h00 - 12h30</div>
+          <div class="schedule-time" id="sched-time-2">09h00 - 12h30</div>
           <span class="schedule-type offline">• OFFLINE - TP.HCM</span>
           <p class="schedule-location">29 Đường R, KĐT Lakeview City, Bình Trưng (Q2)</p>
         </div>
@@ -3577,7 +3577,7 @@
           <div style="display:inline-block; background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.5); border-radius:20px; padding:3px 12px; font-size:0.7rem; letter-spacing:0.12em; color:var(--gold); margin-bottom:12px;">⭐ GÓI NÂNG CAO</div>
           <div class="schedule-day">Ngày 3</div>
           <div class="schedule-date" id="sched-date-3">05/07/2026</div>
-          <div class="schedule-time">09h00 - 12h30</div>
+          <div class="schedule-time" id="sched-time-3">09h00 - 12h30</div>
           <span class="schedule-type offline">• OFFLINE - TP.HCM</span>
           <p class="schedule-location">29 Đường R, KĐT Lakeview City, Bình Trưng (Q2)</p>
         </div>
@@ -4276,15 +4276,18 @@
           set('hero-dates',     'Online ' + s.day1DateShort + ' · Offline ' + s.day2DateShort + ' · TP.HCM');
           set('schedule-batch', s.batch);
           set('sched-date-1',   s.day1Date);
+          set('sched-time-1',   s.day1Time || '19h30 - 21h00');
           set('sched-date-2',   s.day2Date);
+          set('sched-time-2',   s.day2Time || '09h00 - 12h30');
           set('sched-date-3',   s.day3Date);
+          set('sched-time-3',   s.day3Time || '09h00 - 12h30');
           set('eb-label-basic', 'Early Bird (Trước ' + s.earlyBirdDate + ')');
           set('eb-after-basic', 'Sau ' + s.earlyBirdDate);
           set('eb-label-adv',   'Early Bird (Trước ' + s.earlyBirdDate + ')');
           set('eb-after-adv',   'Sau ' + s.earlyBirdDate);
-          document.getElementById('feat-day1').innerHTML = '<span class="feat-check">✓</span> Buổi 1: Online ' + s.day1DateShort + ' (19h30–21h00)';
-          document.getElementById('feat-day2').innerHTML = '<span class="feat-check">✓</span> Buổi 2: Offline ' + s.day2DateShort + ' (9h–12h30) tại TP.HCM';
-          document.getElementById('feat-day3').innerHTML = '<span class="feat-check">✓</span> Buổi 3: Offline ' + s.day3DateShort + ' - Workshop Nâng Cao - Chủ Đề Tự Động Hóa';
+          document.getElementById('feat-day1').innerHTML = '<span class="feat-check">✓</span> Buổi 1: Online ' + s.day1DateShort + ' (' + (s.day1Time || '19h30–21h00') + ')';
+          document.getElementById('feat-day2').innerHTML = '<span class="feat-check">✓</span> Buổi 2: Offline ' + s.day2DateShort + ' (' + (s.day2Time || '9h–12h30') + ') tại TP.HCM';
+          document.getElementById('feat-day3').innerHTML = '<span class="feat-check">✓</span> Buổi 3: Offline ' + s.day3DateShort + ' ' + (s.day3Time ? '(' + s.day3Time + ') ' : '') + '- Workshop Nâng Cao - Chủ Đề Tự Động Hóa';
           window.__ebDate = s.earlyBirdDate;
           if (s.earlyBirdDeadline) {
             window.__ebDeadline = new Date(s.earlyBirdDeadline);

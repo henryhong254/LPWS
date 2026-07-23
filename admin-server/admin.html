@@ -33,6 +33,8 @@
     }
     td input:focus { border-color: rgba(201,168,76,0.5); }
     td input[type="text"].batch-input { width: 70px; }
+    td input[type="text"].time-input { width: 90px; font-size: 0.8rem; padding: 6px 8px; }
+    .date-time-group { display: flex; gap: 6px; align-items: center; }
 
     /* Buttons */
     .btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border: none; border-radius: 7px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
@@ -147,9 +149,24 @@
       if (isActive) tr.className = 'active-row';
       tr.innerHTML = `
         <td><input type="text" class="batch-input" value="${b.batch||''}" placeholder="K04" data-i="${i}" data-f="batch" /></td>
-        <td><input type="date" value="${toInput(b.day1Date)}" data-i="${i}" data-f="day1" /></td>
-        <td><input type="date" value="${toInput(b.day2Date)}" data-i="${i}" data-f="day2" /></td>
-        <td><input type="date" value="${toInput(b.day3Date)}" data-i="${i}" data-f="day3" /></td>
+        <td>
+          <div class="date-time-group">
+            <input type="date" value="${toInput(b.day1Date)}" data-i="${i}" data-f="day1" />
+            <input type="text" class="time-input" value="${b.day1Time||''}" placeholder="19h30-21h" data-i="${i}" data-f="day1Time" />
+          </div>
+        </td>
+        <td>
+          <div class="date-time-group">
+            <input type="date" value="${toInput(b.day2Date)}" data-i="${i}" data-f="day2" />
+            <input type="text" class="time-input" value="${b.day2Time||''}" placeholder="9h-12h30" data-i="${i}" data-f="day2Time" />
+          </div>
+        </td>
+        <td>
+          <div class="date-time-group">
+            <input type="date" value="${toInput(b.day3Date)}" data-i="${i}" data-f="day3" />
+            <input type="text" class="time-input" value="${b.day3Time||''}" placeholder="Giờ" data-i="${i}" data-f="day3Time" />
+          </div>
+        </td>
         <td><input type="date" value="${ebToInput(b.earlyBirdDeadline)}" data-i="${i}" data-f="eb" /></td>
         <td><span class="badge${isPast?' past':''}">${isActive?'🟢 Active':isPast?'Đã qua':'Sắp tới'}</span></td>
         <td><button class="btn btn-del" onclick="delRow(${i})">✕</button></td>
@@ -167,7 +184,7 @@
   }
 
   function addRow() {
-    batches.push({ batch:'', day1Date:'', day2Date:'', day3Date:'', earlyBirdDeadline:'', earlyBirdDate:'' });
+    batches.push({ batch:'', day1Date:'', day1Time:'', day2Date:'', day2Time:'', day3Date:'', day3Time:'', earlyBirdDeadline:'', earlyBirdDate:'' });
     renderTable();
     // Focus last row batch input
     const inputs = document.querySelectorAll('.batch-input');
@@ -183,15 +200,15 @@
     const rows = document.querySelectorAll('#tbody tr');
     const result = [];
     rows.forEach((tr, i) => {
-      const get = f => tr.querySelector(`[data-f="${f}"]`).value;
+      const get = f => (tr.querySelector(`[data-f="${f}"]`) ? tr.querySelector(`[data-f="${f}"]`).value : '');
       const d1 = get('day1'), d2 = get('day2'), d3 = get('day3'), eb = get('eb');
       result.push({
         batch: get('batch').trim(),
         earlyBirdDeadline: eb ? eb+'T23:59:59+07:00' : '',
         earlyBirdDate: eb ? (parseInt(eb.split('-')[2])+'/'+parseInt(eb.split('-')[1])) : '',
-        day1Date: toFull(d1), day1DateShort: toShort(d1),
-        day2Date: toFull(d2), day2DateShort: toShort(d2),
-        day3Date: toFull(d3), day3DateShort: toShort(d3),
+        day1Date: toFull(d1), day1DateShort: toShort(d1), day1Time: get('day1Time'),
+        day2Date: toFull(d2), day2DateShort: toShort(d2), day2Time: get('day2Time'),
+        day3Date: toFull(d3), day3DateShort: toShort(d3), day3Time: get('day3Time'),
       });
     });
     return result;
